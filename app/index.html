@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<title>My app</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-app="adr.main" ng-controller="AdrMainController as adr">
+
+<a ng-link="home">home</a>
+<a ng-link="session">Session</a>
+
+<a ng-link="detail({id: 5})">detail</a>
+
+<div ui-view></div>
+
+<a href="" ng-click="addColumn()">add column</a>
+<p><input ng-model="app.class" /></p>
+<div class="notes-container">
+	<div ng-repeat="column in app.columns" class="notes-column active two-note-columns"><h3>{{ column.name }}</h3></div>
+</div>
+
+<script src="node_modules/angular/angular.js"></script>
+<script src="adr.main.js"></script>
+</body>
+</html>

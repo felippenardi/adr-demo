@@ -1,0 +1,23 @@
+adr.main.js
+- /components
+  - /join
+  - /login
+  - /admin.dash
+  - /admin.organizations
+  - /admin.organizations.settings (wf = adr notable - admin)
+  - /admin.users
+  - /admin.users.settings (wf = User settings)
+  - /admin.cases
+  - /case.plan
+  - /case.plan.basics
+  - /case.plan.attendies
+  - /case.plan.schedule
+  - /case.plan.statements
+  - /case.session
+  - /case.session.notes
+  - /case.session.statements
+  - /case.session.resolution
+- /models
+- /vendors
+  - /stormpath
+  - /stripe
