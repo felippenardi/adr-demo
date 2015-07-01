@@ -1,0 +1,99 @@
+/* style.css */
+
+/*
+
+* {
+	The star selects every element and applies the
+	border-box value to it.
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-box-sizing: border-box;
+}
+
+*/
+
+
+div.container {
+
+
+	position: relative;
+
+	/* max-with in place of width
+	 * when used for absolute with (!%)
+	 * will prevent the browser from cutting
+	 * it offer when the window is shrunk
+	 */
+	max-width: 960px;
+
+	/* spacing between div and other elements */
+	margin: 0 auto;
+
+	/* spacing between content and container */
+	padding: 30px;
+
+	border: 2px solid black;
+
+	/* new properties that set size to include padding
+	 * and border so I don't have to calculate the
+	 * width by adding width, padding, border
+	 *
+	 * does NOT work below ie8
+	 */
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-box-sizing: border-box;
+}
+
+div.notes-column {
+	position: relative;
+
+	/* inline-block is easier than using floats, 
+	 * but its not compatible with ie6 or ie7
+	 */
+	display: inline-block;
+
+	/* inline-block elements are effected by 
+	 * the vertical-align property so typically
+	 * set it to top
+	 */
+	vertical-align: top;
+
+	width: 260px;
+	height: 600px;
+	padding: 1em;
+	margin: 1em;
+	border: 2px solid black;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-box-sizing: border-box;
+}
+
+div.notes-container {
+	position: absolute;
+	bottom: 75px;
+}
+
+div.note {
+	position: relative;
+	margin-bottom: 1em;
+	margin-top: 1em;
+}
+
+/* REFACTOR 
+ * Should probably put the input and the button
+ * inside of absolutely positioned div
+ */
+input.note-input {
+	position: absolute;
+	bottom: 1em;
+}
+
+button.note-add {
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+}
+
+div.clearfix {
+	overflow: auto;
+}
