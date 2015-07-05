@@ -22,7 +22,8 @@ angular.module('adr.main', ['ui.router'])
 
 	.state('case.session.notes', {
 		url: "notes",
-		templateUrl: "app/case.session.notes.html"
+		templateUrl: "app/case.session.notes.html",
+		controller: NotesCtrl
 	})
 
 	.state('case.plan', {
@@ -52,15 +53,15 @@ angular.module('adr.main', ['ui.router'])
 
 })
 
-/*
-.controller('MainController', [MainController])
+.controller('NotesCtrl', [NotesCtrl])
 
-MainController = function() {}
-
-.service('TagsService')
-.service('NotesService')
-.service('CaucusService')
-.controller('RecordNotesCtrl') // createGroup(), activateTag(), deactivateTag() ...
-.directive('TagColumn') // TagColumnCtrl select(), activate(), deactivate()
-.directive('Note') //NoteCtrl // addToGroup, select()
-*/
+function NotesCtrl($scope) {
+	var vm = this;
+	vm.notes = [];
+	vm.current_note = "";
+	vm.add = function() {
+		note = vm.current_note;
+		vm.notes.push(note);
+		vm.current_note = "";
+	}
+};

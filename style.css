@@ -56,7 +56,8 @@ div.notes-column {
 	 * the vertical-align property so typically
 	 * set it to top
 	 */
-	vertical-align: top;
+	display: table-cell;
+	vertical-align: bottom;
 
 	width: 260px;
 	height: 600px;
