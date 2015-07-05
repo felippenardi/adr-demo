@@ -23,7 +23,7 @@ angular.module('adr.main', ['ui.router'])
 	.state('case.session.notes', {
 		url: "notes",
 		templateUrl: "app/case.session.notes.html",
-		controller: NotesCtrl
+		controller: 'NotesCtrl as notes'
 	})
 
 	.state('case.plan', {
@@ -55,7 +55,7 @@ angular.module('adr.main', ['ui.router'])
 
 .controller('NotesCtrl', [NotesCtrl])
 
-function NotesCtrl($scope) {
+function NotesCtrl() {
 	var vm = this;
 	vm.notes = [];
 	vm.current_note = "";
@@ -63,5 +63,5 @@ function NotesCtrl($scope) {
 		note = vm.current_note;
 		vm.notes.push(note);
 		vm.current_note = "";
-	}
+	};
 };

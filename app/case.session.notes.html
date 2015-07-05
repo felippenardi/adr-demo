@@ -12,14 +12,14 @@
 		<button class="note-add">add</button>
 	</div>
 	<div class="notes-column">
-		<div class="note" ng-repeat="note in notes">
+		<div class="note" ng-repeat="note in notes.notes">
 			<p>{{note}}</p>	
 		</div>		
 
 		<div class="note">
-			<p>{{current_note}}</p>	
+			<p>{{notes.current_note}}</p>	
 		</div>
-		<input class="note-input" ng-model="current_note" />
-		<button class="note-add" ng-click="add()">add</button>
+		<input class="note-input" ng-model="notes.current_note" />
+		<button class="note-add" ng-click="notes.add()">add</button>
 	</div>
 </div>
