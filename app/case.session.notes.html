@@ -1,17 +1,10 @@
 <!-- app/case.session.notes.html -->
 
 <div class="container clearfix">
-	<div class="notes-column">
-		<p>one</p>
-		<input class="note-input" />
-		<button class="note-add">add</button>
-	</div>
-	<div class="notes-column">
-		<p>two</p>
-		<input class="note-input" />
-		<button class="note-add">add</button>
-	</div>
-	<div class="notes-column">
+	<h4>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</h4>
+	<button ng-click="notes.addCategory('name here')">add</button>
+	<div class="notes-column" ng-repeat="category in notes.categories">
+		<h4>{{category.name}}</h4>
 		<div class="note" ng-repeat="note in notes.notes">
 			<p>{{note}}</p>	
 		</div>		
@@ -23,3 +16,5 @@
 		<button class="note-add" ng-click="notes.add()">add</button>
 	</div>
 </div>
+
+

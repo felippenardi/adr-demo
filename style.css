@@ -12,18 +12,30 @@
 
 */
 
+ul.menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li.menu {
+	display: inline;
+}
 
 div.container {
 
 
 	position: relative;
+	/*display: inline-block;*/
 
 	/* max-with in place of width
 	 * when used for absolute with (!%)
 	 * will prevent the browser from cutting
 	 * it offer when the window is shrunk
 	 */
-	max-width: 960px;
+	max-width: 900px;
+	overflow-x: scroll;
+	height: 400px;
 
 	/* spacing between div and other elements */
 	margin: 0 auto;
@@ -59,11 +71,9 @@ div.notes-column {
 	display: table-cell;
 	vertical-align: bottom;
 
-	width: 260px;
-	height: 600px;
+	width: 300px;
 	padding: 1em;
 	margin: 1em;
-	border: 2px solid black;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-box-sizing: border-box;

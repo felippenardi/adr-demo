@@ -53,12 +53,28 @@ angular.module('adr.main', ['ui.router'])
 
 })
 
-.controller('NotesCtrl', [NotesCtrl])
+.controller('NotesCtrl', ['$window', NotesCtrl])
 
-function NotesCtrl() {
+function NotesCtrl($window) {
+	var w = angular.element($window);
 	var vm = this;
 	vm.notes = [];
+	vm.categories = [];
 	vm.current_note = "";
+	vm.windowInnerWidth = $window.innerWidth;
+	vm.windowInnerHeight = $window.innerHeight;
+
+	w.bind('resize', function() {
+		var width = $window.innerWidth;
+		vm.windowInnerWidth = width;
+		console.log(vm.windowInnerWidth);
+		//console.log(width);
+	});
+
+	vm.addCategory = function(name) {
+		vm.categories.push({name: name})
+	}
+
 	vm.add = function() {
 		note = vm.current_note;
 		vm.notes.push(note);
