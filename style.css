@@ -108,3 +108,7 @@ button.note-add {
 div.clearfix {
 	overflow: auto;
 }
+
+p.strikethrough {
+	text-decoration: line-through;
+}

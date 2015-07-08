@@ -1,0 +1,121 @@
+tags = [
+	{
+		name: proposal,
+		priority: 2 // default sort,
+		sort: 3 // overrides priority
+		visible: true // tag col is displayed
+		isActive: true // focus is here so typing puts note here
+	}, ...
+]
+
+notes = [
+	{
+		text: adfasdf,
+		tag: proposal, # apply filter to put notes in col
+		timestamp: ...
+		groups: [a, b, c],
+		selected: true, # for grouping
+		caucus: false
+	},
+	{
+		caucus: true,
+		parties: [...]
+		begin: ...,
+		end: ...,
+		notes: [...]
+	}
+]
+
+// alternative without nesting notes within
+// a caucus
+notes = [
+	{
+		text: adfasdf,
+		tag: proposal, # apply filter to put notes in col
+		timestamp: ...
+		groups: [a, b, c],
+		selected: true, # for grouping
+		caucus: false
+	},
+	{
+		caucus: begin,
+		begin: timestamp
+		parties: [...]
+	},
+	{ note }, // note taken during caucus
+	{ note }, // note taken during caucus
+	{
+		caucus: end
+		timestamp: ...
+	}
+]
+
+// alternative: notes with caucus_start, caucus_end attributes
+notes = [
+	{
+		text: adfasdf,
+		tag: proposal, # apply filter to put notes in col
+		timestamp: ...
+		groups: [a, b, c],
+		selected: true, # for grouping
+		caucus: false
+	},
+	{
+		text: adfasdf,
+		tag: proposal, # apply filter to put notes in col
+		timestamp: ...
+		groups: [a, b, c],
+		selected: true, # for grouping
+		caucus_start: timestamp, // uniquely id's the caucus
+		caucus_end: timestamp
+		caucus_parties: [...]
+	},
+]
+
+
+// finally, create an array of caucus objects that can be referenced
+// within notes
+
+caucuses = [
+	{
+
+		id: asdfadsf,
+		parties: [...]
+		start: timestamp
+		end: timestamp
+	}
+]
+
+notes = [
+	{
+		text: adfasdf,
+		tag: proposal, # apply filter to put notes in col
+		timestamp: ...
+		groups: [a, b, c],
+		selected: true, # for grouping
+		caucus: 0
+	},
+	{
+		text: adfasdf,
+		tag: proposal, # apply filter to put notes in col
+		timestamp: ...
+		groups: [a, b, c],
+		selected: true, # for grouping
+		caucus: caucus_id
+	},
+]
+
+// just some ideas for convenience
+selected_notes = [
+	noteid, noteid, noteid, ...
+]
+	
+linked_notes = {
+	link_name: summer camp,
+	notes: [id, id, id]
+}
+
+resolutions = {
+	issue1: [proposalA, proposalB],
+	issue2: [proposalB, proposalC]
+}
