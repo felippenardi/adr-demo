@@ -1,0 +1,17 @@
+100% code coverage on SPA and the API
+100% Swagger documented REST API
+Technology glossary so you know what I'm using
+Book of licenses to see what the license is for each piece of technology used
+Source files included with every release to protect against libraries disappearing (project gets closed on github or whatever)
+12-Factor app
+Semantic Versioning
+Separate code bases for REST API
+REST API Tuned for performance (PyPY) + Uwsgi + Nginx
+SPA + REST API makes it easy to adapt this to future platforms
+Deployment is both automated and documented with Ansible
+Separate logging server for quickly detecting problems preventing log accumulationg from crashing the server (logstash)
+HTTTPS + JWT maximize security
+All opensource components to reduce monthly overhead (logstash, nginx, uwsgi, ...)
+Build Server makes for easy deployment
+Continuous integration and tested deployments with Ansible
+UX javascript objects/models schemas are fully documented

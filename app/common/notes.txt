@@ -1,0 +1,3 @@
+put common directives in here that can be generalized.  Especially for menus and the admin backend
+
+menu should use transclusion to add items to the dom

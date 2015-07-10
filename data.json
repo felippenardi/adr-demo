@@ -1,5 +1,59 @@
+/**
+
+schemas
+
+note
+
+// denormalizing the note by adding things like caucus & filters
+// to make the ui easier to code.
+// data is what's actually saved to the database
+{
+	data: {
+		id
+		synced: bool
+		created: datetime
+		category_id: key
+		party_id: key
+		attendee_id: key
+		linked: bool // to other notes
+		offer: bool // offer to issue or issue with offer
+	},
+	caucus: {
+		caucus: bool
+		visible: bool (if caucus toggled to hide)
+		private: bool
+	},
+	filters: {
+		...	
+
+	},
+	ui: {
+
+		hover: bool
+	},
+	links: [
+		{
+			link_id: key,
+			title: string
+		},
+		{}
+	],
+	resolutions: [
+		{
+			offer_id: key,
+			issue_id: key,
+			issue_name: string
+		}
+	]
+}
+
+**/
+
+
+
 tags = [
 	{
+		id: 123,
 		name: proposal,
 		priority: 2 // default sort,
 		sort: 3 // overrides priority
@@ -11,7 +65,7 @@ tags = [
 notes = [
 	{
 		text: adfasdf,
-		tag: proposal, # apply filter to put notes in col
+		tag_id: proposal, # apply filter to put notes in col
 		timestamp: ...
 		groups: [a, b, c],
 		selected: true, # for grouping

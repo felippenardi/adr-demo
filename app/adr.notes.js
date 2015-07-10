@@ -7,8 +7,10 @@ notesMod.controller('NotesCtrl', ['$window', NotesCtrl])
 function NotesCtrl($window) {
 	var w = angular.element($window);
 	var vm = this;
-	vm.notes = [];
+	vm.columns = [];
 	vm.categories = [];
+	vm.notes = [];
+	vm.caucus = [];
 	vm.current_note = "";
 	vm.windowInnerWidth = $window.innerWidth;
 	vm.windowInnerHeight = $window.innerHeight;
@@ -32,6 +34,82 @@ function NotesCtrl($window) {
 		vm.current_note = "";
 	};
 };
+
+notesMod.directive('column', function() {
+	/*
+	 * I should be able to pass the index position of this column
+	 * into the scope using @ or & so I can add it to the left or right
+	 * into the array.
+	 * 
+	 * remember that I need to use {{$index}} to pass the value in
+	 *
+	 * Another way could be to pass a function into the directive with a
+	 * signature: addColumn(position)
+	 */
+	 
+	return {
+		restrict: 'E',
+		scope: {
+			column: '=',
+			position: '@',
+			addColumn: '&'
+		},
+		bindToController: true,
+		controllerAs: column,
+		controller: function () {
+			var add = function(direction, position) {
+				/*
+				 * Is it better to pass the position in from the 
+				 * ng-click call or use the scope.position.
+				 */
+				scope.addColumn(position);
+			};
+
+			/*
+			 * type is something like category, group, party
+			 * handle is the unique identifier of a member of
+			 * the type container
+			 */
+			var setContents = function(type, handle) {}
+
+			/*
+			 * look at notes for specs on how this should work
+			 */
+			var sortContents = function() {}
+
+			var close = function() {}
+
+			// NOTE: the menu will be implemented  common menu directive so no
+			// function for opening and closing is needed here
+			
+			
+
+		}
+	}
+
+});
+
+/*
+ * I'm not sure that a directive makes since for categories
+ */
+notesMod.directive('category', function() {
+
+
+	return {
+		restrict: 'E',
+		scope: {
+			category: '='
+		       },
+		bindToController: true,
+		controllerAs: 'category',
+		controller: function() {
+			var vm = this;
+			vm.notes = []
+			vm.addNote = function(note){};
+		}
+	}
+
+});
 
 notesMod.directive('note', function() {
 	return {
@@ -85,18 +163,6 @@ notesMod.directive('note', function() {
 			vm.setCategory = function (category) {};
 		}
 	}
-});
-
-.directive('CategoryDirective', function() {
-
-	return {
-		controller: function() {
-			var vm = this;
-			vm.notes = []
-			vm.addNote = function(note){};
-		}
-	}
-
 });
 */
 /*
