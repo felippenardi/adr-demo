@@ -1,5 +1,13 @@
 <!-- adr.notes.js -->
 
+/**
+ *
+ * I think there should be a session.case shell.
+ * The notes would occupy the view.
+ * This controller and subsequent directives will control the view
+ *
+ */
+
 var notesMod = angular.module('adr.notes', [])
 
 notesMod.controller('NotesCtrl', ['$window', NotesCtrl])
@@ -10,6 +18,7 @@ function NotesCtrl($window) {
 	vm.columns = [];
 	vm.categories = [];
 	vm.notes = [];
+	vm.selectedParty = false;
 	vm.caucus = [];
 	vm.current_note = "";
 	vm.windowInnerWidth = $window.innerWidth;
@@ -22,11 +31,35 @@ function NotesCtrl($window) {
 		//console.log(width);
 	});
 
-	vm.addCategory = function(name) {
-		vm.categories.push({name: name})
-	}
+	vm.addColumn = function() {
+		new_column = {
+			content_type: false,
+			content_id:   false
+		};
+		vm.columns.push(new_column)
+	};
+
+	/**
+	 * enforce one column in focus at a time
+	 *
+	 *
+	 */
+	vm.focusOnColumn = function(index) {
+
+	};
+
+	// REFACTOR: move to column directive
+	vm.setColumnContents = function(index, type, id) {
+		vm.columns[index].content_type = type;
+		vm.columns[index].content_id = id;	
+	};
 
 	vm.addNote = function() {
+		/*
+		 *
+		 * category
+		 * party - vm.selectedParty
+		 *
 		var note = {
 			text: vm.current_note
 		}

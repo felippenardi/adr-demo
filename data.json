@@ -1,8 +1,5 @@
-/**
-
-schemas
-
-note
+note schema
+-----------
 
 // denormalizing the note by adding things like caucus & filters
 // to make the ui easier to code.
@@ -49,7 +46,37 @@ note
 
 **/
 
+column schema
+-------------
 
+{	
+	id: int,
+	content_type: [false, 'category', 'party', 'group', ...],
+	content_id: key, to (category, party, etc), default=false,
+	span: int,
+	focus: bool, // notes will be taken in the focused column, only one column can be in focus at a time
+	sort: int, default=0,
+	synced: bool
+	
+}
+	
+
+column_block schema
+-------------------
+
+// permits splitting columns for more complex layouts (resolve issue mode)
+
+{
+
+	id: int,
+	column_id: key,
+	sort: int, default=0,
+	content_type: [false, 'category', 'party', 'group', ...],
+	content_id: key, to (category, party, etc), default=false,
+	sort: int, default=0,
+	synced: bool
+	
+}
 
 tags = [
 	{
