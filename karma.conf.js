@@ -1,3 +1,5 @@
+/* karma.config.js */
+
 // Karma configuration
 // Generated on Sat Jul 11 2015 13:38:28 GMT-0400 (EDT)
 
@@ -18,16 +20,21 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
       'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/restangular/dist/restangular.js',
+      'node_modules/lodash/index.js',
       'app/*.js',
       'app/**/*.js',
+      'app/*.html',
+      'app/**/*.html',
       'spec/**/*[sS]pec.js',
       'spec/*[sS]spec.js'
     ],
 
-
     // list of files to exclude
     exclude: [
       'app/*.js.swp',
+      'app/*.html.swp',
+      'app/**/*.js.swp',
       'app/**/*.js.swp',
       'spec/*.swp',
       'spec/**/*.swp'
@@ -37,7 +44,15 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+	    'app/*.html': ['ng-html2js'],
+	    'app/**/*.html': ['ng-html2js']
     },
+
+
+    ngHtml2JsPreprocessor: {
+	    moduleName: 'html2js-preprocessed-templates'
+    },
+
 
 
     // test results reporter to use

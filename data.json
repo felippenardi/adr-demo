@@ -5,9 +5,12 @@ note schema
 // to make the ui easier to code.
 // data is what's actually saved to the database
 {
+	// set to true when write to server successfully returns
+	// if 404 then we're not connected to the internet
+	// let the user know that we're not connected and are in offline mode
+	synced: bool 	
 	data: {
 		id
-		synced: bool
 		created: datetime
 		category_id: key
 		party_id: key

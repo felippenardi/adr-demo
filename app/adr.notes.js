@@ -60,6 +60,7 @@ function NotesCtrl($window) {
 		 * category
 		 * party - vm.selectedParty
 		 *
+		 */
 		var note = {
 			text: vm.current_note
 		}
@@ -160,11 +161,10 @@ notesMod.directive('note', function() {
 			};
 		},
 		restrict: 'E',
+		//template: "{{note}}"
 		templateUrl: 'app/case.session.notes.directives.note.html'
 	}
 });
-
-
 
 /*
 // This should probably be the controller
