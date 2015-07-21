@@ -1,0 +1,28 @@
+<!-- notes.notes should refer to adr.notes main controller -->
+
+<!--
+
+	Filters won't work because they return a new array.
+	Instead, I have have some options...
+
+	The first is to pass in all of the notes leaving it up to the category to display the relevant ones.  BEST OPTION.
+
+	The second is to reorganize the way I store notes.  This would allow me to pass in the category's notes without using a filter.  I'm actually not sure if his will work because it may return a copy such that I won't be editing the orginal.  i.e.
+
+		<category notes="notes.categories[block.contents.id]" ...></category>
+
+		categories = {
+			issues: [
+				{note},
+				{note}
+			],
+			facts: [],
+			...
+		} 
+
+-->
+
+<category 
+	ng-if="block.contents.type == 'category'" 
+	notes="notes.notes">
+</category>

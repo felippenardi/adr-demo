@@ -1,0 +1,2 @@
+* horizontal column splits to implement the new version of resolve mode
+*

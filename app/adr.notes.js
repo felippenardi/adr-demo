@@ -18,9 +18,8 @@ function NotesCtrl($window) {
 	vm.columns = [];
 	vm.categories = [];
 	vm.notes = [];
-	vm.selectedParty = false;
 	vm.caucus = [];
-	vm.current_note = "";
+	vm.activeParty = false;
 	vm.windowInnerWidth = $window.innerWidth;
 	vm.windowInnerHeight = $window.innerHeight;
 
@@ -32,40 +31,13 @@ function NotesCtrl($window) {
 	});
 
 	vm.addColumn = function() {
-		new_column = {
+		var new_column = {
+			position: false,
 			content_type: false,
-			content_id:   false
+			content_id:   false,
+			editable: true
 		};
-		vm.columns.push(new_column)
-	};
-
-	/**
-	 * enforce one column in focus at a time
-	 *
-	 *
-	 */
-	vm.focusOnColumn = function(index) {
-
-	};
-
-	// REFACTOR: move to column directive
-	vm.setColumnContents = function(index, type, id) {
-		vm.columns[index].content_type = type;
-		vm.columns[index].content_id = id;	
-	};
-
-	vm.addNote = function() {
-		/*
-		 *
-		 * category
-		 * party - vm.selectedParty
-		 *
-		 */
-		var note = {
-			text: vm.current_note
-		}
-		vm.notes.push(note);
-		vm.current_note = "";
+		vm.columns.push(new_column);
 	};
 };
 
@@ -75,8 +47,7 @@ notesMod.directive('column', function() {
 	 * into the scope using @ or & so I can add it to the left or right
 	 * into the array.
 	 * 
-	 * remember that I need to use {{$index}} to pass the value in
-	 *
+	 * remember that I need to use {{$index}} to pass the value in 
 	 * Another way could be to pass a function into the directive with a
 	 * signature: addColumn(position)
 	 */
@@ -91,43 +62,62 @@ notesMod.directive('column', function() {
 		bindToController: true,
 		controllerAs: column,
 		controller: function () {
-			var add = function(direction, position) {
-				/*
-				 * Is it better to pass the position in from the 
-				 * ng-click call or use the scope.position.
-				 */
-				scope.addColumn(position);
+			var vm = this;
+			vm.contents = {
+				heading: "",
+				blocks: []
 			};
 
 			/*
-			 * type is something like category, group, party
-			 * handle is the unique identifier of a member of
-			 * the type container
+			 *
+			 *
+			 * @heading is the heading text
+			 *
 			 */
-			var setContents = function(type, handle) {}
+			vm.setColumnHeading = function(heading) {
+				vm.contents.heading = heading;
+			};
+
+			vm.addBlock = function(type, id) {
+				block = {
+					content_type: type,
+					content_id: id
+				}
+				vm.contents.blocks.push(block);
+			};
 
 			/*
-			 * look at notes for specs on how this should work
+			 * 
+			 * @position is the block to modify 
+			 * @type is something like category, group, party
+			 * @id is the unique identifier of a member of
+			 * the type container
 			 */
-			var sortContents = function() {}
-
-			var close = function() {}
-
-			// NOTE: the menu will be implemented  common menu directive so no
-			// function for opening and closing is needed here
-			
-			
-
-		}
+			vm.setBlockContents = function(position, type, id) {};
+		},
+		templateUrl: 'case.session.notes.directives.column.html'
 	}
 
 });
 
-/*
- * I'm not sure that a directive makes since for categories
- */
-notesMod.directive('category', function() {
+notesMod.directive('columnBlock', function() {
+	return {
+		restrict: 'E',
+		scope: {
+			block: block
+		},
+		bindToController: true,
+		controllerAs: block,
+		controller: function () {
+			vm = this;
+			vm.setHeading = function(){};
+			vm.setContents = function(){};
+		},
+		templateUrl: 'case.session.notes.directives.block.html'
+	};
+});
 
+notesMod.directive('category', function() {
 
 	return {
 		restrict: 'E',
@@ -138,10 +128,25 @@ notesMod.directive('category', function() {
 		controllerAs: 'category',
 		controller: function() {
 			var vm = this;
-			vm.notes = []
-			vm.addNote = function(note){};
-		}
-	}
+			vm.new_note = "";
+
+			vm.addNote = function() {
+				/*
+					*
+					* category
+				* party - vm.selectedParty
+				*
+					*/
+				var note = {
+					text: vm.new_note
+				}
+				vm.notes.push(note);
+				vm.current_note = "";
+			};
+
+		},
+		templateUrl: 'case.session.notes.directives.category.html'
+	};
 
 });
 
@@ -165,59 +170,3 @@ notesMod.directive('note', function() {
 		templateUrl: 'app/case.session.notes.directives.note.html'
 	}
 });
-
-/*
-// This should probably be the controller
-.directive('NotesDirective', function() { 
-	return {
-
-		controller: function() {
-			var vm = this;
-			vm.categories = [];
-			vm.beginCaucus = function(party) {};
-			vm.endCaucus = function() {};
-			vm.activateCategory = function(category) {};
-			vm.deactivateCategory = function(category) {};
-			vm.createCategory = function(category) {
-				// call a service
-			};
-		}
-	}
-});
-
-.directive('ColumnDirective', function() {
-	// can I just bind to a notes.category model?
-	// whenever it changes the filter will be applied automatically 
-	// to show the category's notes sorted by timestamp
-	return {
-		controller: function () {
-			var vm = this;
-			vm.category = 'issues';
-			vm.setCategory = function (category) {};
-		}
-	}
-});
-*/
-/*
-
-.directive('CategoryMenu', function() {});
-
-// REFACTOR: I feel like this should be in a higher level module (The Session Module?)
-.directive('SessionMenu', function () {
-
-	return {
-
-		controller: function () {
-			var vm = this;
-			// should I control the settings menu here as well?
-			// I think the status of these vars maybe stored in the controller
-			vm.areSettingsOpen = false;
-			vm.isMenuOpen = false;
-			vm.toggleOpen = function() {};
-			vm.toggleSettings = function() {};
-		}
-
-	}
-}
-
-*/

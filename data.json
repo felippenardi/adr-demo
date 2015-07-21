@@ -1,3 +1,27 @@
+var columns = [
+	// column
+	{
+		heading: "issues",
+		// blocks permit horizontal splitting
+		// by default there is one block
+		// blocks in the future may need to be directives
+		// if Gary wants controls for them (close, change contents)...
+		blocks: [
+				{
+					// if no heading then don't display a heading
+					heading: "some heading",
+					type: 'category',
+					id: 123432,
+					// add edit box if true
+					// i.e. if category then we need
+					// to be able to add notes
+					editable: false
+				},
+				{}
+		]
+	}
+]
+
 note schema
 -----------
 
@@ -47,7 +71,18 @@ note schema
 	]
 }
 
-**/
+category schema
+---------------
+
+{
+	synced: bool,
+	data: { 
+		id: int,
+		name: string	
+	},
+	ui: {
+		column_heading: string // this is part of the api for any item type that can occupy a column
+	}
 
 column schema
 -------------
@@ -173,7 +208,7 @@ caucuses = [
 notes = [
 	{
 		text: adfasdf,
-		tag: proposal, # apply filter to put notes in col
+		category: proposal, # apply filter to put notes in col
 		timestamp: ...
 		groups: [a, b, c],
 		selected: true, # for grouping
@@ -181,7 +216,7 @@ notes = [
 	},
 	{
 		text: adfasdf,
-		tag: proposal, # apply filter to put notes in col
+		category: proposal, # apply filter to put notes in col
 		timestamp: ...
 		groups: [a, b, c],
 		selected: true, # for grouping

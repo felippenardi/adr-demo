@@ -2,18 +2,8 @@
 
 <div class="container clearfix">
 	<h4>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</h4>
-	<button ng-click="notes.addCategory('name here')">add</button>
-	<div class="notes-column" ng-repeat="category in notes.categories">
-		<h4>{{category.name}}</h4>
-
-		<note note=note ng-repeat="note in notes.notes"></note>
-
-		<div class="note">
-			<p>{{notes.current_note}}</p>	
-		</div>
-		<input class="note-input" ng-model="notes.current_note" />
-		<button class="note-add" ng-click="notes.addNote()">add</button>
-	</div>
+	<button ng-click="notes.addColumn('name here')">add</button>
+	<column column=column ng-repeat="column in notes.columns"></column>
 </div>
 
 <pre>{{notes.notes}}</pre>
