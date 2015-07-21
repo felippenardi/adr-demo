@@ -1,3 +1,4 @@
-<h4>{{ column.contents.heading }}</h4>
+<h4>{{ column.column.heading }}</h4>
 
-<block block=block ng-repeat="block in column.blocks"></block>
+<column-block block=block ng-repeat="block in column.column.blocks"></column-block>
+<pre>{{ column.column }}</pre>

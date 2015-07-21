@@ -1,7 +1,9 @@
-<note note=note ng-repeat="note in category.notes"></note>
+<note note=note ng-repeat="note in category.category.notes|filter:category.category"></note>
 
 <div class="note">
-	<p>{{category.current_note}}</p>	
+	<p>{{category.new_note}}</p>
 </div>
-<input class="note-input" ng-model="category.current_note" />
-<button class="note-add" ng-click="category.addNote()">add</button>
+<input class="note-input" ng-model="category.new_note" />
+<button class="note-add" ng-click="category.addNote(category.category)">add</button>
+
+<pre>{{category.category}}</pre>

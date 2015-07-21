@@ -1,13 +1,5 @@
 <!-- adr.notes.js -->
 
-/**
- *
- * I think there should be a session.case shell.
- * The notes would occupy the view.
- * This controller and subsequent directives will control the view
- *
- */
-
 var notesMod = angular.module('adr.notes', [])
 
 notesMod.controller('NotesCtrl', ['$window', NotesCtrl])
@@ -17,7 +9,30 @@ function NotesCtrl($window) {
 	var vm = this;
 	vm.columns = [];
 	vm.categories = [];
-	vm.notes = [];
+	vm.notes = [
+		{
+			category: {
+				id: 1,
+				name: 'issues',
+			},
+			notes: []
+		},
+		{
+			category: {
+				id: 2,
+				name: 'offers',
+			},
+			notes: []
+		},
+		{
+			category: {
+				id: 3,
+				name: 'facts',
+			},
+			notes: []
+		}
+	];
+
 	vm.caucus = [];
 	vm.activeParty = false;
 	vm.windowInnerWidth = $window.innerWidth;
@@ -33,9 +48,14 @@ function NotesCtrl($window) {
 	vm.addColumn = function() {
 		var new_column = {
 			position: false,
-			content_type: false,
-			content_id:   false,
-			editable: true
+			heading: 'heading goes here',
+			blocks: [
+				{
+					heading: 'block heading here',
+					contents: { type: 'category', id: 1 }
+				}
+			
+			],
 		};
 		vm.columns.push(new_column);
 	};
@@ -60,7 +80,7 @@ notesMod.directive('column', function() {
 			addColumn: '&'
 		},
 		bindToController: true,
-		controllerAs: column,
+		controllerAs: 'column',
 		controller: function () {
 			var vm = this;
 			vm.contents = {
@@ -95,7 +115,7 @@ notesMod.directive('column', function() {
 			 */
 			vm.setBlockContents = function(position, type, id) {};
 		},
-		templateUrl: 'case.session.notes.directives.column.html'
+		templateUrl: 'app/case.session.notes.directives.column.html'
 	}
 
 });
@@ -104,16 +124,19 @@ notesMod.directive('columnBlock', function() {
 	return {
 		restrict: 'E',
 		scope: {
-			block: block
+			block: '='
 		},
 		bindToController: true,
-		controllerAs: block,
+		controllerAs: 'block',
 		controller: function () {
 			vm = this;
 			vm.setHeading = function(){};
-			vm.setContents = function(){};
+			vm.setContents = function(content_type, content_id){
+				vm.block.contents.type = content_type;
+				vm.block.heading = 'content_id';
+			};
 		},
-		templateUrl: 'case.session.notes.directives.block.html'
+		templateUrl: 'app/case.session.notes.directives.column_block.html'
 	};
 });
 
@@ -122,30 +145,34 @@ notesMod.directive('category', function() {
 	return {
 		restrict: 'E',
 		scope: {
-			category: '='
+			category: '=',
+			notes: '='
 		       },
 		bindToController: true,
 		controllerAs: 'category',
 		controller: function() {
 			var vm = this;
 			vm.new_note = "";
+			vm.party = "";
 
-			vm.addNote = function() {
-				/*
-					*
-					* category
-				* party - vm.selectedParty
-				*
-					*/
+			vm.addNote = function(categoryId) {
 				var note = {
+					category_id: categoryId,
 					text: vm.new_note
 				}
-				vm.notes.push(note);
-				vm.current_note = "";
+				/*
+				 *
+				 * FIX: Use lodash to get the category
+				 * from the categories array that 
+				 * matches the category id.
+				 *
+				 */
+				vm.category.notes.push(note);
+				vm.new_note = "";
 			};
 
 		},
-		templateUrl: 'case.session.notes.directives.category.html'
+		templateUrl: 'app/case.session.notes.directives.category.html'
 	};
 
 });

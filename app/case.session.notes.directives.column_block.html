@@ -22,7 +22,11 @@
 
 -->
 
+<h5>{{ block.block.heading }}</h5>
 <category 
-	ng-if="block.contents.type == 'category'" 
+	ng-if="block.block.contents.type == 'category'" 
+	category="block.block.contents.id"
 	notes="notes.notes">
 </category>
+
+<pre>{{ block.block }}</pre>
