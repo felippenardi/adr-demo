@@ -1,10 +1,7 @@
 <!-- app/case.session.notes.html -->
 
-<div class="container clearfix">
+<div class="notes-columns-container clearfix">
 	<h4>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</h4>
 	<button ng-click="notes.addColumn('name here')">add</button>
 	<column column=column ng-repeat="column in notes.columns"></column>
 </div>
-
-<pre>{{notes.notes}}</pre>
-<pre>{{notes.columns}}</pre>

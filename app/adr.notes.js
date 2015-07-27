@@ -1,38 +1,35 @@
 <!-- adr.notes.js -->
 
-var notesMod = angular.module('adr.notes', [])
+var notesMod = angular.module('adr.notes', ['common.factories']);
+notesMod.run(
+	function( _ ) {}
+);
 
-notesMod.controller('NotesCtrl', ['$window', NotesCtrl])
+notesMod.controller('NotesCtrl', ['$window', '_',  NotesCtrl])
 
-function NotesCtrl($window) {
+function NotesCtrl($window, _) {
 	var w = angular.element($window);
 	var vm = this;
 	vm.columns = [];
-	vm.categories = [];
 	vm.notes = [
 		{
-			category: {
-				id: 1,
-				name: 'issues',
-			},
+			id: 1,
+			category: 'issues',
 			notes: []
 		},
 		{
-			category: {
-				id: 2,
-				name: 'offers',
-			},
+			id: 2,
+			category: 'offers',
 			notes: []
 		},
 		{
-			category: {
-				id: 3,
-				name: 'facts',
-			},
+			id: 3,
+			category: 'facts',
 			notes: []
 		}
 	];
 
+	console.log(_.filter(vm.notes, {'category':'facts'}));
 	vm.caucus = [];
 	vm.activeParty = false;
 	vm.windowInnerWidth = $window.innerWidth;

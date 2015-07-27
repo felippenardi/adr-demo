@@ -1,0 +1,23 @@
+* Show developers how to recreate the development environment
+** Deploy to demo server
+***Install ansible
+*** Add ip address to inventory file
+*** run the ansible command
+** Use Vagrant
+** password safe
+** jsdocs
+** sphinx docs
+** swagger.io docs
+** database docs
+** server config docs
+*** upstart
+*** nginx
+*** uwsgi
+*** logging
+**** ELK
+** instructions
+*** deploy demo
+*** deploy test
+*** deploy production
+*** deploy local dev using Vagrant
+*** generate docs
