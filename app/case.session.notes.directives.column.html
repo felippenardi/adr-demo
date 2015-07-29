@@ -1,6 +1,10 @@
-<div class="notes-column">
-	<div class"notes-column-contents">
-<h4>{{ column.column.heading }}</h4>
-<column-block block=block ng-repeat="block in column.column.blocks"></column-block>
-</div>
-</div>
+<!-- app/case.session.notes.directives.column.html -->
+
+<div class="column">
+	<div class="column-heading"><strong>{{ column.column.heading }}</strong></div>
+	<column-block 
+		block=block 
+		data=column.data
+		ng-repeat="block in column.column.blocks">
+	</column-block>
+</div><!-- column -->

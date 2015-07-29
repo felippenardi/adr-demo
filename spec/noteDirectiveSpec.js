@@ -25,7 +25,7 @@ describe ('NoteDirective', function() {
 		$rootScope.note = {text: "test note text"};
 		//var element = $compile("<note note=note></note>")(scope);
 		var element = $compile("<note note=note></note>")($rootScope);
-		//scope.$digest();
+		//scope.$digest()0;
 		$rootScope.$digest();
 		expect(element.html()).toContain("test note text");
 	});

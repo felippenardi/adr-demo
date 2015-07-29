@@ -12,32 +12,40 @@ function NotesCtrl($window, _) {
 	var vm = this;
 	vm.columns = [];
 
-	vm.data = {
+	vm.categories = [
+		{
+			id: 1,
+			name: 'issues'
+		},
+		{
+			id: 2,
+			name: 'offers'
+		},
+		{
+			id: 3,
+			name: 'facts'
+		}
+	];
+	
+	vm.notes = [
+		{
+			id: 1,
+			category: 2,
+			text: 'note one text here'
+		},
+		{
+			id: 2,
+			category: 1,
+			text: 'note two text here'
+		},
+		{
+			id: 3,
+			category: 1,
+			text: 'note three text here'
+		}
 
-		categories: [
-			{
-				id: 1,
-				name: 'issues'
-			},
-			{
-				id: 2,
-				name: 'offers'
-			},
-			{
-				id: 3,
-				name: 'facts'
-			}
-		],
 
-		notes: [],
-
-		parties: [
-			{ id: 0, short_name: '--', selected: true },
-			{ id: 1, short_name: 'GD', selected: false },
-			{ id: 2, short_name: 'BS', selected: false  }
-		]
-
-	}
+	];
 
 	// content types
 	// category, party, group, offer, resolution (accepted offer), caucus, search results
@@ -76,7 +84,7 @@ function NotesCtrl($window, _) {
 		var heading = "";
 
 		if (contentType == 'category') {
-			heading = _.where(vm.data.categories, { 'id': contentId });
+			heading = _.where(vm.categories, { 'id': contentId });
 			heading = _.get(_.first(heading), 'name');
 		}
 
@@ -109,7 +117,7 @@ notesMod.directive('column', function() {
 		restrict: 'E',
 		scope: {
 			column: '=',
-			data: '='
+			notes: '='
 		},
 		bindToController: true,
 		controllerAs: 'column',
@@ -157,7 +165,7 @@ notesMod.directive('columnBlock', function() {
 		restrict: 'E',
 		scope: {
 			block: '=',
-			data: '='
+			notes: '='
 		},
 		bindToController: true,
 		controllerAs: 'block',
@@ -174,48 +182,56 @@ notesMod.directive('columnBlock', function() {
 });
 
 notesMod.directive('category', function(_) {
-	// REFACTOR: scope isolation for category should be an @
 
 	return {
 		restrict: 'E',
 		scope: {
 			category: '=',
-			data: '='
+			notes: '='
 		       },
 		bindToController: true,
 		controllerAs: 'category',
 		controller: function() {
 			var vm = this;
 			vm.next_note = "";
+			vm.parties = [
+				{ id: 0, short_name: '--', selected: true },
+				{ id: 1, short_name: 'GD', selected: false },
+				{ id: 2, short_name: 'BS', selected: false  }
+			];
 
 			vm.addNote = function() {
 
-				var party = _.first(_.where(vm.data.parties, { selected: true }));
+				var party = _.get(_.where(vm.parties, { selected: true }));
 
 				var note = {
 					id: 'unk',
 					category: vm.category,
 					text: vm.next_note,
-					party_id: party.id,
+					party_id: selectedParty 
 				};
-
-				vm.data.notes.push(note);
+				/*
+				 *
+				 * FIX: Use lodash to get the category
+				 * from the categories array that 
+				 * matches the category id.
+				 *
+				 */
+				vm.notes.push(note);
 				vm.next_note = "";
 			};
 
+			// REFACTOR - should be passed in from the main ctrl via @
 			// so that it effects all notes
 			vm.selectParty = function(partyId) {
-				vm.data.parties = _.map(vm.data.parties, function(party) {
-					var p = {};
-					p.id = party.id;
-					p.short_name = party.short_name;
+				vm.parties = _.map(vm.parties, function(party) {
 					if (party.id == partyId) {
-						p.selected = true;
+						party.selected = true;
 					} else {
-						p.selected = false;
+						party.selected = false;
 					}
-					return p;
 				});
+				console.log(vm.parties);
 			};
 
 		},
@@ -224,19 +240,15 @@ notesMod.directive('category', function(_) {
 
 });
 
-notesMod.directive('note', function(_) {
-
+notesMod.directive('note', function() {
 	return {
 		scope: {
-			note: '=',
-			parties: '='
+			note: '='
 		},
 		bindToController: true,
 		controllerAs: 'note',
 		controller: function() {
 			var vm = this;
-			vm.party = _.get(_.first(_.where(vm.parties, {'id': vm.note.party_id})), 'short_name');
-
 			vm.strikeOut = function(){
 				vm.note.strike = !vm.note.strike;	
 			};

@@ -1,7 +1,16 @@
 <!-- app/case.session.notes.html -->
-
-<div class="notes-columns-container clearfix">
-	<h4>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</h4>
-	<button ng-click="notes.addColumn('name here')">add</button>
-	<column column=column ng-repeat="column in notes.columns"></column>
-</div>
+<div class="wrap">
+	<div class="canvas">
+		<div class="horizontal-scroll-container">
+			<column column=column data=notes.data ng-repeat="column in notes.columns"></column>
+		</div><!-- .horizontal-scroll-container -->
+	</div><!-- .canvas -->
+</div><!-- .wrap -->
+<button ng-click="notes.addColumn('category', 1)">show issues</button>
+<button ng-click="notes.addColumn('category', 2)">show offers</button>
+<button ng-click="notes.addColumn('category', 3)">show facts</button>
+<p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>
+<pre>
+{{ notes.data }}
+{{ notes.columns }}
+</pre>

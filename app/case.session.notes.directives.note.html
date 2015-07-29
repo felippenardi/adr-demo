@@ -1,1 +1,4 @@
-<p ng-class="{strikethrough: note.strike}" ng-click="note.strikeOut()"><b>{{note.note.text}}</b></p>
+<div class="note" ng-class="{selected: note.note.selected}" ng-click="note.select()">
+	<a href="" ng-click="note.strikeOut()">x</a>
+	<p ng-class="{strikethrough: note.note.strike}">{{ note.party }} - {{ note.note.text }}</p>
+</div><!-- .note -->

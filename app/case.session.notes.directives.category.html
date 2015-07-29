@@ -1,7 +1,25 @@
-<note note=note ng-repeat="note in category.category.notes|filter:category.category"></note>
+<div class="column-notes">
 
-<div class="note">
-	<p>{{category.new_note}}</p>
+	<note 
+		note=note 
+		parties=category.data.parties
+		ng-repeat="note in category.data.notes|filter:{'category':category.category}">
+	</note>
+
+
+	<div class="next-note">
+		{{category.next_note}}
+	</div>
+
+</div><!-- .column-notes -->
+
+<div class="note-editor">
+	<textarea rows="3" ng-model="category.next_note"></textarea>
+	<a 
+		href="" 
+		ng-class="{ 'selected-party': party.selected }" 
+		ng-click="category.selectParty(party.id)" 
+		ng-repeat="party in category.data.parties">{{ party.short_name }}
+	</a> 
+	<button class="note-add" ng-click="category.addNote()">add</button>
 </div>
-<input class="note-input" ng-model="category.new_note" />
-<button class="note-add" ng-click="category.addNote(category.category)">add</button>

@@ -1,0 +1,123 @@
+ul.menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li.menu {
+	display: inline;
+}
+
+div.wrap {
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+div.canvas {
+	position: relative;
+	margin-right: 0;
+	height: 800px;
+}
+
+div.horizontal-scroll-container {
+	-webkit-box-align: start;
+	align-items: flex-start;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	flex-direction: row;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	position: absolute;
+	overflow-x: auto;
+	overflow-y: hidden;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+/*
+div.column:first-child {
+	margin-left: 10px;
+}
+*/
+
+div.column {
+	position: relative;
+	min-width: 270px;
+}
+
+div.column-heading {
+	width: 90%;
+	margin: auto;
+	height: 40px;
+	background: green;
+}
+
+div.column-notes {
+	width: 90%;
+	height: 665px;
+	background: blue;
+	position: relative;
+	box-sizing: border-box;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-direction: column-reverse;
+	-webkit-box-flex: 0;
+	/*flex: 0 0 270px;*/
+	margin: auto;
+	margin-bottom: 10px;
+	overflow: auto;
+}
+
+div.note {
+	min-height: 75px;
+}
+
+div.note:hover {
+	background: lightyellow;
+
+}
+
+div.note.selected {
+	background: lightgreen;
+}
+
+div.next-note {
+	min-height: 75px;
+	background: lightgray;
+	order: -1;
+}
+
+div.column:hover {
+	background: red;
+}
+
+.strikethrough {
+	text-decoration: line-through;
+}
+
+a.selected-party {
+	background: black;
+	color: white;
+}
+
+div.note-editor {
+	width: 90%;
+	margin: auto;
+	min-height: 60px;
+	background: green;
+}
+
+textarea {
+	min-width: 100%;
+	box-sizing: border-box;
+}
+
+textarea:focus {
+	outline: none;
+	background: yellow;
+}
