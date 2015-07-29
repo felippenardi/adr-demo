@@ -1,2 +1,46 @@
-* horizontal column splits to implement the new version of resolve mode
-*
+* column blocks
+* focus on issue mode
+* keyboard shortcut for selecting party
+* add functionality to move party icons to top if there are too many to fit below the note editor
+
+
+----------------------
+-- Support Contract --
+----------------------
+
+* $250 per month for availablility
+** sleep interupts
+** personal interupts
+** workday interupts
+
+* 30 min monthly report
+** outages
+** attacks
+** performance
+
+* 15 min (each time) check logs each week
+
+* 4 hours ($250/hr each event) Emergency response
+** get to wi-fi
+** fix the problem
+** save 2 hours if I'm already in wi-fi
+** have to drop whatever I'm doing and get to wifi
+** wonder if I can create a wifi hotspot with my phone to reduce this cost
+*** build cost of hotspot into monthly fee
+
+* 1 hour (each event) standard response (4 days)
+
+------------------------
+-- Feature Workorders --
+------------------------
+
+* 2 hrs per feature/patch (minor)
+** implement
+** test
+** document
+* 4 hrs deploy
+** database migration
+** stage deployment
+*** test
+** production deployment
+** 2 week reponse time
