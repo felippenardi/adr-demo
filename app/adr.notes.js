@@ -92,6 +92,29 @@ function NotesCtrl($window, _) {
 		};
 		vm.columns.push(new_column);
 	};
+
+	vm.linkNotes = function() {};
+
+	vm.linkOffersToIssue = function() {};
+
+	vm.focusOnIssue = function(issueId) {
+		// noteEditor directive
+		// - pass in the category
+		// - addNote should be moved to this directive
+		// focusedIssue content type directive 
+		// - issue name
+		// - done button
+		// - back to notes link
+		// proposalsByParty content type directive
+		// - needs to have the note editor directive
+		// linkedWithNote content type directive
+		// - displays a block for each category containing linked notes
+		// linkedWithNoteByCategory content type directive
+		// - displays a column with a single block containing category notes related to the note
+		// acceptedOffersByIssue content type directive
+		// - block that is meant to be added below the focused issue
+		// D & D offers into accepted block
+	};
 };
 
 notesMod.directive('column', function() {
