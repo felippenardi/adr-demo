@@ -24,6 +24,7 @@
     "karma-phantomjs-launcher": "^0.2.0",
     "karma-safari-launcher": "^0.1.1",
     "lodash": "^3.10.0",
+    "ng-json-prettifier": "0.0.6",
     "phantomjs": "^1.9.17",
     "restangular": "^1.5.1"
   }

@@ -9,8 +9,19 @@
 <button ng-click="notes.addColumn('category', 1)">show issues</button>
 <button ng-click="notes.addColumn('category', 2)">show offers</button>
 <button ng-click="notes.addColumn('category', 3)">show facts</button>
+
+<hr />
+<h4>Developer Info</h4>
 <p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>
+
+<pre>
+<pretty-json json='notes.columns' indent-key='4'></pretty-json>
+</pre>
+
+<pre>
+<pretty-json json='notes.data' indent-key='4'></pretty-json>
+</pre>
+
 <pre>
 {{ notes.data }}
-{{ notes.columns }}
 </pre>
