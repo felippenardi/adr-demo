@@ -17,3 +17,19 @@
 </select>
 <button ng-click="notes.linkNotes()">link</button>
 <!--<p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>-->
+
+<hr />
+<h4>Developer Info</h4>
+<p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>
+
+<pre>
+<pretty-json json='notes.columns' indent-key='4'></pretty-json>
+</pre>
+
+<pre>
+<pretty-json json='notes.data' indent-key='4'></pretty-json>
+</pre>
+
+<pre>
+{{ notes.data }}
+</pre>

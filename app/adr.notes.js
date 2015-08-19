@@ -55,7 +55,7 @@ function NotesCtrl($window, _) {
 	vm.activeParty = false;
 
 
-	/*
+	
 	var w = angular.element($window);
 	vm.windowInnerWidth = $window.innerWidth;
 	vm.windowInnerHeight = $window.innerHeight;
@@ -63,9 +63,12 @@ function NotesCtrl($window, _) {
 	w.bind('resize', function() {
 		var width = $window.innerWidth;
 		vm.windowInnerWidth = width;
+		var height = $window.innerHeight
+		vm.windowInnerHeight =height;
 		console.log(vm.windowInnerWidth);
+		console.log(vm.windowInnerHeight);
 	});
-	*/
+	
 
 	/*
 	 * New columns only have one block so its safe to 

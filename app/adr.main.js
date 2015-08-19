@@ -1,4 +1,4 @@
-angular.module('adr.main', ['ui.router', 'adr.notes'])
+angular.module('adr.main', ['ui.router', 'pretty.json', 'adr.notes'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/case/list");
