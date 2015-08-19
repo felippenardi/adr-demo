@@ -35,7 +35,9 @@ function NotesCtrl($window, _) {
 			{ id: 0, short_name: '--', selected: true },
 			{ id: 1, short_name: 'GD', selected: false },
 			{ id: 2, short_name: 'BS', selected: false  }
-		]
+		],
+
+		links: []
 
 	}
 
@@ -93,7 +95,12 @@ function NotesCtrl($window, _) {
 		vm.columns.push(new_column);
 	};
 
-	vm.linkNotes = function() {};
+	vm.linkNotes = function() {
+		linked = _.where(vm.data.notes, { 'selected': true });	
+		console.log('linked', linked);
+		console.log('new link name', vm.newLink);
+		console.log('selected link name', vm.selectedLink);
+	};
 
 	vm.linkOffersToIssue = function() {};
 

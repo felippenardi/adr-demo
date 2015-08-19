@@ -9,8 +9,11 @@
 <button ng-click="notes.addColumn('category', 1)">show issues</button>
 <button ng-click="notes.addColumn('category', 2)">show offers</button>
 <button ng-click="notes.addColumn('category', 3)">show facts</button>
-<p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>
-<pre>
-{{ notes.data }}
-{{ notes.columns }}
-</pre>
+<input placeholder="enter a new link name" ng-model="notes.newLink" />
+<select 
+	ng-model="notes.selectedLink"
+	ng-options="link as link.name for link in notes.data.links track by link.id"
+>
+</select>
+<button ng-click="notes.linkNotes()">link</button>
+<!--<p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>-->
