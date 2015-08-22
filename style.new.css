@@ -1,3 +1,20 @@
+/* BEGIN AFTER I INCLUDED BOOTSTRAP */
+
+body {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+ul.list-inline > li.active > a{
+	color: #777;
+}
+
+ol.breadcrumb > .active >a {
+	color: #777;
+}
+
+/* END AFTER I INCLUDED BOOTSTRAP */
+
 ul.menu {
 	list-style-type: none;
 	margin: 0;
@@ -17,7 +34,8 @@ div.wrap {
 div.canvas {
 	position: relative;
 	margin-right: 0;
-	height: 800px;
+	height: 850px;
+	padding-bottom: 50px;
 }
 
 div.horizontal-scroll-container {
@@ -59,7 +77,7 @@ div.column-heading {
 div.column-notes {
 	width: 90%;
 	height: 665px;
-	background: blue;
+	background: white;
 	position: relative;
 	box-sizing: border-box;
 	display: flex;

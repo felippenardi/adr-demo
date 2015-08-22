@@ -32,3 +32,10 @@ adr.main.js
 - /vendors
   - /stormpath
   - /stripe
+
+Linking Notes
+- new groups will be given a temp_id attribute if the remote server is unavailable
+- multiple groups can be selected
+
+Syncing Data with the server
+  - a mapping process will occur before each sync to remove ux only attributes

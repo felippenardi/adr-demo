@@ -1,4 +1,20 @@
 <!-- app/case.session.notes.html -->
+
+<hr />
+
+<ui-select ng-model="notes.selectedLinkings" multiple theme="select2" style="width: 250px">
+
+	<ui-select-match>{{ $item.name }}</ui-select-match>
+
+	<ui-select-choices repeat="link in notes.data.linkings">
+		<div ng-bind-html="link.name | highlight: $select.search"></div>
+	</ui-select-choices>
+
+</ui-select>
+
+<hr />
+
+
 <div class="wrap">
 	<div class="canvas">
 		<div class="horizontal-scroll-container">
@@ -9,26 +25,45 @@
 <button ng-click="notes.addColumn('category', 1)">show issues</button>
 <button ng-click="notes.addColumn('category', 2)">show offers</button>
 <button ng-click="notes.addColumn('category', 3)">show facts</button>
-<input placeholder="enter a new link name" ng-model="notes.newLink" />
-<select 
-	ng-model="notes.selectedLink"
-	ng-options="link as link.name for link in notes.data.links track by link.id"
->
-</select>
+
+<hr />
+
 <button ng-click="notes.linkNotes()">link</button>
+
+
+<script type="text/ng-template" id="newGroupModal.html">
+
+	<div class="modal-header">
+	    <h3>Name your group</h3>
+	</div>
+
+	<div class="modal-body">
+		<div ng-show="modal.isANewLinking" class="form-group">
+    			<input type="text" class="form-control" ng-model="modal.newLinkingName" placeholder="Enter a group name">
+  		</div>
+
+			<ui-select ng-hide="modal.isANewLinking" ng-model="modal.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
+				<ui-select-match placeholder="Select an existing linking...">{{$select.selected.name}}</ui-select-match>
+				<ui-select-choices repeat="linking in modal.existingLinkings | filter: $select.search">
+					<span ng-bind-html="linking.name | highlight: $select.search"></span>
+				</ui-select-choices>
+			</ui-select>
+
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="modal.saveLinking()">SAVE</button>
+		<a href="" ng-show='modal.isANewLinking' ng-click='modal.toggleIsANewLinking()'>ADD TO EXISTING LINKING</a>
+		<a href="" ng-hide='modal.isANewLinking' ng-click='modal.toggleIsANewLinking()'>CREATE A NEW LINKING</a>
+	</div>
+
+</script>
+
 <!--<p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>-->
 
 <hr />
 <h4>Developer Info</h4>
 <p>Window: {{ notes.windowInnerWidth }} X {{ notes.windowInnerHeight }}</p>
-
-<pre>
-<pretty-json json='notes.columns' indent-key='4'></pretty-json>
-</pre>
-
-<pre>
-<pretty-json json='notes.data' indent-key='4'></pretty-json>
-</pre>
 
 <pre>
 {{ notes.data }}
