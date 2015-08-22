@@ -18,10 +18,13 @@
 <div class="wrap">
 	<div class="canvas">
 		<div class="horizontal-scroll-container">
-			<column column=column data=notes.data ng-repeat="column in notes.columns"></column>
+
+			<column column=column add="notes.addEmptyColumn(position)" data=notes.data index="{{ $index }}" ng-repeat="column in notes.columns"></column>
+
 		</div><!-- .horizontal-scroll-container -->
 	</div><!-- .canvas -->
 </div><!-- .wrap -->
+
 <button ng-click="notes.addColumn('category', 1)">show issues</button>
 <button ng-click="notes.addColumn('category', 2)">show offers</button>
 <button ng-click="notes.addColumn('category', 3)">show facts</button>

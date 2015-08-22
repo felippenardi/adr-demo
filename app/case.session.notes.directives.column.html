@@ -1,10 +1,12 @@
 <!-- app/case.session.notes.directives.column.html -->
 
-<div class="column">
+<div class="column" ng-mouseover="column.mouseEnter()" ng-mouseleave="column.mouseExit()">
 	<div class="column-heading"><strong>{{ column.column.heading }}</strong></div>
 	<column-block 
 		block=block 
 		data=column.data
 		ng-repeat="block in column.column.blocks">
 	</column-block>
+	<span ng-show="column.hovering" class="glyphicon glyphicon-plus" data-ng-click="column.addColumn('left')" style="position: absolute; left: -10px; top: 25%;"></span>
+	<span ng-show="column.hovering" class="glyphicon glyphicon-plus" data-ng-click="column.addColumn('right')" style="position: absolute; left: 260px; top: 25%;"></span>
 </div><!-- column -->

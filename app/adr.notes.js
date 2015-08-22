@@ -75,6 +75,11 @@ function NotesCtrl($window, _, $modal) {
 	*/ 
 	vm.selectedLinkingsForNewNotes = [];
 
+	vm.addEmptyColumn = function(position) {
+		console.log('par', position);
+		vm.columns.splice(position, 0, {});
+	}
+
 	/*
 	 * New columns only have one block so its safe to 
 	 * set the column heading and block heading as the same
@@ -332,12 +337,33 @@ notesMod.directive('column', function() {
 		restrict: 'E',
 		scope: {
 			column: '=',
-			data: '='
+			data: '=',
+			index: '@',
+			add: '&'
 		},
 		bindToController: true,
 		controllerAs: 'column',
 		controller: function () {
 			var vm = this;
+			vm.hovering = false;
+			vm.mouseEnter = function() {
+				vm.hovering = true;
+			}
+			vm.mouseExit = function() {
+				vm.hovering = false;
+			}
+
+			vm.addColumn = function(direction) {
+				var position = +vm.index;
+				
+				if (direction === 'right') {
+					position = position + 1;
+				}
+
+				console.log('child', position);
+				// call the parent's addEmptyColumn func
+				vm.add({position: position});
+			}
 
 			/*
 			 *
