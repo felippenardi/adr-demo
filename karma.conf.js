@@ -16,18 +16,22 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
+    // WARNING: do NOT forget to replace ui-bootstrap.tpls.min.js once I'm using my own custom templates
     files: [
+      'node_modules/lodash/index.js',
       'node_modules/angular/angular.js',
+      'node_modules/restangular/dist/restangular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
-      'node_modules/restangular/dist/restangular.js',
-      'node_modules/lodash/index.js',
+      'node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'node_modules/angular-sanitize/angular-sanitize.min.js',
+      'node_modules/ui-select/dist/select.min.js',
       'app/*.js',
       'app/**/*.js',
       'app/*.html',
       'app/**/*.html',
       'spec/**/*[sS]pec.js',
-      'spec/*[sS]spec.js'
+      'spec/*[sS]pec.js'
     ],
 
     // list of files to exclude

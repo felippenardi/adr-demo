@@ -1,4 +1,6 @@
-var notesModel = angular.module('notes.model', ['restangular'])
+/* notes.model.js */
+
+var notesModel = angular.module('notes.model', ['common.factories', 'restangular'])
 
 // create a file of constants in the common directory
 // loads from a config file
@@ -8,7 +10,7 @@ var notesModel = angular.module('notes.model', ['restangular'])
 // port = 8080
 // apiBaseUrl = /api
 
-notesModel.service('notesModel', function(Restangular, $q) {
+notesModel.service('notesModel', function(_, Restangular, $q) {
 	var notes = this;
 
 	/*

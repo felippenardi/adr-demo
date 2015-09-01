@@ -1,5 +1,6 @@
-<!-- adr.notes.js -->
+/* adr.notes.js */
 
+// REMOVE - this is just a hack for generating ids
 var getId = function() {
 	return Math.floor(Math.random() * 1000 + 1);
 }
@@ -76,7 +77,6 @@ function NotesCtrl($window, _, $modal) {
 	vm.selectedLinkingsForNewNotes = [];
 
 	vm.addEmptyColumn = function(position) {
-		console.log('par', position);
 		vm.columns.splice(position, 0, {});
 	}
 

@@ -19,7 +19,9 @@ describe('NotesModel', function() {
        
 
 	describe('get', function() {
+
 		it('gets a note', function(done) {
+
 			var test = function(notes) {
 				expect(notes).toEqual({text: 'note test text'});
 			};

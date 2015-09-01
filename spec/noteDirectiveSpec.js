@@ -9,7 +9,7 @@ describe ('NoteDirective', function() {
 	 *
 	 */
 	beforeEach(module('html2js-preprocessed-templates'));
-	var 	$compile,
+	var $compile,
 		$rootScope;
 	
 	beforeEach(inject(function(_$compile_, _$rootScope_) {

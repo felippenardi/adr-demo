@@ -27,6 +27,20 @@ describe('NotesController', function() {
 			expect(controller.columns.length).toEqual(1);
 		});
 
-
 	});
+
+    describe('addEmptyColumn', function() {
+        
+        it('adds an empty column', function() {
+            var ctrl = $controller('NotesCtrl');
+            ctrl.addEmptyColumn(0);
+            expect(ctrl.columns[0]).toEqual({});
+            ctrl.addEmptyColumn(1);
+            expect(ctrl.columns[1]).toEqual({});
+            ctrl.addEmptyColumn(0);
+            expect(ctrl.columns[0]).toEqual({});
+            expect(ctrl.columns.length).toEqual(3);
+        });
+    });
+
 });
