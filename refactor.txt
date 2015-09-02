@@ -1,4 +1,23 @@
+mv NotesCtrl data arrays with services
+
+use resolve to load data from services in router
+"
+notesService.list().then(function(notes) {
+    vm.notes = notes;
+});
+"
+
 separate controllers from directives
 - allows specs to be written to test each separately
 - allows specs to inject controller mock into directive
 - improves the readability of code
+
+rm common.factories bec each service/factory should do one thing
+- mv lodash service to lodash.factory.js
+
+modify routing so that modules have their own routers
+
+
+create linking popup - move template to its own file
+
+add jsdoc strings

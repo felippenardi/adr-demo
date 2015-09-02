@@ -1,6 +1,6 @@
 /* notes.model.js */
 
-var notesModel = angular.module('notes.model', ['common.factories', 'restangular'])
+angular.module('note.model', ['common.factories', 'restangular'])
 
 // create a file of constants in the common directory
 // loads from a config file
@@ -10,7 +10,7 @@ var notesModel = angular.module('notes.model', ['common.factories', 'restangular
 // port = 8080
 // apiBaseUrl = /api
 
-notesModel.service('notesModel', function(_, Restangular, $q) {
+.service('noteModel', function(_, Restangular, $q) {
 	var notes = this;
 
 	/*
@@ -22,10 +22,26 @@ notesModel.service('notesModel', function(_, Restangular, $q) {
 	 *
 	 */
 	notes.get = function() {
+        // if connection error then use local storage
+        
+        // if no connection error then check for unsynced data and sync.  I'll set a global constant to true if any data is unsynced
+        
 		return $q(function(resolve, reject) {
-			Restangular.one('/notes').get({x: 'y'})
+			Restangular.one('notes').get({x: 'y'})
 			.then(function(result) {
 				var newResult = result;
+                /*
+                 *
+                 * create out object containing each note & add ux object
+                 *
+                 * modifiedResult = {
+                 *   data: result,
+                 *   ux: {
+                 *      link_mode: false
+                 *   }
+                 *
+                 * }
+                 */
 				resolve(newResult);
 			});
 		});

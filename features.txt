@@ -1,0 +1,9 @@
+Services
+----
+
+* checkInternetConnection
+
+UX
+----
+
+* implement loading indicator during resolve

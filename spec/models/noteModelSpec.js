@@ -1,16 +1,15 @@
-describe('NotesModel', function() {
+describe('NoteModel', function() {
 
-	var notesModel,
+	var noteModel,
 	httpBackend,
 	Restangular,
 	q;
 
 
-	beforeEach(module('notes.model'));
-
+	beforeEach(module('note.model'));
 	
-	beforeEach(inject(function(_notesModel_, _Restangular_, _$httpBackend_, $q) {
-		notesModel = _notesModel_;
+	beforeEach(inject(function(_noteModel_, _Restangular_, _$httpBackend_, $q) {
+		noteModel = _noteModel_;
 		Restangular = _Restangular_;
 		httpBackend = _$httpBackend_;
 		q = $q;
@@ -21,9 +20,15 @@ describe('NotesModel', function() {
 	describe('get', function() {
 
 		it('gets a note', function(done) {
+                
+            // test that the request is passed the note's id using a spy
+            //spyOn(Restangular, 'one').and.callThrough();
 
 			var test = function(notes) {
-				expect(notes).toEqual({text: 'note test text'});
+                //expect(Restangular.one).toHaveBeenCalledWith('bluenotes');
+				expect(notes).toEqual({text: 'nt text'});
+                // test ux is added
+                // test result is wrapped in modifiedResult
 			};
 
 			var error = function(error) {};
@@ -42,10 +47,11 @@ describe('NotesModel', function() {
 			// if using the old method of creating a promise,
 			// I can pass a notify function as the 3rd arg
 			// to then.
-			notesModel.get()
+			noteModel.get()
 				.then(test, error)
 				.catch(failTest)
 				.finally(done());
+
 
 			httpBackend.flush();
 		});
