@@ -32,7 +32,6 @@ angular.module('adr.main', ['ui.router', 'pretty.json', 'adr.notes'])
 	})
 
 	.state('case.session', {
-        // should contain the header for a session (clock, menu, ...)
 		abstract: true,
 		url: "session",
 		template: "<ui-view />"

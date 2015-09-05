@@ -11,7 +11,50 @@ angular.module('note.model', ['common.factories', 'restangular'])
 // apiBaseUrl = /api
 
 .service('noteModel', function(_, Restangular, $q) {
-	var notes = this;
+	var service = this;
+    var notes = [];
+
+    service.list = function(caseId) {
+        // FEATURE: may need to convert timestamp to suitable format and place in ux
+        return $q(function(resolve, reject) {
+            var base = Restangular.all('notes')
+            
+            base.getList()
+
+            .then(function(result) {
+
+                var priority = 0;
+
+                /* REFACTOR: get priority from category service: category.getPriority(categoryId) */
+                for(i = 0; i < result.length; i++) {
+                    switch (result[i].category_id) {
+                        case 1:
+                            // issue
+                            priority = 1;
+                            break;
+                        case 2:
+                            // proposal
+                            priority = 2;
+                            break;
+                        case 3:
+                            // fact
+                            priority = 3;
+                            break;
+                    }
+
+                    result[i].ux = {
+                        link_mode: false,
+                        priority: priority
+                    };
+                }
+                resolve(result);
+            });
+        });
+    };
+
+    service.add = function() {
+        // FEATURE: may need to convert timestamp to format required for service
+    }
 
 	/*
 	 * IMPORTANT
@@ -21,7 +64,8 @@ angular.module('note.model', ['common.factories', 'restangular'])
 	 * them yet.
 	 *
 	 */
-	notes.get = function() {
+
+	service.get = function() {
         // if connection error then use local storage
         
         // if no connection error then check for unsynced data and sync.  I'll set a global constant to true if any data is unsynced
@@ -50,7 +94,7 @@ angular.module('note.model', ['common.factories', 'restangular'])
 	/*
 	 * This is the old way of creating a promise
 	 *
-	notes.get = function() {
+	service.get = function() {
 		var defer = $q.defer()
 		Restangular.one('/notes').get({x: 'y'})
 		.then(function(result) {
@@ -69,4 +113,8 @@ angular.module('note.model', ['common.factories', 'restangular'])
 	 * error
 	 * if 404 then offline mode
 	 */
+
+    service.setLinkMode = function(noteId) {}
+    service.getNotesInLinkMode = function() {} // might be better placed in notes.filters.js
+    service.clearNotesInLinkMode = function() {}
 });

@@ -3,3 +3,6 @@ unit testing directives
   - is $_rootScope_ reference the ngMock $rootscope or Angular's $rootScope service?
     - figured it out.  ngMock decorates $rootScope so it has access to Angular's $rootScope service with extra features for testing
   - why is the module initialized in its own beforeEach statement?
+
+* why do objects contain prototypes?
+* why don't have to explicitly pass args to controllers, services, etc when implementing tests

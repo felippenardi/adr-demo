@@ -2,8 +2,19 @@ Services
 ----
 
 * checkInternetConnection
+* data services
+
+Directives
+----
+* resolve service.list
+* 
+
 
 UX
 ----
 
-* implement loading indicator during resolve
+* lazy loading
+  - https://oclazyload.readme.io/
+  - https://egghead.io/lessons/angularjs-lazy-loading-modules-with-ui-router-and-oclazyload
+* add spinners while data loads - find angular wrapper for spin.js
+* implement transition animations

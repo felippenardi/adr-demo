@@ -1,21 +1,57 @@
-mv NotesCtrl data arrays with services
 
-use resolve to load data from services in router
-"
-notesService.list().then(function(notes) {
-    vm.notes = notes;
-});
-"
+Refactor ui-router
+- modify routing so that modules have their own routers
+- use resolve to load data from services in router
+    "
+    notesService.list().then(function(notes) {
+        vm.notes = notes;
+    });
+    "
+
+
+
+
+mv NotesCtrl data arrays with services
+- new services
+  - data.notes > notesService
+  - data.categories > categoryService
+  - data.parties > partyService
+  - linkings > linkingsService
+  - columns > columnService
+- mock httpbackend in place of backend server
+- call service.list on resolve for each directive controller
+- each service should ...
+  - cache the data once requested in service.data
+  - requesting the list should check the cache first
+  - posting should check for connection
+    - if available then post to svr
+    - if not available then store using localforage
+  - get should get from the cache, not make an individual request to the rest svc
+- use https://www.npmjs.com/package/karma-ng-json2js-preprocessor for json fixtures
+- use $watch to update service.data when data changes
+  - call service.add on add
+  - call service.update on update
+  - call service.delete on delete
+- rename model files to be singular i.e. note.model.js
+
+place inline filters in angular filters
+- inject lodash into these only
+- notes.filters
+  - linkModeNotesByPriorityAndThenTime()
+- blocks.filters
+- columns.filters
+
 
 separate controllers from directives
 - allows specs to be written to test each separately
 - allows specs to inject controller mock into directive
 - improves the readability of code
 
+rm var modName = modual(...) because it clouds the global namespace
+
 rm common.factories bec each service/factory should do one thing
 - mv lodash service to lodash.factory.js
 
-modify routing so that modules have their own routers
 
 
 create linking popup - move template to its own file
