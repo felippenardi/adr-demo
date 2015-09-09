@@ -1,0 +1,36 @@
+app/
+- adr.main (dash)
+- dash/
+  - dash.main.js (cases, users, organizations, statements)
+  - dash.main.html - dash header bar
+- cases/
+  - cases.main.js
+  - cases.main.html - list cases
+  - plan/
+    - cases.plan.js (cases.plan.schedule, cases.plan.parties, cases.plan.statements)
+    - cases.plan.html - plan navigation menu
+    - schedule/
+      - cases.plan.schedule.js
+    - parties/
+      - cases.plan.parties.js
+    - statements/
+      - cases.plan.statements.js
+- session/
+  - session.main.js (notes, statements.view , resolutions)
+  - session.main.html - session header bar
+- notes/
+  - notes.main.js
+  - directives/
+    - (...)
+- resolutions/
+  - resolutions.main.js
+- organizations/
+  - organizations.main.js
+- users/
+  - users.main.js
+- statements/
+  - statements.main.js
+  - edit/
+    - statements.edit.js
+  - view/
+    - statements.view.js

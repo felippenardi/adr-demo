@@ -1,53 +1,41 @@
-angular.module('adr.main', ['ui.router', 'pretty.json', 'adr.notes'])
+angular.module('adr.main', ['ui.router', 'pretty.json', 'dash.main', 'session.main'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.otherwise("/case/list");
+
+	$urlRouterProvider.otherwise("/dash");
 	
 	$stateProvider
 
     /*
-    .state('main', {
-        abstract: true,
-        url: '#',
-        // contains applcation main bar
-        templateUrl: "adr.main.html"
-    })
-
-	.state('login', {
+     
+	.state('user.login', {
         // login screen
 	})
 
-    .state('admin', {
-        abstract: true,
-        url: "admin",
-        // contains the navigation for the admin
-        templateUrl: "app/admin.html"
-    })
     */
 
+    .state('dash', {
+        //abstract: true,
+        url: '/dash',
+        // contains the navigation for the user dashboard
+        templateUrl: 'app/dash/dash.main.html',
+        controller: 'DashCtrl as dash'
+    })
+
+	.state('session', {
+        // should contain the header for a session (clock, menu, ...)
+		//abstract: true,
+		url: '/session',
+		templateUrl: 'app/session/session.main.html',
+        controller: 'SessionCtrl as session'
+	})
+
+    /*
 	.state('case', {
         // REFACTOR: should this be abstract so that I can have another state for case.list
-		url: "case",
+		url: "/case",
 		templateUrl: "app/cases/case.list.html"
 	})
-
-	.state('case.session', {
-        // should contain the header for a session (clock, menu, ...)
-		abstract: true,
-		url: "session",
-		template: "<ui-view />"
-	})
-
-	.state('case.session.notes', {
-		url: "notes",
-		templateUrl: "app/notes/notes.main.html",
-		controller: 'NotesCtrl as notes'
-	})
-
-    // may replace with a modal
-	.state('case.session.statements', {})
-
-	.state('case.session.resolutions', {})
 
 	.state('case.plan', {
 		abstract: true,
@@ -75,4 +63,5 @@ angular.module('adr.main', ['ui.router', 'pretty.json', 'adr.notes'])
 		templateUrl: "app/case.plan.statements.html"
 	})
 
-})
+   */
+});

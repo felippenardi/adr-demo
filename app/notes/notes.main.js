@@ -5,16 +5,17 @@ var getId = function() {
 	return Math.floor(Math.random() * 1000 + 1);
 }
 
-var notesMod = angular.module('adr.notes', ['common.factories', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
+/*var notesMod = angular.module('adr.notes', ['common.factories', 'ui.bootstrap', 'ui.select', 'ngSanitize']);*/
+var notesMod = angular.module('notes.main', ['common.factories', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
 
 notesMod.run(
 	// run a function in the lodashFactory to remove lodash from the global scope
 	function( _ ) {}
 );
 
-notesMod.controller('NotesCtrl', ['$window', '_', '$modal', NotesCtrl])
+notesMod.controller('NotesCtrl', ['$window', '_', '$modal', 'notes', NotesCtrl])
 
-function NotesCtrl($window, _, $modal) {
+function NotesCtrl($window, _, $modal, notes) {
 
 	var vm = this;
 
@@ -44,7 +45,7 @@ function NotesCtrl($window, _, $modal) {
 			}
 		],
 
-		notes: [],
+		notes: notes,
 
 		parties: [
 			{ id: 0, short_name: '--', selected: true },
@@ -61,6 +62,7 @@ function NotesCtrl($window, _, $modal) {
 		linkings: []
 
 	}
+    console.log('notes', vm.data.notes);
 
 	/*
 	* selectedLinkings (collection)

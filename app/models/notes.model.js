@@ -1,16 +1,10 @@
 /* notes.model.js */
 
-angular.module('note.model', ['common.factories', 'restangular'])
+//angular.module('notes.model', ['common.factories', 'restangular', 'api.backendless'])
+angular.module('notes.model', ['common.factories', 'restangular'])
 
-// create a file of constants in the common directory
-// loads from a config file
-// api tokens
-// csrf salt
-// domain = localhost
-// port = 8080
-// apiBaseUrl = /api
-
-.service('noteModel', function(_, Restangular, $q) {
+.service('notesModel', function(_, Restangular, $q) {
+    Restangular.setBaseUrl('http://localhost:8000/api')
 	var service = this;
     var notes = [];
 
@@ -22,6 +16,7 @@ angular.module('note.model', ['common.factories', 'restangular'])
             base.getList()
 
             .then(function(result) {
+                console.log('promise');
 
                 var priority = 0;
 
