@@ -8,7 +8,7 @@ Refactor ui-router
     });
     "
 
-
+mv ui.router resolve objects to a function in the controller they load
 
 
 mv NotesCtrl data arrays with services

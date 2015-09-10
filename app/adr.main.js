@@ -1,4 +1,15 @@
-angular.module('adr.main', ['ui.router', 'pretty.json', 'dash.main', 'session.main', 'ngMockE2E'])
+angular.module('adr.main', [
+    'ui.router', 
+    'restangular', 
+    'pretty.json', 
+    'dash.main', 
+    'session.main', 
+    'ngMockE2E'
+])
+
+.run(function(Restangular) {
+    Restangular.setBaseUrl('http://localhost:8000/api');
+})
 
 .config(function($stateProvider, $urlRouterProvider) {
 

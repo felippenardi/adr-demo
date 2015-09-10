@@ -1,6 +1,0 @@
-1. adr.main needs to inject ngMockE2E
-2. may need to install jquery
-3. may need to replace '/api/notes' with /\/api\/notes/
-4. change module name from api.backendless to api.mock
-
-Q. Can a module have multiple run blocks?

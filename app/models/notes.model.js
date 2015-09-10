@@ -1,17 +1,15 @@
 /* notes.model.js */
 
-//angular.module('notes.model', ['common.factories', 'restangular', 'api.backendless'])
 angular.module('notes.model', ['common.factories', 'restangular'])
 
 .service('notesModel', function(_, Restangular, $q) {
-    Restangular.setBaseUrl('http://localhost:8000/api')
+
 	var service = this;
-    var notes = [];
 
     service.list = function(caseId) {
         // FEATURE: may need to convert timestamp to suitable format and place in ux
         return $q(function(resolve, reject) {
-            var base = Restangular.all('notes')
+            var base = Restangular.all('notes');
             
             base.getList()
 

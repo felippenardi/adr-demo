@@ -1,21 +1,45 @@
-/* adr.notes.js */
+/* notes.main.js */
 
 // REMOVE - this is just a hack for generating ids
 var getId = function() {
 	return Math.floor(Math.random() * 1000 + 1);
 }
 
-/*var notesMod = angular.module('adr.notes', ['common.factories', 'ui.bootstrap', 'ui.select', 'ngSanitize']);*/
-var notesMod = angular.module('notes.main', ['common.factories', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
+var notesMod = angular.module('notes.main', [
+    'common.factories', 
+    'ui.bootstrap', 
+    'ui.select', 
+    'ngSanitize'
+]);
 
 notesMod.run(
 	// run a function in the lodashFactory to remove lodash from the global scope
 	function( _ ) {}
 );
 
-notesMod.controller('NotesCtrl', ['$window', '_', '$modal', 'notes', NotesCtrl])
+notesMod.controller('NotesCtrl', [
+    '$window', 
+    '_', 
+    '$modal', 
+    'categories', 
+    'parties', 
+    'linkings', 
+    'notes', 
+    NotesCtrl
+]);
 
-function NotesCtrl($window, _, $modal, notes) {
+/*
+ * session.main routers resolves the data for the NotesCtrl
+ */
+function NotesCtrl(
+    $window, 
+    _, 
+    $modal, 
+    categories, 
+    parties, 
+    linkings, 
+    notes
+) {
 
 	var vm = this;
 
@@ -27,41 +51,20 @@ function NotesCtrl($window, _, $modal, notes) {
 
 	vm.data = {
 
-		categories: [
-			{
-				id: 1,
-				name: 'issues',
-				priority: 1
-			},
-			{
-				id: 2,
-				name: 'offers',
-				priority: 2
-			},
-			{
-				id: 3,
-				name: 'facts',
-				priority: 3
-			}
-		],
-
+        categories: categories,
+        parties: parties,
 		notes: notes,
-
-		parties: [
-			{ id: 0, short_name: '--', selected: true },
-			{ id: 1, short_name: 'GD', selected: false },
-			{ id: 2, short_name: 'BS', selected: false  }
-		],
-
 
 		/*
 		* linkings
 		*
 		* stores the linkings created by the user
 		*/
-		linkings: []
+		linkings: linkings 
 
-	}
+	};
+
+    console.log('data', vm.data);
 
 	/*
 	* selectedLinkings (collection)
@@ -362,7 +365,6 @@ notesMod.directive('column', function() {
 					position = position + 1;
 				}
 
-				console.log('child', position);
 				// call the parent's addEmptyColumn func
 				vm.add({position: position});
 			}

@@ -1,14 +1,22 @@
 /* linkings.model.js */
 
-angular.module('linking.model', ['restangular'])
+angular.module('linkings.model', ['restangular'])
 
-.service('linkingModel', function(Restangular, $q) {
+.service('linkingsModel', function(Restangular, $q) {
 
     var service = this;
-    var linkings = [];
 
-    service.list = function() {};
+    service.list = function(caseId) {
+        return $q(function(resolve, reject) {
+            var base = Restangular.all('linkings');
+            base.getList()
+            .then(function(result) {
+                resolve(result);
+            });
+        });
+    };
+
     service.add = function() {};
     service.update = function() {};
 
-}// .service
+});// .service
