@@ -1,11 +1,18 @@
 /* columns.model.js */
 
-angular.module('columns.model', [])
+(function() {
 
-.service('columnsModel', function() {
+angular.module('columns.model', [])
+    .service('columnsModel', ColumnsModel); // .service
+
+/*
+ * @class ColumnsModel
+ * @classdesc Model for column data
+ * @ngInject
+ */
+function ColumnsModel() {
 
     var service = this;
-    var columns = [];
 
     service.list = function() {
         return [
@@ -28,4 +35,6 @@ angular.module('columns.model', [])
     service.addBlock = function() {};
     service.removeBlock = function() {};
 
-}); // .service
+}
+
+}())

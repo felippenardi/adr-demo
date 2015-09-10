@@ -1,8 +1,16 @@
 /* linkings.model.js */
 
-angular.module('linkings.model', ['restangular'])
+(function() {
 
-.service('linkingsModel', function(Restangular, $q) {
+angular.module('linkings.model', ['restangular'])
+    .service('linkingsModel', LinkingsModel);
+
+/*
+ * @class LinkingsModel
+ * @classdesc Model for linkings data
+ * @ngInject
+ */
+function LinkingsModel(Restangular, $q) {
 
     var service = this;
 
@@ -19,4 +27,6 @@ angular.module('linkings.model', ['restangular'])
     service.add = function() {};
     service.update = function() {};
 
-});// .service
+}
+
+}())

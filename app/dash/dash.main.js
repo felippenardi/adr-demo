@@ -1,6 +1,6 @@
 angular.module('dash.main', ['ui.router', 'cases.main', 'case.plan'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
@@ -9,7 +9,7 @@ angular.module('dash.main', ['ui.router', 'cases.main', 'case.plan'])
         templateUrl: 'app/cases/cases.main.html',
         controller: 'CasesCtrl as cases'
     })
-})
+}])
 
 .controller('DashCtrl', [DashCtrl])
 

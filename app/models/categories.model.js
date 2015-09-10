@@ -1,8 +1,16 @@
 /* categories.model.js */
 
-angular.module('categories.model', ['restangular'])
+(function() {
 
-.service('categoriesModel', function(Restangular, $q) {
+angular.module('categories.model', ['restangular'])
+    .service('categoriesModel', CategoriesModel);
+
+/* 
+ * @class CategoriesModel
+ * @classdesc Model for category data
+ * @ngInject 
+ */
+function CategoriesModel(Restangular, $q) {
 
     var service = this;
 
@@ -18,4 +26,6 @@ angular.module('categories.model', ['restangular'])
 
     service.getPriority = function(categoryId) {}
 
-});// .service
+}
+
+}())

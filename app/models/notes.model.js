@@ -1,8 +1,16 @@
 /* notes.model.js */
 
-angular.module('notes.model', ['common.factories', 'restangular'])
+(function() {
 
-.service('notesModel', function(_, Restangular, $q) {
+angular.module('notes.model', ['common.factories', 'restangular'])
+    .service('notesModel', NotesModel);
+    
+/*
+ * @class NotesModel
+ * @classdesc Model for notes data
+ * @ngInject
+ */
+function NotesModel(_, Restangular, $q) {
 
 	var service = this;
 
@@ -109,4 +117,6 @@ angular.module('notes.model', ['common.factories', 'restangular'])
     service.setLinkMode = function(noteId) {}
     service.getNotesInLinkMode = function() {} // might be better placed in notes.filters.js
     service.clearNotesInLinkMode = function() {}
-});
+};
+
+}())

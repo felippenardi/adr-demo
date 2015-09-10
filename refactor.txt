@@ -1,4 +1,4 @@
-use the array injector syntax so minification works
+use iije immediately invoked javascrtip expression
 
 place inline filters in angular filters
 - inject lodash into these only
@@ -7,14 +7,23 @@ place inline filters in angular filters
 - blocks.filters
 - columns.filters
 
-
-
 rm var modName = modual(...) because it clouds the global namespace
 
 rm common.factories bec each service/factory should do one thing
 - mv lodash service to lodash.factory.js
 
+Add JSDoc strings
 
-add jsdoc strings
+Automated Tests
+use https://www.npmjs.com/package/karma-ng-json2js-preprocessor for json fixtures in unit tests
 
-- use https://www.npmjs.com/package/karma-ng-json2js-preprocessor for json fixtures in unit tests
+ng-annotate
+- use ng-annotate (https://github.com/olov/ng-annotate)
+- use @ngInject since i'm separating classes out of angular declarations
+- add ng-strict-di directive to ngApp element so that Angular fails when manual injector annotations are not present - I will need to run ngAnnotate to annotate all of my files first.  This is what prevents my code from breaking once minified.
+
+Gulp or Grunt
+- ng-annotate
+- jslint
+- jsdoc
+- minify

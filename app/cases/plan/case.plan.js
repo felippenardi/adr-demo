@@ -1,6 +1,6 @@
 angular.module('case.plan', ['ui.router'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.when('/dash/cases/plan', '/dash/cases/plan/parties');
 
@@ -27,4 +27,4 @@ angular.module('case.plan', ['ui.router'])
         templateUrl: 'app/cases/plan/statements/case.plan.statements.html'
     })
 
-})
+}])

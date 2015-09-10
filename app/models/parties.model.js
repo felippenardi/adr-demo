@@ -1,8 +1,16 @@
 /* parties.model.js */
 
-angular.module('parties.model', ['restangular'])
+(function() {
 
-.service('partiesModel', function(Restangular, $q) {
+angular.module('parties.model', ['restangular'])
+    .service('partiesModel', PartiesModel)
+
+/*
+ * @class PartiesModel
+ * @classdesc Model for party data
+ * @ngInject
+ */
+function PartiesModel(Restangular, $q) {
 
     var service = this;
 
@@ -19,4 +27,6 @@ angular.module('parties.model', ['restangular'])
     service.setActive = function() {};
     service.getActive = function() {};
 
-}); // .service
+}; // .service
+
+}())
