@@ -1,8 +1,26 @@
+* use $watch to update service.data when data changes
+  - call service.add on add
+  - call service.update on update
+  - call service.delete on delete
+
+
+
+
 Services
+
+
 ----
 
 * checkInternetConnection
 * data services
+* each service should ...
+  - cache the data once requested in service.data
+  - requesting the list should check the cache first
+  - posting should check for connection
+    - if available then post to svr
+    - if not available then store using localforage
+  - get should get from the cache, not make an individual request to the rest svc
+
 
 Directives
 ----

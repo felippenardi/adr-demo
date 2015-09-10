@@ -64,8 +64,6 @@ angular.module('adr.main')
         }
     ];
 
-    var columns = [];
-
     $httpBackend.whenGET(/\/api\/categories/).respond(200, categories);
     $httpBackend.whenGET(/\/api\/parties/).respond(200, parties);
     $httpBackend.whenGET(/\/api\/notes/).respond(200, notes);

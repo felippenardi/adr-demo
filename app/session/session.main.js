@@ -1,5 +1,6 @@
 angular.module('session.main', [
     'ui.router', 
+    'columns.model',
     'categories.model', 
     'parties.model',
     'notes.model', 
@@ -14,7 +15,12 @@ angular.module('session.main', [
 	.state('session.notes', {
 		url: "/notes",
 		templateUrl: "app/notes/notes.main.html",
+		controller: 'NotesCtrl as notes',
         resolve: {
+
+            columns: function(columnsModel) {
+                return columnsModel.list();
+            },
 
             categories: function(categoriesModel) {
                 return categoriesModel.list(1);
@@ -32,8 +38,8 @@ angular.module('session.main', [
                 return linkingsModel.list(1);
             }
 
-        },
-		controller: 'NotesCtrl as notes'
+        }
+
 	})
 
     // may replace with a modal

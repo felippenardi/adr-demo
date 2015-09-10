@@ -1,38 +1,21 @@
 
 Refactor ui-router
-- modify routing so that modules have their own routers
-- use resolve to load data from services in router
-    "
-    notesService.list().then(function(notes) {
-        vm.notes = notes;
-    });
-    "
-
-mv ui.router resolve objects to a function in the controller they load
+x- modify routing so that modules have their own routers
+x- use resolve to load data from services in router
 
 
 mv NotesCtrl data arrays with services
 - new services
-  - data.notes > notesService
-  - data.categories > categoryService
-  - data.parties > partyService
-  - linkings > linkingsService
+  x- data.notes > notesService
+  x- data.categories > categoryService
+  x- data.parties > partyService
+  x- linkings > linkingsService
   - columns > columnService
-- mock httpbackend in place of backend server
+x- mock httpbackend in place of backend server
+
 - call service.list on resolve for each directive controller
-- each service should ...
-  - cache the data once requested in service.data
-  - requesting the list should check the cache first
-  - posting should check for connection
-    - if available then post to svr
-    - if not available then store using localforage
-  - get should get from the cache, not make an individual request to the rest svc
+
 - use https://www.npmjs.com/package/karma-ng-json2js-preprocessor for json fixtures
-- use $watch to update service.data when data changes
-  - call service.add on add
-  - call service.update on update
-  - call service.delete on delete
-- rename model files to be singular i.e. note.model.js
 
 place inline filters in angular filters
 - inject lodash into these only

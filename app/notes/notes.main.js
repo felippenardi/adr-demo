@@ -21,6 +21,7 @@ angular.module('notes.main', [
     '$window', 
     '_', 
     '$modal', 
+    'columns',
     'categories', 
     'parties', 
     'linkings', 
@@ -240,6 +241,7 @@ function NotesCtrl(
     $window, 
     _, 
     $modal, 
+    columns, 
     categories, 
     parties, 
     linkings, 
@@ -248,7 +250,8 @@ function NotesCtrl(
 
 	var vm = this;
 
-	vm.columns = [];
+	vm.columns = columns;
+    console.log('columns', vm.columns);
 
 	vm.caucus = [];
 
