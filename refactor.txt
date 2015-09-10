@@ -1,21 +1,4 @@
-
-Refactor ui-router
-x- modify routing so that modules have their own routers
-x- use resolve to load data from services in router
-
-
-mv NotesCtrl data arrays with services
-- new services
-  x- data.notes > notesService
-  x- data.categories > categoryService
-  x- data.parties > partyService
-  x- linkings > linkingsService
-  - columns > columnService
-x- mock httpbackend in place of backend server
-
-- call service.list on resolve for each directive controller
-
-- use https://www.npmjs.com/package/karma-ng-json2js-preprocessor for json fixtures
+use the array injector syntax so minification works
 
 place inline filters in angular filters
 - inject lodash into these only
@@ -25,12 +8,6 @@ place inline filters in angular filters
 - columns.filters
 
 
-separate controllers from directives
-- allows specs to be written to test each separately
-- allows specs to inject controller mock into directive
-- improves the readability of code
-
-use the array injector syntax so minification works
 
 rm var modName = modual(...) because it clouds the global namespace
 
@@ -38,7 +15,6 @@ rm common.factories bec each service/factory should do one thing
 - mv lodash service to lodash.factory.js
 
 
-
-create linking popup - move template to its own file
-
 add jsdoc strings
+
+- use https://www.npmjs.com/package/karma-ng-json2js-preprocessor for json fixtures in unit tests

@@ -29,24 +29,7 @@ angular.module('notes.main', [
     NotesCtrl
 ])
 
-.controller('ModalCtrl', function($modalInstance, defaultName, existingLinkings) {
-	vm = this;
-	vm.newLinkingName = defaultName;
-	vm.existingLinkings = existingLinkings;
-	vm.isANewLinking = true;
-
-	vm.toggleIsANewLinking = function() {
-		vm.isANewLinking = !vm.isANewLinking;
-	};	
-
-	vm.saveLinking = function() {
-		var res = {
-			linking: vm.newLinkingName,
-			isNew: true
-		};
-		$modalInstance.close(res);
-	};
-})
+.controller('ModalCtrl', ModalCtrl)
 
 .directive('column', function() {
 	/*
@@ -69,54 +52,7 @@ angular.module('notes.main', [
 		},
 		bindToController: true,
 		controllerAs: 'column',
-		controller: function () {
-			var vm = this;
-			vm.hovering = false;
-			vm.mouseEnter = function() {
-				vm.hovering = true;
-			}
-			vm.mouseExit = function() {
-				vm.hovering = false;
-			}
-
-			vm.addColumn = function(direction) {
-				var position = +vm.index;
-				
-				if (direction === 'right') {
-					position = position + 1;
-				}
-
-				// call the parent's addEmptyColumn func
-				vm.add({position: position});
-			}
-
-			/*
-			 *
-			 *
-			 * @heading is the heading text
-			 *
-			 */
-			vm.setColumnHeading = function(heading) {
-				vm.column.heading = heading;
-			};
-
-			vm.addBlock = function(type, id) {
-				block = {
-					content_type: type,
-					content_id: id
-				}
-				vm.column.blocks.push(block);
-			};
-
-			/*
-			 * 
-			 * @position is the block to modify 
-			 * @type is something like category, group, party
-			 * @id is the unique identifier of a member of
-			 * the type container
-			 */
-			vm.setBlockContents = function(position, type, id) {};
-		},
+		controller: ColumnCtrl,
 		templateUrl: 'app/notes/directives/column/column.directive.html'
 	}
 
@@ -131,14 +67,7 @@ angular.module('notes.main', [
 		},
 		bindToController: true,
 		controllerAs: 'block',
-		controller: function () {
-			vm = this;
-			vm.setHeading = function(){};
-			vm.setContents = function(content_type, content_id){
-				vm.block.contents.type = content_type;
-				vm.block.heading = 'content_id';
-			};
-		},
+		controller: ColumnBlockCtrl,
 		templateUrl: 'app/notes/directives/column_block/column_block.directive.html'
 	};
 })
@@ -155,49 +84,7 @@ angular.module('notes.main', [
 		},
 		bindToController: true,
 		controllerAs: 'category',
-		controller: function() {
-
-			var vm = this;
-			vm.next_note = "";
-
-			var categoryObj = _.first(_.where(vm.data.categories, { id: vm.category } ));
-
-			vm.addNote = function() {
-
-				var party = _.first(_.where(vm.data.parties, { selected: true }));
-
-
-				var note = {
-					id: getId(),
-					created: Date.now(),
-					category: vm.category,
-					text: vm.next_note,
-					party_id: party.id,
-					priority: categoryObj.priority,
-					selected: false,
-					link_mode: false
-				};
-
-				vm.data.notes.push(note);
-				vm.next_note = "";
-			};
-
-			// so that it effects all notes
-			vm.selectParty = function(partyId) {
-				vm.data.parties = _.map(vm.data.parties, function(party) {
-					var p = {};
-					p.id = party.id;
-					p.short_name = party.short_name;
-					if (party.id == partyId) {
-						p.selected = true;
-					} else {
-						p.selected = false;
-					}
-					return p;
-				});
-			};
-
-		},
+		controller: CategoryCtrl,
 		templateUrl: 'app/notes/directives/category/category.directive.html'
 	};
 
@@ -212,23 +99,7 @@ angular.module('notes.main', [
 		},
 		bindToController: true,
 		controllerAs: 'note',
-		controller: function() {
-			var vm = this;
-			vm.party = _.get(_.first(_.where(vm.parties, {'id': vm.note.party_id})), 'short_name');
-
-			vm.strikeOut = function(){
-				vm.note.strike = !vm.note.strike;	
-			};
-
-			vm.select = function() {
-				vm.note.selected = !vm.note.selected;
-			};
-
-			vm.link = function() {
-				vm.note.link_mode = !vm.note.link_mode;
-			}
-
-		},
+		controller: NoteCtrl,
 		restrict: 'E',
 		templateUrl: 'app/notes/directives/note/note.directive.html'
 	}
@@ -251,7 +122,6 @@ function NotesCtrl(
 	var vm = this;
 
 	vm.columns = columns;
-    console.log('columns', vm.columns);
 
 	vm.caucus = [];
 
@@ -271,8 +141,6 @@ function NotesCtrl(
 		linkings: linkings 
 
 	};
-
-    console.log('data', vm.data);
 
 	/*
 	* selectedLinkings (collection)
@@ -366,7 +234,7 @@ function NotesCtrl(
 
 		// Show a modal for the user to select a group or name a new group
 		var modalInstance = $modal.open({
-			templateUrl: 'newGroupModal.html',
+			templateUrl: 'app/notes/newGroupModal.html',
 			controller: 'ModalCtrl',
 			controllerAs: 'modal',
 			bindToController: true,
@@ -516,3 +384,142 @@ function NotesCtrl(
 
 }
 
+function ModalCtrl($modalInstance, defaultName, existingLinkings) {
+	vm = this;
+	vm.newLinkingName = defaultName;
+	vm.existingLinkings = existingLinkings;
+	vm.isANewLinking = true;
+
+	vm.toggleIsANewLinking = function() {
+		vm.isANewLinking = !vm.isANewLinking;
+	};	
+
+	vm.saveLinking = function() {
+		var res = {
+			linking: vm.newLinkingName,
+			isNew: true
+		};
+		$modalInstance.close(res);
+	};
+}
+
+
+function ColumnCtrl() {
+    var vm = this;
+    vm.hovering = false;
+    vm.mouseEnter = function() {
+        vm.hovering = true;
+    }
+    vm.mouseExit = function() {
+        vm.hovering = false;
+    }
+
+    vm.addColumn = function(direction) {
+        var position = +vm.index;
+
+        if (direction === 'right') {
+            position = position + 1;
+        }
+
+        // call the parent's addEmptyColumn func
+        vm.add({position: position});
+    }
+
+    /*
+     *
+     *
+     * @heading is the heading text
+     *
+     */
+    vm.setColumnHeading = function(heading) {
+        vm.column.heading = heading;
+    };
+
+    vm.addBlock = function(type, id) {
+        block = {
+            content_type: type,
+            content_id: id
+        }
+        vm.column.blocks.push(block);
+    };
+
+    /*
+     * 
+     * @position is the block to modify 
+     * @type is something like category, group, party
+     * @id is the unique identifier of a member of
+     * the type container
+     */
+    vm.setBlockContents = function(position, type, id) {};
+}
+
+function ColumnBlockCtrl() {
+    vm = this;
+    vm.setHeading = function(){};
+    vm.setContents = function(content_type, content_id){
+        vm.block.contents.type = content_type;
+        vm.block.heading = 'content_id';
+    };
+}
+
+function CategoryCtrl() {
+
+    var vm = this;
+    vm.next_note = "";
+
+    var categoryObj = _.first(_.where(vm.data.categories, { id: vm.category } ));
+
+    vm.addNote = function() {
+
+        var party = _.first(_.where(vm.data.parties, { selected: true }));
+
+
+        var note = {
+            id: getId(),
+            created: Date.now(),
+            category: vm.category,
+            text: vm.next_note,
+            party_id: party.id,
+            priority: categoryObj.priority,
+            selected: false,
+            link_mode: false
+        };
+
+        vm.data.notes.push(note);
+        vm.next_note = "";
+    };
+
+    // so that it effects all notes
+    vm.selectParty = function(partyId) {
+        vm.data.parties = _.map(vm.data.parties, function(party) {
+            var p = {};
+            p.id = party.id;
+            p.short_name = party.short_name;
+            if (party.id == partyId) {
+                p.selected = true;
+            } else {
+                p.selected = false;
+            }
+            return p;
+        });
+    };
+
+}
+
+function NoteCtrl() {
+    var vm = this;
+    vm.party = _.get(_.first(_.where(vm.parties, {'id': vm.note.party_id})), 'short_name');
+
+    vm.strikeOut = function(){
+        vm.note.strike = !vm.note.strike;	
+    };
+
+    vm.select = function() {
+        vm.note.selected = !vm.note.selected;
+    };
+
+    vm.link = function() {
+        vm.note.link_mode = !vm.note.link_mode;
+    }
+
+}

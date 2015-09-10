@@ -32,32 +32,3 @@
 <hr />
 
 <button ng-click="notes.linkNotes()">link</button>
-
-
-<script type="text/ng-template" id="newGroupModal.html">
-
-	<div class="modal-header">
-	    <h3>Name your group</h3>
-	</div>
-
-	<div class="modal-body">
-		<div ng-show="modal.isANewLinking" class="form-group">
-    			<input type="text" class="form-control" ng-model="modal.newLinkingName" placeholder="Enter a group name">
-  		</div>
-
-			<ui-select ng-hide="modal.isANewLinking" ng-model="modal.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
-				<ui-select-match placeholder="Select an existing linking...">{{$select.selected.name}}</ui-select-match>
-				<ui-select-choices repeat="linking in modal.existingLinkings | filter: $select.search">
-					<span ng-bind-html="linking.name | highlight: $select.search"></span>
-				</ui-select-choices>
-			</ui-select>
-
-	</div>
-
-	<div class="modal-footer">
-		<button class="btn btn-primary" ng-click="modal.saveLinking()">SAVE</button>
-		<a href="" ng-show='modal.isANewLinking' ng-click='modal.toggleIsANewLinking()'>ADD TO EXISTING LINKING</a>
-		<a href="" ng-hide='modal.isANewLinking' ng-click='modal.toggleIsANewLinking()'>CREATE A NEW LINKING</a>
-	</div>
-
-</script>
