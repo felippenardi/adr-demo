@@ -16,7 +16,6 @@ angular.module('notes.model', ['common.factories', 'restangular'])
             base.getList()
 
             .then(function(result) {
-                console.log('promise');
 
                 var priority = 0;
 

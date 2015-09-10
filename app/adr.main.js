@@ -1,4 +1,4 @@
-angular.module('adr.main', ['ui.router', 'pretty.json', 'dash.main', 'session.main'])
+angular.module('adr.main', ['ui.router', 'pretty.json', 'dash.main', 'session.main', 'ngMockE2E'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

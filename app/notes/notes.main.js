@@ -62,7 +62,6 @@ function NotesCtrl($window, _, $modal, notes) {
 		linkings: []
 
 	}
-    console.log('notes', vm.data.notes);
 
 	/*
 	* selectedLinkings (collection)

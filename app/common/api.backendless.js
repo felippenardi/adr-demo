@@ -1,4 +1,5 @@
-angular.module('api.backendless', ['adr.main', 'ngMockE2E'])
+//angular.module('api.backendless', ['adr.main', 'ngMockE2E'])
+angular.module('adr.main')
 
 .run(['$httpBackend', function($httpBackend) {
 
@@ -8,8 +9,8 @@ angular.module('api.backendless', ['adr.main', 'ngMockE2E'])
     var linkings = [];
     var columns = [];
 
+    $httpBackend.whenGET(/\/api\/notes/).respond(200, notes);
     $httpBackend.whenGET(isTemplate).passThrough();
-    $httpBackend.whenGET('/api/notes').respond(200, notes);
 
     var isTemplate = function(url) {
         return (url.indexOf('.html') === -1);
