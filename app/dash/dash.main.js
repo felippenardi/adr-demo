@@ -1,6 +1,8 @@
+(function() {
+
 angular.module('dash.main', ['ui.router', 'cases.main', 'case.plan'])
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
@@ -9,8 +11,15 @@ angular.module('dash.main', ['ui.router', 'cases.main', 'case.plan'])
         templateUrl: 'app/cases/cases.main.html',
         controller: 'CasesCtrl as cases'
     })
-}])
+})
 
 .controller('DashCtrl', [DashCtrl])
 
+/*
+ * @class DashCtrl
+ * @classdesc Controller for dash view
+ * @ngInject
+ */
 function DashCtrl() {};
+
+}())

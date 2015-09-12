@@ -2,7 +2,7 @@
 
 (function() {
 
-angular.module('notes.model', ['common.factories', 'restangular'])
+angular.module('notes.model', ['lodash.service', 'restangular'])
     .service('notesModel', NotesModel);
     
 /*

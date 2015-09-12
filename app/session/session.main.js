@@ -51,4 +51,9 @@ angular.module('session.main', [
 
 .controller('SessionCtrl', [SessionCtrl])
 
+/*
+ * @class SessionCtrl
+ * @classdesc Controller for the session view
+ * @ngInject
+ */
 function SessionCtrl(){};

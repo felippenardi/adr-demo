@@ -1,112 +1,26 @@
 /* notes.main.js */
 
+(function() {
+
 // REMOVE - this is just a hack for generating ids
 var getId = function() {
 	return Math.floor(Math.random() * 1000 + 1);
 }
 
 angular.module('notes.main', [
-    'common.factories', 
+    'lodash.service', 
     'ui.bootstrap', 
     'ui.select', 
     'ngSanitize'
 ])
 
-.run(
-	// run a function in the lodashFactory to remove lodash from the global scope
-	function( _ ) {}
-)
-
-.controller('NotesCtrl', [
-    '$window', 
-    '_', 
-    '$modal', 
-    'columns',
-    'categories', 
-    'parties', 
-    'linkings', 
-    'notes', 
-    NotesCtrl
-])
-
+.controller('NotesCtrl', NotesCtrl)
 .controller('ModalCtrl', ModalCtrl)
 
-.directive('column', function() {
-	/*
-	 * I should be able to pass the index position of this column
-	 * into the scope using @ or & so I can add it to the left or right
-	 * into the array.
-	 * 
-	 * remember that I need to use {{$index}} to pass the value in 
-	 * Another way could be to pass a function into the directive with a
-	 * signature: addColumn(position)
-	 */
-	 
-	return {
-		restrict: 'E',
-		scope: {
-			column: '=',
-			data: '=',
-			index: '@',
-			add: '&'
-		},
-		bindToController: true,
-		controllerAs: 'column',
-		controller: ColumnCtrl,
-		templateUrl: 'app/notes/directives/column/column.directive.html'
-	}
-
-})
-
-.directive('columnBlock', function() {
-	return {
-		restrict: 'E',
-		scope: {
-			block: '=',
-			data: '='
-		},
-		bindToController: true,
-		controllerAs: 'block',
-		controller: ColumnBlockCtrl,
-		templateUrl: 'app/notes/directives/column_block/column_block.directive.html'
-	};
-})
-
-.directive('category', function(_) {
-
-	// REFACTOR: scope isolation for category should be an @
-
-	return {
-		restrict: 'E',
-		scope: {
-			category: '=',
-			data: '='
-		},
-		bindToController: true,
-		controllerAs: 'category',
-		controller: CategoryCtrl,
-		templateUrl: 'app/notes/directives/category/category.directive.html'
-	};
-
-})
-
-.directive('note', function(_) {
-
-	return {
-		scope: {
-			note: '=',
-			parties: '='
-		},
-		bindToController: true,
-		controllerAs: 'note',
-		controller: NoteCtrl,
-		restrict: 'E',
-		templateUrl: 'app/notes/directives/note/note.directive.html'
-	}
-})
-
 /*
- * session.main routers resolves the data for the NotesCtrl
+ * @class NotesCtrl
+ * @classdesc Main controller for the notes view
+ * @ngInject
  */
 function NotesCtrl(
     $window, 
@@ -384,6 +298,11 @@ function NotesCtrl(
 
 }
 
+/*
+ * @class ModalCtrl
+ * @classdesc Controller for the create new linking modal
+ * @ngInject
+ */
 function ModalCtrl($modalInstance, defaultName, existingLinkings) {
 	vm = this;
 	vm.newLinkingName = defaultName;
@@ -403,123 +322,4 @@ function ModalCtrl($modalInstance, defaultName, existingLinkings) {
 	};
 }
 
-
-function ColumnCtrl() {
-    var vm = this;
-    vm.hovering = false;
-    vm.mouseEnter = function() {
-        vm.hovering = true;
-    }
-    vm.mouseExit = function() {
-        vm.hovering = false;
-    }
-
-    vm.addColumn = function(direction) {
-        var position = +vm.index;
-
-        if (direction === 'right') {
-            position = position + 1;
-        }
-
-        // call the parent's addEmptyColumn func
-        vm.add({position: position});
-    }
-
-    /*
-     *
-     *
-     * @heading is the heading text
-     *
-     */
-    vm.setColumnHeading = function(heading) {
-        vm.column.heading = heading;
-    };
-
-    vm.addBlock = function(type, id) {
-        block = {
-            content_type: type,
-            content_id: id
-        }
-        vm.column.blocks.push(block);
-    };
-
-    /*
-     * 
-     * @position is the block to modify 
-     * @type is something like category, group, party
-     * @id is the unique identifier of a member of
-     * the type container
-     */
-    vm.setBlockContents = function(position, type, id) {};
-}
-
-function ColumnBlockCtrl() {
-    vm = this;
-    vm.setHeading = function(){};
-    vm.setContents = function(content_type, content_id){
-        vm.block.contents.type = content_type;
-        vm.block.heading = 'content_id';
-    };
-}
-
-function CategoryCtrl() {
-
-    var vm = this;
-    vm.next_note = "";
-
-    var categoryObj = _.first(_.where(vm.data.categories, { id: vm.category } ));
-
-    vm.addNote = function() {
-
-        var party = _.first(_.where(vm.data.parties, { selected: true }));
-
-
-        var note = {
-            id: getId(),
-            created: Date.now(),
-            category: vm.category,
-            text: vm.next_note,
-            party_id: party.id,
-            priority: categoryObj.priority,
-            selected: false,
-            link_mode: false
-        };
-
-        vm.data.notes.push(note);
-        vm.next_note = "";
-    };
-
-    // so that it effects all notes
-    vm.selectParty = function(partyId) {
-        vm.data.parties = _.map(vm.data.parties, function(party) {
-            var p = {};
-            p.id = party.id;
-            p.short_name = party.short_name;
-            if (party.id == partyId) {
-                p.selected = true;
-            } else {
-                p.selected = false;
-            }
-            return p;
-        });
-    };
-
-}
-
-function NoteCtrl() {
-    var vm = this;
-    vm.party = _.get(_.first(_.where(vm.parties, {'id': vm.note.party_id})), 'short_name');
-
-    vm.strikeOut = function(){
-        vm.note.strike = !vm.note.strike;	
-    };
-
-    vm.select = function() {
-        vm.note.selected = !vm.note.selected;
-    };
-
-    vm.link = function() {
-        vm.note.link_mode = !vm.note.link_mode;
-    }
-
-}
+}())

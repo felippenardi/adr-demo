@@ -1,3 +1,5 @@
+(function() {
+
 angular.module('adr.main', [
     'ui.router', 
     'restangular', 
@@ -7,11 +9,11 @@ angular.module('adr.main', [
     'ngMockE2E'
 ])
 
-.run(['Restangular', function(Restangular) {
+.run(function(Restangular) {
     Restangular.setBaseUrl('http://localhost:8000/api');
-}])
+})
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise("/dash");
 	
@@ -75,4 +77,6 @@ angular.module('adr.main', [
 	})
 
    */
-}]);
+});
+
+}())
