@@ -1,5 +1,5 @@
 describe('NotesController', function() {
-	beforeEach(angular.mock.module('adr.notes'));
+	beforeEach(angular.mock.module('notes.main'));
 	var $controller;
 
 	beforeEach(inject(function(_$controller_) {

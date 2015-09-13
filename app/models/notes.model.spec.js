@@ -1,6 +1,6 @@
-describe('NoteModel', function() {
+describe('notesModel', function() {
 
-	var noteModel,
+	var notesModel,
 	httpBackend,
 	Restangular,
 	q;
@@ -28,11 +28,10 @@ describe('NoteModel', function() {
         }
     ];
 
-
-	beforeEach(module('note.model'));
+	beforeEach(module('notes.model'));
 	
-	beforeEach(inject(function(_noteModel_, _Restangular_, _$httpBackend_, $q) {
-		noteModel = _noteModel_;
+	beforeEach(inject(function(_notesModel_, _Restangular_, _$httpBackend_, $q) {
+		notesModel = _notesModel_;
 		Restangular = _Restangular_;
 		httpBackend = _$httpBackend_;
 		q = $q;
@@ -63,7 +62,7 @@ describe('NoteModel', function() {
 				expect(error).toBeUndefined();
             };
 
-            noteModel.list()
+            notesModel.list()
             .then(test, error)
             .catch(failTest);
 
@@ -105,7 +104,7 @@ describe('NoteModel', function() {
 			// if using the old method of creating a promise,
 			// I can pass a notify function as the 3rd arg
 			// to then.
-			noteModel.get()
+			notesModel.get()
 				.then(test, error)
 				.catch(failTest);
 

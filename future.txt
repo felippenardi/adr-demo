@@ -1,3 +1,6 @@
 future features here
 
 * replace generic loading spinners with the resolution icon rotating through the three states
+
+
+http://ngmodules.org/modules/angularytics

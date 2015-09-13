@@ -7,4 +7,5 @@ unit testing directives
 * why do objects contain prototypes?
 * why don't have to explicitly pass args to controllers, services, etc when implementing tests
 
-* should I be using IIEF at the file level or globally using a gulp plugin or something?
+* IIFE
+  - should I be doing this at the file level or for each funtion in the file?

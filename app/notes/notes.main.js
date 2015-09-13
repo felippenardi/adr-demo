@@ -11,7 +11,8 @@ angular.module('notes.main', [
     'lodash.service', 
     'ui.bootstrap', 
     'ui.select', 
-    'ngSanitize'
+    'ngSanitize',
+    'categories.model'
 ])
 
 .controller('NotesCtrl', NotesCtrl)
@@ -26,6 +27,7 @@ function NotesCtrl(
     $window, 
     _, 
     $modal, 
+    categoriesModel,
     columns, 
     categories, 
     parties, 
@@ -85,9 +87,8 @@ function NotesCtrl(
 		var heading = "";
 
 		if (contentType == 'category') {
-			heading = _.where(vm.data.categories, { 'id': contentId });
-			heading = _.get(_.first(heading), 'name');
-		}
+            heading = categoriesModel.getHeading(contentId);
+        }
 
 		var new_column = {
 			heading: heading,

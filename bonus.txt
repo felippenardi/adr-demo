@@ -15,3 +15,5 @@ All opensource components to reduce monthly overhead (logstash, nginx, uwsgi, ..
 Build Server makes for easy deployment
 Continuous integration and tested deployments with Ansible
 UX javascript objects/models schemas are fully documented
+
+Best Practices - 100% followed - https://github.com/johnpapa/angular-styleguide - this is the defacto standard for an Angular application & has been developed by a community of Angular developers.

@@ -23,15 +23,18 @@ module.exports = function(config) {
       'node_modules/restangular/dist/restangular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/angular-ui-router/release/angular-ui-router.js',
-      //'node_modules/angular-sanitize/angular-sanitize.min.js',
+      'node_modules/angular-sanitize/angular-sanitize.min.js',
       'node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'node_modules/ui-select/dist/select.min.js',
+      //'app/notes/notes.main.js',
+      'app/**/*.main.js',
       'app/*.js',
       'app/**/*.js',
       'app/*.html',
       'app/**/*.html',
-      'spec/**/*[sS]pec.js',
-      'spec/*[sS]pec.js'
+      'app/**/*.spec.js',
+      //'spec/**/*[sS]pec.js',
+      //'spec/*[sS]pec.js'
     ],
 
     // list of files to exclude

@@ -1,9 +1,102 @@
+https://github.com/johnpapa/angular-styleguide
+- left off - https://github.com/johnpapa/angular-styleguide#style-y230
+
+rename lodash.service to lodash since its obviously a service per the angular styleguide
+
+comments: https://github.com/johnpapa/angular-styleguide
+- @namespace & @memberOf to match app structure
+
+Module dependency best practices
+- https://github.com/johnpapa/angular-styleguide#style-y165
+- modules should contain all routes for views within the module (https://github.com/johnpapa/angular-styleguide#style-y271)
+- adr.module.js - list all common module dependencies & feature module dependencies
+  - app.core is an example of a shared module
+  - serves as a manifest for application features
+  - no need to include vendor or cross app modules here
+- component.module.js - list all dependencies (local manifest)
+- core.module.js - contains dependencies for
+  - makes it easy to share data services with modules so that feature module just depends on core.module as opposed to each individual service
+- commentsdependency array separates dependencies by source (angular, vendor, common, or feature)
+
+
+File names - https://github.com/johnpapa/angular-styleguide#style-y121
+- module definition - notes.module.js
+- controllers - notes.controller.js 
+  - note this indicates that the module def file should be separate from the controller def file
+- routes - notes.routes.js
+- configuration - notes.config.js - contains the config for the notes.module.js module
+- directives - adr.note.directive.js (adr-note-directive)
+  - the adr makes it clear that its custom to our project
+- services - notes.service.js
+- specs - notes.controller.spec.js
+
+Tests
+- place side-by-side w/ app code i.e. notes.controller.spec.js in notes module directory
+
+IIFE - still missing this in a few places
+- session.main.js
+
+controller loading
+- activate() or state.resolve()
+    - activate() - https://github.com/johnpapa/angular-styleguide#style-y080
+        - if I don't need to cancel the route when something goes wrong
+    - state.resolve (i'm currently doing it this way)
+    - I wonder if I can us a combination
+- state.resolve
+  - move function declarations to bottom of file and be sure to use @ngInject
+    - https://github.com/johnpapa/angular-styleguide#style-y081
+
+rename directives to indicate module context
+- note > notesNote (notes-note in view)
+- category > notesCategory (notes-category in view)
+- misc > sharedMisc (shared-misc in view)
+
+review for single responsibility principle
+
+make sure contructor functions are UpperCased (NotesCtrl)
+
+general bound function definitions
+- alphabetize bound functions @ top of module
+- list all bound functions as references to the declaration down the page
+
+Revealing module pattern in services
+- wrap accessible members in an object & return the object above the declarations
+  service = { list: list, get: get }
+  return service
+
+
+modalCtrl
+- place in separate file
+- not sure where to put this code
+  - perhaps notes/linkings/linkings.ctrl.js & notes/linkings/linkings.html
+  - ask on SO
+
 place inline filters in angular filters
 - inject lodash into these only
 - notes.filters
   - linkModeNotesByPriorityAndThenTime()
 - blocks.filters
 - columns.filters
+
+notes.main
+- rename resolved data to notesData, categoriesData, ... to make it easier to differentiate between other injected resources
+
+----- next round of refactoring -----
+
+Exception Handling: https://github.com/johnpapa/angular-styleguide#style-y196
+
+Testing
+- alleviate globals for jsHing: https://github.com/johnpapa/angular-styleguide#style-y196
+
+Return a promise from data calls - https://github.com/johnpapa/angular-styleguide#style-y061
+
+move components into components directory
+
+create a layout folder for layout components (may be overkill) - https://github.com/johnpapa/angular-styleguide#style-y151
+
+look @ Breeze to replace current models: http://www.getbreezenow.com/breezejs
+
+Logging - http://www.bennadel.com/blog/2542-logging-client-side-errors-with-angularjs-and-stacktrace-js.htm
 
 Automated Tests
 use https://www.npmjs.com/package/karma-ng-json2js-preprocessor for json fixtures in unit tests
@@ -13,6 +106,14 @@ ng-annotate
 
 Gulp or Grunt
 - ng-annotate
+  - https://github.com/johnpapa/angular-styleguide#style-y101
 - jslint
 - jsdoc
+- uglifyjs
 - minify
+
+
+----- Production -----
+
+https://docs.angularjs.org/guide/production
+Test code - use gulp to separating out spec files

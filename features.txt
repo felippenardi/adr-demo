@@ -21,6 +21,7 @@ Services
     - if not available then store using localforage
   - get should get from the cache, not make an individual request to the rest svc
 
+* error handling
 
 Directives
 ----
