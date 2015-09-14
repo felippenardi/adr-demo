@@ -2,7 +2,7 @@
 
 angular.module('notes.module')
 
-.directive('columnBlock', ColumnBlockDirective)
+.directive('adrNotesColumnBlock', ColumnBlockDirective)
 
 /*
  * @class ColumnBlockDirective

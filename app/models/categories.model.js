@@ -3,7 +3,8 @@
 (function() {
 
 angular.module('categories.model', ['restangular'])
-    .service('categoriesModel', CategoriesModel);
+    
+.service('categoriesModel', CategoriesModel);
 
 /* 
  * @class CategoriesModel
@@ -11,24 +12,31 @@ angular.module('categories.model', ['restangular'])
  * @ngInject 
  */
 function CategoriesModel(Restangular, $q) {
+    
+    var categories = [];
 
-    var service = this;
-    service.categories = [];
+    var service = {
+        list: list,
+        getHeading: getHeading,
+        getPriority: getPriority
+    };
 
-    service.list = function(caseId) {
+    return service;
+
+    function list (caseId) {
         return $q(function(resolve, reject) {
             var base = Restangular.all('categories');
             base.getList()
             .then(function(result) {
-                service.categories = result;
+                categories = result;
                 resolve(result);
             });
         });
     };
 
-    service.getHeading = function(categoryId) {
+    function getHeading(categoryId) {
 
-        heading = _.where(service.categories, { 'id': categoryId });
+        heading = _.where(categories, { 'id': categoryId });
 		heading = _.get(_.first(heading), 'name');
         /*
         heading = _.where(vm.data.categories, { 'id': contentId });
@@ -38,7 +46,7 @@ function CategoriesModel(Restangular, $q) {
 
     }
 
-    service.getPriority = function(categoryId) {}
+    function getPriority(categoryId) {}
 
 }
 

@@ -1,26 +1,15 @@
-https://github.com/johnpapa/angular-styleguide
-- left off - https://github.com/johnpapa/angular-styleguide#style-y230
-
-remove prettify dependency in adr.module.js
-
 comments: https://github.com/johnpapa/angular-styleguide
 - @namespace & @memberOf to match app structure
 
-Module dependency best practices
-- https://github.com/johnpapa/angular-styleguide#style-y165
-- adr.module.js - list all common module dependencies & feature module dependencies
-  - app.core is an example of a shared module
-  - serves as a manifest for application features
-  - no need to include vendor or cross app modules here
-- component.module.js - list all dependencies (local manifest)
-- core.module.js - contains dependencies for
-  - makes it easy to share data services with modules so that feature module just depends on core.module as opposed to each individual service
+general bound function definitions
+- alphabetize bound functions @ top of module
+- list all bound functions as references to the declaration down the page
+place inline filters in angular filters
 
-directives - add adr prefix to indicuate app specific
-rename directives to indicate module context
-- note > adrNotesNote (adr-notes-note in view)
-- category > notesCategory (notes-category in view)
-- misc > sharedMisc (shared-misc in view)
+----- next round of refactoring -----
+
+https://github.com/johnpapa/angular-styleguide
+- left off - https://github.com/johnpapa/angular-styleguide#style-y230
 
 controller loading
 - activate() or state.resolve()
@@ -32,37 +21,22 @@ controller loading
   - move function declarations to bottom of file and be sure to use @ngInject
     - https://github.com/johnpapa/angular-styleguide#style-y081
 
-review for single responsibility principle
 
-make sure contructor functions are UpperCased (NotesCtrl)
-
-general bound function definitions
-- alphabetize bound functions @ top of module
-- list all bound functions as references to the declaration down the page
-
-Revealing module pattern in services
-- wrap accessible members in an object & return the object above the declarations
-  service = { list: list, get: get }
-  return service
-
+Module dependency best practices
+- https://github.com/johnpapa/angular-styleguide#style-y165
+- adr.module.js - list all common module dependencies & feature module dependencies
+  - app.core is an example of a shared module
+  - serves as a manifest for application features
+  - no need to include vendor or cross app modules here
+- component.module.js - list all dependencies (local manifest)
+- core.module.js - contains dependencies for
+  - makes it easy to share data services with modules so that feature module just depends on core.module as opposed to each individual service
 
 modalCtrl
 - place in separate file
 - not sure where to put this code
   - perhaps notes/linkings/linkings.ctrl.js & notes/linkings/linkings.html
   - ask on SO
-
-place inline filters in angular filters
-- inject lodash into these only
-- notes.filters
-  - linkModeNotesByPriorityAndThenTime()
-- blocks.filters
-- columns.filters
-
-notes.main
-- rename resolved data to notesData, categoriesData, ... to make it easier to differentiate between other injected resources
-
------ next round of refactoring -----
 
 remove lodash.js since its so ubiquitous that it doesn't really need to be wrapped in a service & I can't simply inject because it will break restangular
 
@@ -100,3 +74,4 @@ Gulp or Grunt
 
 https://docs.angularjs.org/guide/production
 Test code - use gulp to separating out spec files
+uninstall json prettifier

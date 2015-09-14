@@ -6,8 +6,7 @@ angular.module('adr.module', [
 
     /* Vendor Modules */
     'ui.router', 
-    'restangular', 
-    'pretty.json', 
+    'restangular',
 
     /* Features */
     'dash.module', 

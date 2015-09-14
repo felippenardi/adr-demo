@@ -10,7 +10,6 @@ var getId = function() {
 angular.module('notes.module')
 
 .controller('NotesCtrl', NotesCtrl)
-.controller('ModalCtrl', ModalCtrl)
 
 /*
  * @class NotesCtrl
@@ -143,7 +142,7 @@ function NotesCtrl(
 
 		// Show a modal for the user to select a group or name a new group
 		var modalInstance = $modal.open({
-			templateUrl: 'app/notes/newGroupModal.html',
+			templateUrl: 'app/notes/new_group_modal.html',
 			controller: 'ModalCtrl',
 			controllerAs: 'modal',
 			bindToController: true,
@@ -291,30 +290,6 @@ function NotesCtrl(
 		console.log(vm.windowInnerHeight);
 	});
 
-}
-
-/*
- * @class ModalCtrl
- * @classdesc Controller for the create new linking modal
- * @ngInject
- */
-function ModalCtrl($modalInstance, defaultName, existingLinkings) {
-	vm = this;
-	vm.newLinkingName = defaultName;
-	vm.existingLinkings = existingLinkings;
-	vm.isANewLinking = true;
-
-	vm.toggleIsANewLinking = function() {
-		vm.isANewLinking = !vm.isANewLinking;
-	};	
-
-	vm.saveLinking = function() {
-		var res = {
-			linking: vm.newLinkingName,
-			isNew: true
-		};
-		$modalInstance.close(res);
-	};
 }
 
 }())

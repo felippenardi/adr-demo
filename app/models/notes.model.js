@@ -12,9 +12,11 @@ angular.module('notes.model', ['lodash.service', 'restangular'])
  */
 function NotesModel(_, Restangular, $q) {
 
-	var service = this;
+    var service = { list: list };
 
-    service.list = function(caseId) {
+    return service;
+
+    function list(caseId) {
         // FEATURE: may need to convert timestamp to suitable format and place in ux
         return $q(function(resolve, reject) {
             var base = Restangular.all('notes');
@@ -52,7 +54,7 @@ function NotesModel(_, Restangular, $q) {
         });
     };
 
-    service.add = function() {
+    function add() {
         // FEATURE: may need to convert timestamp to format required for service
     }
 
@@ -65,7 +67,7 @@ function NotesModel(_, Restangular, $q) {
 	 *
 	 */
 
-	service.get = function() {
+	function get() {
         // if connection error then use local storage
         
         // if no connection error then check for unsynced data and sync.  I'll set a global constant to true if any data is unsynced
@@ -114,9 +116,9 @@ function NotesModel(_, Restangular, $q) {
 	 * if 404 then offline mode
 	 */
 
-    service.setLinkMode = function(noteId) {}
-    service.getNotesInLinkMode = function() {} // might be better placed in notes.filters.js
-    service.clearNotesInLinkMode = function() {}
+    function setLinkMode(noteId) {}
+    function getNotesInLinkMode() {} // might be better placed in notes.filters.js
+    function clearNotesInLinkMode() {}
 };
 
 }())

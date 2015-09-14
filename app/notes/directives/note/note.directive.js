@@ -2,7 +2,7 @@
 
 angular.module('notes.module')
 
-.directive('note', NoteDirective)
+.directive('adrNotesNote', NoteDirective)
 
 /*
  * @class NoteDirective

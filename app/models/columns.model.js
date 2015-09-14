@@ -12,9 +12,17 @@ angular.module('columns.model', [])
  */
 function ColumnsModel() {
 
-    var service = this;
+    var service = {
+        list: list,
+        add: add,
+        remove: remove,
+        addBlock: addBlock,
+        removeBlock: removeBlock
+    };
 
-    service.list = function() {
+    return service;
+
+    function list() {
         return [
             {
                 heading: 'issues',
@@ -30,11 +38,10 @@ function ColumnsModel() {
     };
 
 
-    service.add = function() {};
-    service.remove = function() {};
-    service.addBlock = function() {};
-    service.removeBlock = function() {};
-
+    function add() {};
+    function remove() {};
+    function addBlock() {};
+    function removeBlock() {};
 }
 
 }())

@@ -12,9 +12,11 @@ angular.module('parties.model', ['restangular'])
  */
 function PartiesModel(Restangular, $q) {
 
-    var service = this;
+    var service = { list: list };
 
-    service.list = function(caseId) {
+    return service;
+
+    function list(caseId) {
         return $q(function(resolve, reject) {
             var base = Restangular.all('parties');
             base.getList()

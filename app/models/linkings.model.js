@@ -12,9 +12,15 @@ angular.module('linkings.model', ['restangular'])
  */
 function LinkingsModel(Restangular, $q) {
 
-    var service = this;
+    var service = {
+        list: list,
+        add: add,
+        update: update    
+    };
 
-    service.list = function(caseId) {
+    return service;
+
+    function list(caseId) {
         return $q(function(resolve, reject) {
             var base = Restangular.all('linkings');
             base.getList()
@@ -24,8 +30,8 @@ function LinkingsModel(Restangular, $q) {
         });
     };
 
-    service.add = function() {};
-    service.update = function() {};
+    function add() {};
+    function update() {};
 
 }
 
