@@ -1,4 +1,4 @@
-angular.module('adr.main')
+angular.module('adr.module')
 
 .run(['$httpBackend', function($httpBackend) {
 

@@ -26,7 +26,6 @@ module.exports = function(config) {
       'node_modules/angular-sanitize/angular-sanitize.min.js',
       'node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'node_modules/ui-select/dist/select.min.js',
-      //'app/notes/notes.main.js',
       'app/**/*.main.js',
       'app/*.js',
       'app/**/*.js',

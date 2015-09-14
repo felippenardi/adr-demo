@@ -53,7 +53,7 @@
 
 </head>
 
-<body ng-app="adr.main">
+<body ng-app="adr.module">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -128,17 +128,34 @@
 <script src="app/models/notes.model.js"></script>
 <script src="app/models/linkings.model.js"></script>
 
-<script src="app/notes/notes.main.js"></script>
+<script src="app/notes/notes.module.js"></script>
+<script src="app/notes/notes.routes.js"></script>
+<script src="app/notes/notes.controller.js"></script>
 <script src="app/notes/directives/column/column.directive.js"></script>
 <script src="app/notes/directives/column_block/column_block.directive.js"></script>
 <script src="app/notes/directives/category/category.directive.js"></script>
 <script src="app/notes/directives/note/note.directive.js"></script>
 
-<script src="app/cases/plan/case.plan.js"></script>
-<script src="app/cases/cases.main.js"></script>
-<script src="app/session/session.main.js"></script>
-<script src="app/dash/dash.main.js"></script>
-<script src="app/adr.main.js"></script>
+<script src="app/cases/cases.module.js"></script>
+<script src="app/cases/cases.routes.js"></script>
+<script src="app/cases/cases.controller.js"></script>
+
+<script src="app/cases/plan/plan.module.js"></script>
+<script src="app/cases/plan/plan.routes.js"></script>
+
+<script src="app/session/session.module.js"></script>
+<script src="app/session/session.routes.js"></script>
+<script src="app/session/session.controller.js"></script>
+
+<script src="app/dash/dash.module.js"></script>
+<script src="app/dash/dash.routes.js"></script>
+<script src="app/dash/dash.controller.js"></script>
+
+<script src="app/adr.module.js"></script>
+<script src="app/adr.routes.js"></script>
+<script src="app/adr.config.js"></script>
+<script src="app/adr.run.js"></script>
+
 <script src="app/common/api.mock.js"></script>
 
 <!-- END APP LIBS -->

@@ -1,6 +1,6 @@
 (function() {
 
-angular.module('notes.main')
+angular.module('notes.module')
 
 .directive('note', NoteDirective)
 

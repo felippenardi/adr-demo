@@ -1,6 +1,6 @@
 (function() {
 
-angular.module('cases.main', [])
+angular.module('cases.module')
 
 .controller('CasesCtrl', [CasesCtrl])
 

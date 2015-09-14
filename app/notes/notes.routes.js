@@ -1,12 +1,4 @@
-angular.module('session.main', [
-    'ui.router', 
-    'columns.model',
-    'categories.model', 
-    'parties.model',
-    'notes.model', 
-    'linkings.model', 
-    'notes.main'
-])
+angular.module('notes.module')
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -14,7 +6,7 @@ angular.module('session.main', [
 
 	.state('session.notes', {
 		url: "/notes",
-		templateUrl: "app/notes/notes.main.html",
+		templateUrl: "app/notes/notes.html",
 		controller: 'NotesCtrl as notes',
         resolve: {
 
@@ -42,18 +34,4 @@ angular.module('session.main', [
 
 	})
 
-    // may replace with a modal
-	.state('session.statements', {})
-
-	.state('session.resolutions', {})
-
 })
-
-.controller('SessionCtrl', [SessionCtrl])
-
-/*
- * @class SessionCtrl
- * @classdesc Controller for the session view
- * @ngInject
- */
-function SessionCtrl(){};
