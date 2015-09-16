@@ -1,0 +1,23 @@
+categories
+- issues
+- offers
+- facts
+
+filters
+- party A
+- party B
+- maybe add a feature that checks the category type for possible filters
+  - facts (disputed, undisputed) - this requires the ability to tag notes)
+- offers (select offers and then select an issue from the next menu)
+
+sort by
+- age desc
+- age asc
+
+TAGS
+- this may be a less short sighted manner in which to implement offers & disputed vs undisputed facts
+  - more flexible for granting special powers to categories
+  - #category, @party, \disputed
+  - implement an api
+    - getFilters()
+    - filter('name', opts) returns the filtered list

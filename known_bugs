@@ -1,0 +1,4 @@
+gulpfile.js
+- copy-bootstrap-less-files-except-variables
+  - bootstrap variables.less file is not being ignored
+    - could be working.  not sure.
