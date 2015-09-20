@@ -38,22 +38,41 @@ div.canvas {
 	padding-bottom: 50px;
 }
 
-div.horizontal-scroll-container {
+div.scroll-row {
+    margin-left: -15;
+    margin-right: -15;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background: lightgray;
+}
+
+/* change name since 3 does not make since if I'm going to manually set the width */
+div.scroll-col-md-3 {
+    width: 30%;
+    float: none;
+    display: inline-block;
+    background: white;
+}
+
+div.x-scroll {
 	-webkit-box-align: start;
 	align-items: flex-start;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	flex-direction: row;
-	margin-bottom: 10px;
-	padding-bottom: 10px;
+	/*margin-bottom: 10px;
+	padding-bottom: 10px;*/
 	position: absolute;
 	overflow-x: auto;
 	overflow-y: hidden;
+    /*
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
+    */
 }
 
 /*
@@ -67,17 +86,10 @@ div.column {
 	min-width: 270px;
 }
 
-div.column-heading {
-	width: 90%;
-	margin: auto;
-	height: 40px;
-	background: green;
-}
-
 div.column-notes {
-	width: 90%;
+	/*width: 90%;*/
 	height: 665px;
-	background: white;
+	/*background: white;*/
 	position: relative;
 	box-sizing: border-box;
 	display: flex;
@@ -124,18 +136,25 @@ a.selected-party {
 }
 
 div.note-editor {
-	width: 90%;
+	width: 100%;
 	margin: auto;
 	min-height: 60px;
-	background: green;
+}
+
+.note-editor>button {
+    position: relative;
+    right: 20%;
 }
 
 textarea {
-	min-width: 100%;
-	box-sizing: border-box;
+    min-width: 100%;
+    box-sizing: border-box;
+    border: none;
 }
 
+/*
 textarea:focus {
-	outline: none;
-	background: yellow;
+    outline: none;
+    background: yellow;
 }
+ */

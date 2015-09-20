@@ -22,6 +22,11 @@ li.menu {
 	display: inline;
 }
 
+div.x-scroll {
+    overflow: auto;
+    position: relative;
+}
+
 div.notes-columns-container {
 
 

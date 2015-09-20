@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -14,7 +14,8 @@
 
 <!-- begin bootstrap -->
 
-<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="static/vendors/bootstrap/css/bootstrap.css">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,6 +56,7 @@
 
 <body ng-app="adr.module">
 
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
@@ -82,18 +84,10 @@
 	</div>
 </nav>
 
-<br /><br />
-
-<div class="container">
-
-	<div class="row">
-		<div class="col-md-12">
-			<div ui-view></div>
-		</div>
-	</div><!-- .row -->
 
 
-</div><!-- .container -->
+<div class="container-fluid">
+    <div ui-view></div>
 
 <hr>
 
@@ -101,6 +95,7 @@
 	<p>&copy; ADR Notable 2015 </p>
 </footer>
 
+</div><!-- .container-fluid -->
 <!-- BEGIN VENDOR LIBS -->
 
 <script src="node_modules/angular/angular.js"></script>

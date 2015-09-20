@@ -1,0 +1,10 @@
+blue: #23b1f7
+red: #ea5a5a
+green: #28bd8b 
+yellow: #ffcc00 
+
+background grey, text inputs, and all light greys: #f4f7fa 
+medium gray(caucuas labels) and lighter text color(inputs) #8e9aa9 
+dark gray: #282c37
+
+dark text color: #363940 

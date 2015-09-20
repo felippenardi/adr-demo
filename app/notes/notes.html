@@ -2,33 +2,38 @@
 
 <hr />
 
-<ui-select ng-model="notes.selectedLinkings" multiple theme="select2" style="width: 250px">
+<div class="row">
+    <div class="col-md-12">
+        <ui-select ng-model="notes.selectedLinkings" multiple theme="select2" style="width: 250px">
 
-	<ui-select-match>{{ $item.name }}</ui-select-match>
+        <ui-select-match>{{ $item.name }}</ui-select-match>
 
-	<ui-select-choices repeat="link in notes.data.linkings">
-		<div ng-bind-html="link.name | highlight: $select.search"></div>
-	</ui-select-choices>
+        <ui-select-choices repeat="link in notes.data.linkings">
+        <div ng-bind-html="link.name | highlight: $select.search"></div>
+        </ui-select-choices>
 
-</ui-select>
+        </ui-select>
+
+    </div><!-- .col-mod-12 -->
+</div><!-- .row -->
 
 <hr />
 
-
+<!--
 <div class="wrap">
-	<div class="canvas">
-		<div class="horizontal-scroll-container">
+<div class="canvas">
+<div class="horizontal-scroll-container">
+-->
 
-			<adr-notes-column column=column add="notes.addEmptyColumn(position)" data=notes.data index="{{ $index }}" ng-repeat="column in notes.columns"></column>
+<div class="scroll-row">
 
-		</div><!-- .horizontal-scroll-container -->
-	</div><!-- .canvas -->
-</div><!-- .wrap -->
+    <adr-notes-column column=column add="notes.addEmptyColumn(position)" data=notes.data index="{{ $index }}" ng-repeat="column in notes.columns"></column>
+
+</div><!-- .row -->
+
+<hr />
 
 <button ng-click="notes.addColumn('category', 1)">show issues</button>
 <button ng-click="notes.addColumn('category', 2)">show offers</button>
 <button ng-click="notes.addColumn('category', 3)">show facts</button>
-
-<hr />
-
 <button ng-click="notes.linkNotes()">link</button>

@@ -1,12 +1,18 @@
-<!-- app/case.session.notes.directives.column.html -->
+<!-- column.directive.html -->
+<div class="scroll-col-md-3" ng-mouseover="column.mouseEnter()" ng-mouseleave="column.mouseExit()">
 
-<div class="column" ng-mouseover="column.mouseEnter()" ng-mouseleave="column.mouseExit()">
-	<div class="column-heading"><strong>{{ column.column.heading }}</strong></div>
+    <span class="glyphicon glyphicon-remove"></span>
+    <strong>{{ column.column.heading }}</strong>
+    <span class="glyphicon glyphicon-option-vertical"></span>
+
 	<adr-notes-column-block 
 		block=block 
 		data=column.data
 		ng-repeat="block in column.column.blocks">
-	</column-block>
+	</adr-notes-column-block>
+
 	<span ng-show="column.hovering" class="glyphicon glyphicon-plus" data-ng-click="column.addColumn('left')" style="position: absolute; left: -10px; top: 25%;"></span>
+
 	<span ng-show="column.hovering" class="glyphicon glyphicon-plus" data-ng-click="column.addColumn('right')" style="position: absolute; left: 260px; top: 25%;"></span>
+
 </div><!-- column -->

@@ -1,25 +1,42 @@
 <div class="column-notes">
 
-	<adr-notes-note 
-		note=note 
-		parties=category.data.parties
-		ng-repeat="note in category.data.notes|filter:{'category':category.category}">
-	</note>
-
-
-	<div class="next-note">
-		{{category.next_note}}
-	</div>
+            <adr-notes-note 
+            note=note 
+            parties=category.data.parties
+            ng-repeat="note in category.data.notes|filter:{'category':category.category}">
+            </adr-notes-note>
 
 </div><!-- .column-notes -->
 
-<div class="note-editor">
-	<textarea rows="3" ng-model="category.next_note"></textarea>
-	<a 
-		href="" 
-		ng-class="{ 'selected-party': party.selected }" 
-		ng-click="category.selectParty(party.id)" 
-		ng-repeat="party in category.data.parties">{{ party.short_name }}
-	</a> 
-	<button class="note-add" ng-click="category.addNote()">add</button>
-</div>
+<!--
+    <div class="row">
+        <div class="col-md-12">
+            <div class="next-note">
+                {{category.next_note}}
+            </div>
+
+        </div>
+    </div>
+    -->
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="note-editor">
+                <textarea rows="2" ng-model="category.next_note" placeholder="Start Typing"></textarea>
+                <button type="button" class="btn btn-primary btn-xs" ng-click="category.addNote()"><span class="glyphicon glyphicon-edit"></span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a 
+                href="" 
+                ng-class="{ 'selected-party': party.selected }" 
+                ng-click="category.selectParty(party.id)" 
+                ng-repeat="party in category.data.parties">{{ party.short_name }}
+            </a> 
+        </div>
+    </div>
+    <!--</div>-->
