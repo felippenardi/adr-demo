@@ -12,7 +12,10 @@ angular.module('notes.model', ['lodash.service', 'restangular'])
  */
 function NotesModel(_, Restangular, $q) {
 
-    var service = { list: list };
+    var service = { 
+	    list: list,
+	    create: create 
+    };
 
     return service;
 
@@ -54,9 +57,25 @@ function NotesModel(_, Restangular, $q) {
         });
     };
 
-    function add() {
+    function create(note) {
         // FEATURE: may need to convert timestamp to format required for service
-    }
+
+	var timestamp = Date.now();
+	note.created = timestamp;
+
+        return $q(function(resolve, reject) {
+		// REFACTOR: move base to global	
+            var base = Restangular.all('notes');
+	    base.post(note)
+		    .then(function(data) {
+			    resolve(data)
+		    },
+		    function(error) {
+			    resolve(error);
+		    });	
+	});
+
+    };
 
 	/*
 	 * IMPORTANT

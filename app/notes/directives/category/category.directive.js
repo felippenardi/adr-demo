@@ -35,6 +35,7 @@ function CategoryDirective(_) {
 function CategoryCtrl() {
 
     var vm = this;
+    //vm.notes = notesModel.list();
     vm.next_note = "";
 
     var categoryObj = _.first(_.where(vm.data.categories, { id: vm.category } ));

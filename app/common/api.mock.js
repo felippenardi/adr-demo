@@ -40,19 +40,15 @@ angular.module('adr.module')
             category: 1,
             text: 'note 1 text here',
             party_id: 2,
-            priority: 1,
-            selected: false,
-            link_mode: false
-        },   
+            priority: 1
+    	},   
         {
             id: 2,
             created: Date.now(),
             category: 3,
             text: 'note 2 text here',
             party_id: 2,
-            priority: 2,
-            selected: false,
-            link_mode: false
+            priority: 2
         }
     ];
 
@@ -64,10 +60,18 @@ angular.module('adr.module')
         }
     ];
 
+    /**** categories ****/
     $httpBackend.whenGET(/\/api\/categories/).respond(200, categories);
+
+    /**** parties *****/
     $httpBackend.whenGET(/\/api\/parties/).respond(200, parties);
+
+    /**** notes ****/
     $httpBackend.whenGET(/\/api\/notes/).respond(200, notes);
+
+    /**** linkings ****/
     $httpBackend.whenGET(/\/api\/linkings/).respond(200, linkings);
+
     $httpBackend.whenGET(isTemplate).passThrough();
 
     var isTemplate = function(url) {

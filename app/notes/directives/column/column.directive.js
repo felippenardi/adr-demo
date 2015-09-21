@@ -1,3 +1,4 @@
+/* column.directive.js */
 (function() {
 
 angular.module('notes.module')

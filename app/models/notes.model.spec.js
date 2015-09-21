@@ -39,9 +39,48 @@ describe('notesModel', function() {
         httpBackend.when('GET', '/notes').respond(testNotes);
 	}));
        
-    describe('list', function() {
-        
-        it('gets all notes for a case and adds ux data to notes object', function() {
+	describe('list', function() {
+		// REFACTOR: move test for UX to the next test
+		it('should get all notes for a case and adds ux data to notes object', listShouldGetAllNotesForACase);
+		/*it('should add ux data to each note', listShouldAddUXDataToEachNote);*/
+	});
+
+	describe('get', function() {
+		xit('should get a note', getShouldGetANote);
+	});
+
+	describe('create', function() {
+		it('should post a note to the server', createShouldPostANoteToTheServer);
+		it('should add a timestamp to the note before posting', createShouldAddATimestampToTheNoteBeforePosting);
+	});
+
+	/******************************/
+	/**** TEST IMPLEMENTATIONS ****/
+	/******************************/
+
+	var newNote = {
+		category: 1,
+		text: 'note text',
+		party_id: 2,
+		priority: 1,
+		selected: false,
+		link_mode: false
+	};
+
+	var resp = {
+		id: 1,
+		category: 1,
+		created: Date.now(),
+		text: 'note text',
+		party_id: 2,
+		priority: 1
+	};
+
+	resp = JSON.stringify(resp);
+
+	/**** TEST notesModel.list() ****/
+
+	function listShouldGetAllNotesForACase() {
 
             spyOn(Restangular, 'all').and.callThrough();
 
@@ -59,7 +98,7 @@ describe('notesModel', function() {
 
             var error = function(error) {};
             var failTest = function(error) {
-				expect(error).toBeUndefined();
+		expect(error).toBeUndefined();
             };
 
             notesModel.list()
@@ -68,14 +107,11 @@ describe('notesModel', function() {
 
             httpBackend.flush();
 
-        });
+        }
 
+	/**** TEST notesModel.get() ****/
 
-    });
-
-	describe('get', function() {
-
-		xit('gets a note', function() {
+	function getShouldGetANote() {
                 
             // test that the request is passed the note's id using a spy
 
@@ -109,6 +145,44 @@ describe('notesModel', function() {
 				.catch(failTest);
 
 			httpBackend.flush();
-		});
-	});
+		}
+
+	/**** TEST notesModel.create() ****/
+
+	function createShouldPostANoteToTheServer() {
+		httpBackend.when('POST', '/notes', newNote).respond(201, resp);
+		httpBackend.expectPOST('/notes', newNote);
+		notesModel.create(newNote);
+		httpBackend.flush();
+	};
+
+	function createShouldAddATimestampToTheNoteBeforePosting() {
+
+		var test = function(note) {
+			// should not post the note with an id
+			// should timestamp the note - may need to use httpBackend.expectPOST to check to see if the new note has a created field added to it.
+			// should add ux object to the note AFTER the post & NOT BEFORE since the ux object is only used locally
+			// should add note to cache
+		};
+
+		var error = function(error) {};
+
+		var failTest = function(exception) {
+			expect(exception).toBeUndefined();
+		};
+
+		httpBackend.when('POST', '/notes', newNote).respond(201, resp);
+		notesModel.create(newNote)
+		.then(test, error)
+		.catch(failTest);
+
+		httpBackend.flush();
+
+
+
+	};
+
+
 });
+
+

@@ -11,6 +11,8 @@ place inline filters in angular filters
 https://github.com/johnpapa/angular-styleguide
 - left off - https://github.com/johnpapa/angular-styleguide#style-y230
 
+move columnsModel into notes module since its only used there
+
 controller loading
 - activate() or state.resolve()
     - activate() - https://github.com/johnpapa/angular-styleguide#style-y080

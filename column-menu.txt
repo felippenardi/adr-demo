@@ -9,6 +9,7 @@ filters
 - maybe add a feature that checks the category type for possible filters
   - facts (disputed, undisputed) - this requires the ability to tag notes)
 - offers (select offers and then select an issue from the next menu)
+- offers by issue - note in notes | offersByIssueFilter:noteId
 
 sort by
 - age desc

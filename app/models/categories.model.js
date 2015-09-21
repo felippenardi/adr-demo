@@ -35,13 +35,12 @@ function CategoriesModel(Restangular, $q) {
     };
 
     function getHeading(categoryId) {
+	
+	    console.log('categories', categories);
 
-        heading = _.where(categories, { 'id': categoryId });
-		heading = _.get(_.first(heading), 'name');
-        /*
-        heading = _.where(vm.data.categories, { 'id': contentId });
-		heading = _.get(_.first(heading), 'name');
-        */
+        var heading = _.where(categories, { 'id': categoryId });
+	heading = _.get(_.first(heading), 'name');
+        	
         return heading;
 
     }

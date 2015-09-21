@@ -1,6 +1,8 @@
 future features here
 
 * replace generic loading spinners with the resolution icon rotating through the three states
+* toggle help icons - displays hoverable question mark buttons that show tooltips when hovered.
+  - https://angular-ui.github.io/ui-tour/demo/demo.html
 
 
 http://ngmodules.org/modules/angularytics

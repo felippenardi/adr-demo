@@ -1,5 +1,5 @@
-describe ('NoteDirective', function() {
-	beforeEach(module('adr.notes'));
+xdescribe ('NoteDirective', function() {
+	beforeEach(module('adr.module'));
 
 	/* 
 	 * loading this module enables Angular to load templates from a url

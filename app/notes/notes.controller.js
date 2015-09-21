@@ -1,4 +1,4 @@
-/* notes.main.js */
+/* notes.controller.js */
 
 (function() {
 

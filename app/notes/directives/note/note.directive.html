@@ -1,5 +1,16 @@
 <div class="note" ng-class="{selected: note.note.selected}" ng-click="note.select()">
 	<a href="" ng-click="note.strikeOut()">x</a>
+
 	<p ng-class="{strikethrough: note.note.strike}">{{ note.party }} - {{ note.note.text }}</p>
-	<a href="" ng-click="note.link()">Link Notes</a>
+
+	<!-- begins link mode -->
+	<a href="" ng-hide="note.note.link_mode" ng-click="note.link()">Link Notes</a>
+
+	<a href="">Remove</a>
+
+	<span ng-show="note.note.link_mode">
+		<a href="" class="black-link" ng-click="note.link()">Select Another Note</a> | 
+		<a href="" ng-click="">Link</a> | 
+		<a href="" ng-click="">Cancel</a>
+	</span>
 </div><!-- .note -->

@@ -3,7 +3,21 @@
   - call service.update on update
   - call service.delete on delete
 
+* notes
+  - resolve - does not need to set data on the controller.  it just needs to load the data.  the directives will get the data from the models as needed.  the resolved data is just to get the data cached for each model before the controller loads.
 
+  - editor directive
+
+<adr-notes-editor ng-if="block.editor" args=block.editor></adr-notes-editor>
+
+  - block directive
+    - makes the category directive obsolete
+
+<adr-notes-note ng-if="block.name='category'" notes in notes | filter:{'category':block.args.categoryId}> </adr-notes-note>
+
+<adr-notes-note ng-if="block.name='offersByIssue'" notes in notes | offersByIssue:33> </adr-notes-note>
+
+  - party directive
 
 
 Services
