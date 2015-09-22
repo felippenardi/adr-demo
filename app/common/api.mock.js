@@ -67,7 +67,7 @@ angular.module('adr.module')
     $httpBackend.whenGET(/\/api\/parties/).respond(200, parties);
 
     /**** notes ****/
-    $httpBackend.whenGET(/\/api\/notes/).respond(200, notes);
+    $httpBackend.whenGET(/\/api\/cases\/1\/notes/).respond(200, notes);
 
     /**** linkings ****/
     $httpBackend.whenGET(/\/api\/linkings/).respond(200, linkings);

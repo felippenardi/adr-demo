@@ -2,7 +2,7 @@
 
 (function() {
 
-angular.module('notes.model', ['lodash.service', 'restangular'])
+angular.module('notes.model', ['lodash.service', 'timestamp.value', 'restangular'])
     .service('notesModel', NotesModel);
     
 /*
@@ -10,68 +10,87 @@ angular.module('notes.model', ['lodash.service', 'restangular'])
  * @classdesc Model for notes data
  * @ngInject
  */
-function NotesModel(_, Restangular, $q) {
+function NotesModel(_, timestamp, Restangular, $q) {
 
     var service = { 
+    	// caches the notes retrieved by the server
+	    notes: [],
 	    list: list,
-	    create: create 
+	    create: create, 
+	    get: get
     };
+
 
     return service;
 
+
+    // BIG FEATURE: how do I handle list when service.notes is empty, but the server has already been synced (there are no notes for this case yet)
     function list(caseId) {
-        // FEATURE: may need to convert timestamp to suitable format and place in ux
-        return $q(function(resolve, reject) {
-            var base = Restangular.all('notes');
-            
-            base.getList()
 
-            .then(function(result) {
+	    return $q(function(resolve, reject) {
 
-                var priority = 0;
+		    if(service.notes.length > 0) {
 
-                /* REFACTOR: get priority from category service: category.getPriority(categoryId) */
-                for(i = 0; i < result.length; i++) {
-                    switch (result[i].category_id) {
-                        case 1:
-                            // issue
-                            priority = 1;
-                            break;
-                        case 2:
-                            // proposal
-                            priority = 2;
-                            break;
-                        case 3:
-                            // fact
-                            priority = 3;
-                            break;
-                    }
+			resolve(service.notes);
 
-                    result[i].ux = {
-                        link_mode: false,
-                        priority: priority
-                    };
-                }
-                resolve(result);
-            });
-        });
-    };
+		    } else {
+			    var base = Restangular.one('cases', caseId).all('notes');
+
+			    base.getList()
+
+			    .then(function(data) {
+
+				    service.notes = data;
+
+				    var priority = 0;
+
+				    /* REFACTOR: get priority from category service: category.getPriority(categoryId) */
+				    for(i = 0; i < data.length; i++) {
+					    switch (service.notes[i].category_id) {
+						    case 1:
+							    // issue
+							    priority = 1;
+						    break;
+						    case 2:
+							    // proposal
+							    priority = 2;
+						    break;
+						    case 3:
+							    // fact
+							    priority = 3;
+						    break;
+					    }; // switch
+
+					    service.notes[i].ux = {
+						    link_mode: false,
+						    priority: priority
+					    };
+				    }; // for
+
+		    			resolve(service.notes);
+
+			    }); // .then
+		    }; // if else
+	    }); // return $q( .... )
+    };  // list()
 
     function create(note) {
         // FEATURE: may need to convert timestamp to format required for service
-
-	var timestamp = Date.now();
 	note.created = timestamp;
 
         return $q(function(resolve, reject) {
-		// REFACTOR: move base to global	
             var base = Restangular.all('notes');
 	    base.post(note)
 		    .then(function(data) {
-			    resolve(data)
+			    data.ux = {
+				priority: 1, 
+				link_mode: false
+			    };
+			    service.notes.push(data);
+			    resolve(data);
 		    },
 		    function(error) {
-			    resolve(error);
+			    reject(error);
 		    });	
 	});
 
@@ -86,30 +105,19 @@ function NotesModel(_, Restangular, $q) {
 	 *
 	 */
 
-	function get() {
-        // if connection error then use local storage
+	function get(id) {
+
+		return _.find(service.notes, 'id', id);
         
-        // if no connection error then check for unsynced data and sync.  I'll set a global constant to true if any data is unsynced
-        
+		/*
 		return $q(function(resolve, reject) {
 			Restangular.one('notes').get({x: 'y'})
 			.then(function(result) {
 				var newResult = result;
-                /*
-                 *
-                 * create out object containing each note & add ux object
-                 *
-                 * modifiedResult = {
-                 *   data: result,
-                 *   ux: {
-                 *      link_mode: false
-                 *   }
-                 *
-                 * }
-                 */
 				resolve(newResult);
 			});
 		});
+		*/
 	};
 
 	/*
