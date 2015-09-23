@@ -1,5 +1,12 @@
 <h5>Cases</h5>
 
-<ul>
-    <li>Case Name Here <a ui-sref="session.notes">open</a> | <a ui-sref="dash.plan">plan</a></li>
-</ul>
+<div ng-repeat="organization in cases.organizations">
+	<h3>{{ organization.name }}</h3>
+
+		<ul>
+			<li ng-repeat="case in cases.cases|filter:{'organization_id':organization.id}">
+			{{ case.name }} <a ui-sref="session.notes">open</a> | <a ui-sref="dash.plan">plan</a>
+			</li>
+		</ul>
+	</li>
+</div> <!-- organization -->

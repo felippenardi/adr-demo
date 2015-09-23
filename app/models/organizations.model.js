@@ -19,7 +19,7 @@ function OrganizationsModel(Restangular, $q) {
 	function listByMediator(mediatorId) {
 		return $q(function(resolve, reject) {
 			if(service.organizations.length > 0) {
-				return service.organizations;
+				resolve(service.organizations);
 			} else {
 				Restangular.one('mediators', mediatorId).all('organizations').getList().then(function(data) {
 					service.organizations = data;

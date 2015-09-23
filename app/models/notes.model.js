@@ -86,7 +86,6 @@ function NotesModel(_, timestamp, Restangular, $q) {
 				link_mode: false
 			    };
 			    service.notes.push(data);
-			    console.log('service notes', service.notes);
 			    resolve(data);
 		    },
 		    function(error) {
