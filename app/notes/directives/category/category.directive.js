@@ -32,10 +32,16 @@ function CategoryDirective(_) {
  * @classdesc Controller for the categoryDirective
  * @ngInject
  */
-function CategoryCtrl() {
+function CategoryCtrl(notesModel) {
 
     var vm = this;
-    //vm.notes = notesModel.list();
+    vm.notes = notesModel.notes;
+    notesModel.list(1)
+    .then(function(notes) {
+	vm.notes = notesModel.notes;
+	console.log('category.notes', vm.notes);
+    });
+
     vm.next_note = "";
 
     var categoryObj = _.first(_.where(vm.data.categories, { id: vm.category } ));
@@ -44,19 +50,12 @@ function CategoryCtrl() {
 
         var party = _.first(_.where(vm.data.parties, { selected: true }));
 
-
-        var note = {
-            id: getId(),
-            created: Date.now(),
-            category: vm.category,
-            text: vm.next_note,
-            party_id: party.id,
-            priority: categoryObj.priority,
-            selected: false,
-            link_mode: false
-        };
-
-        vm.data.notes.push(note);
+	var note = {
+		category_id: vm.category,
+		text: vm.next_note,
+		party_id: party.id
+	};
+	notesModel.create(note);
         vm.next_note = "";
     };
 

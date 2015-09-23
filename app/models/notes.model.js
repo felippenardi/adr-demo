@@ -75,7 +75,6 @@ function NotesModel(_, timestamp, Restangular, $q) {
     };  // list()
 
     function create(note) {
-        // FEATURE: may need to convert timestamp to format required for service
 	note.created = timestamp;
 
         return $q(function(resolve, reject) {
@@ -87,6 +86,7 @@ function NotesModel(_, timestamp, Restangular, $q) {
 				link_mode: false
 			    };
 			    service.notes.push(data);
+			    console.log('service notes', service.notes);
 			    resolve(data);
 		    },
 		    function(error) {

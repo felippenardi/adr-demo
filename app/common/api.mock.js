@@ -2,6 +2,36 @@ angular.module('adr.module')
 
 .run(['$httpBackend', function($httpBackend) {
 
+	var garyCases = [
+
+	{
+		id: 1,
+		name: 'Case One',
+		organization_id: 1
+	},
+	{
+		id: 2,
+		name: 'Case Two',
+		organization_id: 2
+	},
+	{
+		id: 3,
+		name: 'Case Three',
+		organization_id: 1
+	}
+	];
+	
+	var garyOrganizations = [
+	{
+		id: 1,
+		name: 'Organization One Name'
+	},
+	{
+		id: 2,
+		name: 'Organization Two Name'
+	}
+	];
+	
     var categories = [
         {
             id: 1,
@@ -37,15 +67,15 @@ angular.module('adr.module')
         {
             id: 1,
             created: Date.now(),
-            category: 1,
+            category_id: 1,
             text: 'note 1 text here',
             party_id: 2,
-            priority: 1
+	    priority: 1
     	},   
         {
             id: 2,
             created: Date.now(),
-            category: 3,
+            category_id: 3,
             text: 'note 2 text here',
             party_id: 2,
             priority: 2
@@ -60,6 +90,12 @@ angular.module('adr.module')
         }
     ];
 
+    /**** cases ****/
+	$httpBackend.whenGET(/\/api\/mediators\/1\/cases/).respond(200, garyCases);
+
+    /**** organizations ****/
+	    $httpBackend.whenGET(/\/api\/mediators\/1\/organizations/).respond(200, garyOrganizations);
+
     /**** categories ****/
     $httpBackend.whenGET(/\/api\/categories/).respond(200, categories);
 
@@ -68,6 +104,18 @@ angular.module('adr.module')
 
     /**** notes ****/
     $httpBackend.whenGET(/\/api\/cases\/1\/notes/).respond(200, notes);
+    $httpBackend.whenPOST(/\/api\/notes/).respond(function(method, url, data) {
+	    dataObj = JSON.parse(data);
+	    var id = Math.floor((Math.random() * 1000000) + 1);
+	    var note = {
+		    id: id,
+		    category_id: dataObj.category_id,
+		    text: dataObj.text,
+		    party_id: dataObj.party_id,
+		    created: dataObj.created
+	    };
+	    return [201, note, {}];
+    });
 
     /**** linkings ****/
     $httpBackend.whenGET(/\/api\/linkings/).respond(200, linkings);

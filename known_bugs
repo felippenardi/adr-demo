@@ -5,3 +5,6 @@ gulpfile.js
 
 tests
 - my tests are using lodash attached to the window as opposed to injecting the service
+
+categoryDirective
+- hard coding caseId when calling notesModel.list(1)
