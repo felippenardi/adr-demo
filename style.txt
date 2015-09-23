@@ -8,3 +8,12 @@ medium gray(caucuas labels) and lighter text color(inputs) #8e9aa9
 dark gray: #282c37
 
 dark text color: #363940 
+
+
+ToDo
+----
+notes
+- full width scrolling columns
+- column menu
+- new note input box
+- party - gray circles & note circles
