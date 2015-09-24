@@ -1,8 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
 body {
   padding-top: 70px;
   padding-bottom: 70px;
-  font-family: 'Open Sans', sans-serif;
 }
 ul.list-inline > li.active > a {
   color: #777;
@@ -121,26 +119,6 @@ div.note-editor {
   width: 100%;
   margin: auto;
   min-height: 60px;
-  position: relative;
-  border: solid 1px #ddd;
-  border-right: none;
-  border-left: none;
-}
-div.note-editor input[type="text"] {
-  width: 90%;
-  box-sizing: border-box;
-  border: none;
-  font-size: 23px;
-  padding: 13px;
-}
-div.note-editor button {
-  position: absolute;
-  right: 20px;
-  width: 40px;
-  top: 0;
-  bottom: 0;
-  height: 40px;
-  margin: auto;
 }
 .note-editor > button {
   position: relative;
@@ -159,7 +137,6 @@ textarea {
   height: 100%;
   width: 110%;
   left: -5%;
-  z-index: -1;
 }
 .add-note-container .add-note {
   top: 0;
@@ -185,24 +162,15 @@ textarea {
 }
 header.note-header {
   padding: 20px;
-  border-bottom: solid 1px #ddd;
 }
 header.note-header .menu-toggle {
   float: left;
   width: 20%;
   text-align: right;
 }
-header.note-header .menu-toggle span {
-  font-size: 20px;
-  color: #1f222d;
-}
 header.note-header .remove {
   width: 20%;
   float: left;
-  margin-top: 5px;
-}
-header.note-header .remove span {
-  color: #ea5a5a;
 }
 header.note-header .title {
   width: 60%;
@@ -210,69 +178,6 @@ header.note-header .title {
 }
 header.note-header .title h3 {
   margin: 0;
-  text-align: center;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 18px;
-  color: #1f222d;
-}
-nav.note-menu {
-  background-color: #282c37;
-}
-nav.note-menu h5.menu-title {
-  color: #fff;
-  padding: 20px;
-  margin: 0;
-  font-size: 15px;
-  width: 80%;
-  float: left;
-}
-nav.note-menu a.back {
-  float: right;
-  width: 20%;
-  padding: 20px;
-  color: #fff;
-  text-align: right;
-  font-size: 15px;
-  position: relative;
-  text-transform: uppercase;
-}
-nav.note-menu a.back:before {
-  content: "\f053";
-  font-family: "fontawesome";
-  position: absolute;
-  left: 0;
-  color: #fff;
-  font-size: 12px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  height: 15px;
-}
-nav.note-menu ul {
-  margin: 0;
-  list-style: none;
-  padding: 0;
-}
-nav.note-menu ul li a {
-  padding: 20px;
-  display: block;
-  color: #fff;
-  font-size: 15px;
-  text-transform: uppercase;
-  font-weight: 700;
-  transition: .25s;
-}
-nav.note-menu ul li a:hover {
-  background: #53565f;
-  transition: .25s;
-  text-decoration: none;
-}
-nav.note-menu ul li a:after {
-  content: "\f054";
-  right: 20px;
-  font-family: "fontawesome";
-  position: absolute;
 }
 .cf:before,
 .cf:after {

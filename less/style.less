@@ -1,39 +1,43 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+@adr-font: 'Open Sans', sans-serif;
 body {
-	padding-top: 70px;
-	padding-bottom: 70px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    font-family: @adr-font;
 }
 
-ul.list-inline > li.active > a{
-	color: #777;
+ul.list-inline > li.active > a {
+    color: #777;
 }
 
 ol.breadcrumb > .active >a {
-	color: #777;
+    color: #777;
 }
+
 
 /* END AFTER I INCLUDED BOOTSTRAP */
 
 ul.menu {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 li.menu {
-	display: inline;
+    display: inline;
 }
 
 div.wrap {
-	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: hidden;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 div.canvas {
-	position: relative;
-	margin-right: 0;
-	height: 850px;
-	padding-bottom: 50px;
+    position: relative;
+    margin-right: 0;
+    height: 850px;
+    padding-bottom: 50px;
 }
 
 div.scroll-row {
@@ -45,26 +49,33 @@ div.scroll-row {
     background: lightgray;
 }
 
+
 /* change name since 3 does not make since if I'm going to manually set the width */
+
 div.scroll-col-md-3 {
     width: 30%;
     float: none;
     display: inline-block;
-    background: white;
+    // background: white;
+    padding: 0 10px;
+    position: relative;
+    .panel {
+        position: relative;
+    }
 }
 
 div.x-scroll {
-	-webkit-box-align: start;
-	align-items: flex-start;
-	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	flex-direction: row;
-	/*margin-bottom: 10px;
+    -webkit-box-align: start;
+    align-items: flex-start;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    /*margin-bottom: 10px;
 	padding-bottom: 10px;*/
-	position: absolute;
-	overflow-x: auto;
-	overflow-y: hidden;
+    position: absolute;
+    overflow-x: auto;
+    overflow-y: hidden;
     /*
 	top: 0;
 	right: 0;
@@ -73,6 +84,7 @@ div.x-scroll {
     */
 }
 
+
 /*
 div.column:first-child {
 	margin-left: 10px;
@@ -80,63 +92,82 @@ div.column:first-child {
 */
 
 div.column {
-	position: relative;
-	min-width: 270px;
+    position: relative;
+    min-width: 270px;
 }
 
 div.column-notes {
-	/*width: 90%;*/
-	height: 665px;
-	/*background: white;*/
-	position: relative;
-	box-sizing: border-box;
-	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	flex-direction: column-reverse;
-	-webkit-box-flex: 0;
-	/*flex: 0 0 270px;*/
-	margin: auto;
-	margin-bottom: 10px;
-	overflow: auto;
+    /*width: 90%;*/
+    height: 665px;
+    /*background: white;*/
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column-reverse;
+    -webkit-box-flex: 0;
+    /*flex: 0 0 270px;*/
+    margin: auto;
+    margin-bottom: 10px;
+    overflow: auto;
 }
 
 div.note {
-	min-height: 75px;
+    min-height: 75px;
 }
 
 div.note:hover {
-	background: lightyellow;
-
+    background: lightyellow;
 }
 
 div.note.selected {
-	background: lightgreen;
+    background: lightgreen;
 }
 
 div.next-note {
-	min-height: 75px;
-	background: lightgray;
-	order: -1;
+    min-height: 75px;
+    background: lightgray;
+    order: -1;
 }
 
 div.column:hover {
-	background: red;
+    background: red;
 }
 
 .strikethrough {
-	text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 a.selected-party {
-	background: black;
-	color: white;
+    background: black;
+    color: white;
 }
 
 div.note-editor {
-	width: 100%;
-	margin: auto;
-	min-height: 60px;
+    width: 100%;
+    margin: auto;
+    min-height: 60px;
+    position: relative;
+    border: solid 1px #ddd;
+    border-right: none;
+    border-left: none;
+    input[type="text"] {
+        width: 90%;
+    box-sizing: border-box;
+    border: none;
+    font-size: 23px;
+    padding: 13px;
+    }
+    button {
+        position: absolute;
+        right: 20px;
+        width: 40px;
+        top: 0;
+        bottom: 0;
+        height: 40px;
+        margin: auto;
+    }
 }
 
 .note-editor>button {
@@ -149,6 +180,166 @@ textarea {
     box-sizing: border-box;
     border: none;
 }
+
+// === 
+// Scott Baker CSS 
+// === 
+//Scott Bakers Colors 
+@adr-red: #ea5a5a;
+@adr-blue: #23b1f7;
+@adr-yellow: #ffcc00;
+@adr-green: #28bd8b;
+@adr-dark: #1f222d;
+.add-note-container {
+    position: absolute;
+    top: 0;
+    // left: 0;
+    // right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 100%;
+    width: 110%;
+    left: -5%;
+    z-index: -1;
+    .add-note {
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 26px;
+        width: 26px;
+        display: block;
+        background-color: #23b1f7;
+        padding: 7px 7px 8px 8px;
+        border-radius: 100%;
+        color: #fff;
+        text-align: center;
+        font-size: 11px;
+        position: absolute;
+        cursor: pointer;
+        &.add-note-left {
+            left: 0;
+        }
+        &.add-note-right {
+            right: 0;
+        }
+    }
+}
+
+header.note-header {
+    padding: 20px;
+    border-bottom: solid 1px #ddd;
+    .menu-toggle {
+        float: left;
+        width: 20%;
+        text-align: right;
+        span {
+            font-size: 20px;
+            color: @adr-dark;
+        }
+    }
+    .remove {
+        width: 20%;
+        float: left;
+        margin-top: 5px;
+        span {
+            color: @adr-red;
+        }
+    }
+    .title {
+        width: 60%;
+        float: left;
+        h3 {
+            margin: 0;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 18px;
+            color: @adr-dark;
+        }
+    }
+}
+
+nav.note-menu {
+    // padding: 10px;
+    background-color: #282c37;
+    h5.menu-title {
+        color: #fff;
+        padding: 20px;
+        margin: 0;
+        font-size: 15px;
+        width: 80%;
+        float: left;
+    }
+    a.back {
+        float: right;
+        width: 20%;
+        padding: 20px;
+        color: #fff;
+        text-align: right;
+        font-size: 15px;
+        position: relative;
+        text-transform: uppercase;
+        &:before {
+            content: "\f053";
+            font-family: "fontawesome";
+            position: absolute;
+            left: 0;
+            color: #fff;
+            font-size: 12px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 15px;
+        }
+    }
+    ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+        li {
+            a {
+                padding: 20px;
+                display: block;
+                color: #fff;
+                font-size: 15px;
+                text-transform: uppercase;
+                font-weight: 700;
+                transition: .25s;
+                &:hover {
+                    background: #53565f;
+                    // color: @adr-dark;
+                    transition: .25s;
+                    text-decoration: none;
+                }
+                &:after {
+                    //switch to fontawesome 
+                    content: "\f054";
+                    right: 20px;
+                    font-family: "fontawesome";
+                    position: absolute;
+                    ;
+                }
+            }
+        }
+    }
+}
+
+h5.menu-title {}
+
+nav.note-menu ul {}
+
+.note-menu ul li a {}
+
+// CLEARFIX 
+.cf:before, .cf:after {
+    display: table;
+    content: ' ';
+}
+
+.cf:after {
+    clear: both;
+}
+
 
 /*
 textarea:focus {

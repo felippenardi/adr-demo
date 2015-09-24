@@ -12,7 +12,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="note-editor">
-                <textarea rows="2" ng-model="category.next_note" placeholder="Start Typing"></textarea>
+                <!-- <textarea rows="2" ng-model="category.next_note" placeholder="Start Typing"></textarea> -->
+                <input type="text"  ng-model="category.next_note" placeholder="Start Typing">
                 <button type="button" class="btn btn-primary btn-xs" ng-click="category.addNote()"><span class="glyphicon glyphicon-edit"></span></button>
             </div>
         </div>

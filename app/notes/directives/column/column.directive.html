@@ -1,18 +1,43 @@
 <!-- column.directive.html -->
 <div class="scroll-col-md-3" ng-mouseover="column.mouseEnter()" ng-mouseleave="column.mouseExit()">
+<!-- <div class="scroll-col-md-3" ng-mouseover="column.mouseEnter()"> -->
+	<div class="note-content panel">
+		<header class="note-header cf">
+			<div class="remove">
+				<span class="glyphicon glyphicon-remove"></span>
+			</div>
+			<div class="title">
+				<h3>{{ column.column.heading }}</strong></h3>
+			</div>
+			<div class="menu-toggle">
+				<span class="glyphicon glyphicon-option-vertical"></span>
+			</div>
+		</header>
 
-    <span class="glyphicon glyphicon-remove"></span>
-    <strong>{{ column.column.heading }}</strong>
-    <span class="glyphicon glyphicon-option-vertical"></span>
+		<nav class="note-menu">
+			<header class="note-menu-header cf">
+				<h5 class="menu-title">Column Type</h5>
 
-	<adr-notes-column-block 
-		block=block 
-		data=column.data
-		ng-repeat="block in column.column.blocks">
-	</adr-notes-column-block>
-
-	<span ng-show="column.hovering" class="glyphicon glyphicon-plus" data-ng-click="column.addColumn('left')" style="position: absolute; left: -10px; top: 25%;"></span>
-
-	<span ng-show="column.hovering" class="glyphicon glyphicon-plus" data-ng-click="column.addColumn('right')" style="position: absolute; left: 260px; top: 25%;"></span>
-
+				<!-- Display only for level two menu -->
+				<a href="#" class="back">back</a>	
+			</header>
+			<ul>
+				<li><a href="#">Categories</a></li>
+				<li><a href="#" id="">Groups</a></li>
+				<li><a href="#" id="">Parties</a></li>
+			</ul>
+		</nav>
+		
+		<adr-notes-column-block 
+			block=block 
+			data=column.data
+			ng-repeat="block in column.column.blocks">
+		</adr-notes-column-block>
+		
+		<div class="add-note-container">
+			<span ng-show="column.hovering" class="glyphicon glyphicon-plus add-note-left add-note" data-ng-click="column.addColumn('left')"></span>
+			<span ng-show="column.hovering" class="glyphicon glyphicon-plus add-note-right add-note" data-ng-click="column.addColumn('right')"></span>
+		</div>
+		
+	</div>
 </div><!-- column -->

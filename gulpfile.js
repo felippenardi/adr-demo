@@ -101,7 +101,10 @@ gulp.task('autoprefix-bootstrap', function() {
         .pipe(gulp.dest(app.css.bootstrap))
 });
 
+
+
 gulp.task('watch', function() {
+    
     gulp.watch(app.less.style, ['compile'], function() {
         console.log(event.path + ': ' + event.type); 
     }); 
