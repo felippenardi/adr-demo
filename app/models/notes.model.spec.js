@@ -115,6 +115,10 @@ describe('notesModel', function() {
 		it('should append ux to the response and cache the note', createShouldAppendUxToResponseAndCacheTheNote);
 	});
 
+	describe('turnOffLinkMode', function() {
+		it('should set link_mode to false for each note', turnOffLinkModeShouldSetLinkModeToFalseForEachNote);
+	});
+
 	/******************************/
 	/**** TEST IMPLEMENTATIONS ****/
 	/******************************/
@@ -352,4 +356,21 @@ describe('notesModel', function() {
 
 	};
 
+	/**** Test turnOffLinkMode ****/
+
+	function turnOffLinkModeShouldSetLinkModeToFalseForEachNote() {
+		var notes = [
+			createStoredNote(1, 1, 'text', 1, timestamp, 1, false), 
+			createStoredNote(1, 1, 'text', 1, timestamp, 1, true), 
+			createStoredNote(1, 1, 'text', 1, timestamp, 1, false), 
+			createStoredNote(1, 1, 'text', 1, timestamp, 1, true)
+		];
+		notesModel.notes = notes;
+
+		notesModel.turnOffLinkMode();
+
+		for (i=0; i<notesModel.notes.length; i++) {
+			expect(notesModel.notes[i].ux.link_mode).toEqual(false);
+		}
+	};
 });

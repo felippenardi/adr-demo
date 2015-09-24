@@ -44,7 +44,53 @@ function ColumnDirective() {
  */
 function ColumnCtrl() {
     var vm = this;
+
+    // open menu = true
     vm.menu = false;
+
+    /**** MODIFY - I need to be able to link either a party or a member to a note ****/
+	    /**** Modify - need to show a checkmark next to selected submenu item ****/
+	    /*
+    
+    ngShow/Hide main menu
+        - hide on toggle or when submenu is selected
+        - animate show	
+    ngShow/Hide submenu
+        - hide on toggle (clicked back or closed the menu)
+        - animate show
+    // open categories submenu = true
+    vm.menu.categories = false;
+    vm.menu.filters = false;
+    vm.menu.parties = false; // select a party to show all notes for the party
+	    --- or ---
+	    vm.menu = {
+		open: false,
+		items: [
+			// Get categories from the model and loop through them
+			{ name: 'categories', open: false, items: [{name: 'issues', selected: false}, { name: 'offers', selected: false }] },
+			{ name: 'filters', open: false, items: [{ name: 'offers', selected: false }]},
+			// Get parties from the model and loop through them
+			{ name: 'parties', open: false, items: [{ name: 'party a', selected: false }],
+		]
+	    };
+
+	    vm.toggleSubmenu = function(menu) {
+		// close all submenus
+		// open provided menu
+	    }
+	    */
+    /*
+categories
+- issues
+- offers
+- facts
+filters
+- show offers (if category is issue)
+- show linked notes
+- party a
+- party b
+	*/
+
     vm.hovering = false;
     vm.mouseEnter = function() {
         vm.hovering = true;

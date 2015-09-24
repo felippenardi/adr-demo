@@ -8,3 +8,6 @@ tests
 
 categoryDirective
 - hard coding caseId when calling notesModel.list(1)
+
+noteDirective
+- linkMode is not working because vm.linkMode does not update when the service does

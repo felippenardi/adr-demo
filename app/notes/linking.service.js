@@ -3,22 +3,30 @@
 (function() {
 
 angular.module('notes.module')
-	var service = { beginLinkMode: beginLinkMode };
+.service('linkingService', LinkingService);
+
+/*
+ * @class LinkingService
+ * @classdesc Service to manage link mode for linking note
+ * @ngInject
+ */ 
+function LinkingService(notesModel) {
+	var service = { 
+		linkMode: false,
+		toggleLinkMode: toggleLinkMode 
+	};
 
 	return service;
 
-	var linkMode = false;
+	function toggleLinkMode() { 
+		service.linkMode = !service.linkMode;
 
-	function beginLinkMode() {};
-
-	function endLinkMode() {
-		linkMode = false;
-
-		// loop through notes and set ux.link_mode to false;
+		// unflag link_mode for each note
+		if(service.linkMode == false) {
+			notesModel.turnOffLinkMode();
+		}
 	};
 
-	function isLinkMode() {
-		return linkMode;
-	};
+}; // LinkingService
 
 }())

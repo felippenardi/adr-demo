@@ -39,7 +39,6 @@ function CategoryCtrl(notesModel) {
     notesModel.list(1)
     .then(function(notes) {
 	vm.notes = notesModel.notes;
-	console.log('category.notes', vm.notes);
     });
 
     vm.next_note = "";

@@ -17,7 +17,8 @@ function NotesModel(_, timestamp, Restangular, $q) {
 	    notes: [],
 	    list: list,
 	    create: create, 
-	    get: get
+	    get: get,
+	    turnOffLinkMode: turnOffLinkMode
     };
 
 
@@ -142,9 +143,14 @@ function NotesModel(_, timestamp, Restangular, $q) {
 	 * if 404 then offline mode
 	 */
 
+	 /**** Manage link mode ****/
     function setLinkMode(noteId) {}
-    function getNotesInLinkMode() {} // might be better placed in notes.filters.js
-    function clearNotesInLinkMode() {}
+
+    function turnOffLinkMode() {
+        for (i=0; i < service.notes.length; i++) {
+		service.notes[i].ux.link_mode = false;
+	}	
+    }
 };
 
 }())

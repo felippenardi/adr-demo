@@ -1,16 +1,31 @@
-<div class="note" ng-class="{selected: note.note.selected}" ng-click="note.select()">
+<!--<div class="note" ng-class="{selected: note.note.selected}" ng-click="note.select()">-->
+<div class="note">
 	<a href="" ng-click="note.strikeOut()">x</a>
 
 	<p ng-class="{strikethrough: note.note.strike}">{{ note.party }} - {{ note.note.text }}</p>
 
-	<!-- begins link mode -->
-	<a href="" ng-hide="note.note.link_mode" ng-click="note.link()">Link Notes</a>
+	<!-- begin manage linking -->
 
-	<a href="">Remove</a>
+	<h6>Global linkMode: {{ note.linkMode }}</h6>
+	<h6>Note link_mode: {{ note.note.ux.link_mode }}</h6>
 
-	<span ng-show="note.note.link_mode">
-		<a href="" class="black-link" ng-click="note.link()">Select Another Note</a> | 
-		<a href="" ng-click="">Link</a> | 
-		<a href="" ng-click="">Cancel</a>
+	<!-- add this note to linking -->
+	<a href="" ng-hide="note.note.ux.link_mode" ng-click="note.link()">link</a>
+
+
+	<span ng-show="note.note.ux.link_mode">
+		<!-- instruct user to select another note to link -->
+		Select Another Note | 
+
+		<!-- cancel linking notes -->
+		<a href="" ng-click="note.cancelLinking()">cancel</a> | 
+
+		<!-- remove this note from linking --> 
+		<a href="" ng-show="note.note.ux.link_mode" ng-click="note.unlink()">unlink</a> | 
+
+		<!-- finish linking notes -->
+		<a href="" ng-click="note.finishLinking()">done</a>
 	</span>
+
+	<!-- end manage linking -->
 </div><!-- .note -->
