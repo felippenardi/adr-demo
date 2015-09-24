@@ -14,20 +14,8 @@
 			</div>
 		</header>
 
-		<nav class="note-menu" ng-show="column.menu"">
-			<header class="note-menu-header cf">
-				<h5 class="menu-title">Column Type</h5>
+        <adr-notes-column-menu ng-show="column.menu"></adr-notes-column-menu>	
 
-				<!-- Display only for level two menu -->
-				<a href="#" class="back">back</a>	
-			</header>
-			<ul>
-				<li><a href="#">Categories</a></li>
-				<li><a href="#" id="">Groups</a></li>
-				<li><a href="#" id="">Parties</a></li>
-			</ul>
-		</nav>
-		
 		<adr-notes-column-block 
 			block=block 
 			data=column.data
