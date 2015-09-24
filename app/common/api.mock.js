@@ -87,7 +87,18 @@ angular.module('adr.module')
             id: 1,
             name: 'linking one name',
             notes: [1, 2]
+        },
+        {
+            id: 2,
+            name: 'linking two name',
+            notes: [1, 2]
+        },
+        {
+            id: 3,
+            name: 'linking three name',
+            notes: [1, 2]
         }
+
     ];
 
     /**** cases ****/

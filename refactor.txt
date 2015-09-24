@@ -2,6 +2,8 @@
 comments: https://github.com/johnpapa/angular-styleguide
 - @namespace & @memberOf to match app structure
 
+LinkingModal - rename the to something less generic (its currantly modalCtrl)
+
 lodash.service
 - append a function _.isService() that I can use to test that the service is being used in place of the window._
 

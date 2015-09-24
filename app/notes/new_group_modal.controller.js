@@ -24,4 +24,8 @@ function ModalCtrl($modalInstance, defaultName, existingLinkings) {
 		};
 		$modalInstance.close(res);
 	};
+
+    vm.cancel = function() {
+        $modalInstance.close();
+    };
 }

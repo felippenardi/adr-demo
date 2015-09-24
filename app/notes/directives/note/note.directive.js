@@ -9,7 +9,7 @@ angular.module('notes.module')
  * @classdesc for each note displayed within the notes view
  * @ngInject
  */ 
-function NoteDirective(_) {
+function NoteDirective() {
 
 	return {
 		scope: {
@@ -30,7 +30,7 @@ function NoteDirective(_) {
  * @classdesc Controller for the noteDirective
  * @ngInject
  */
-function NoteCtrl(notesModel, linkingService) {
+function NoteCtrl(_, $modal, notesModel, linkingService, linkingsModel) {
     var vm = this;
     vm.linkMode = linkingService.linkMode;
     vm.party = _.get(_.first(_.where(vm.parties, {'id': vm.note.party_id})), 'short_name');
@@ -62,10 +62,28 @@ function NoteCtrl(notesModel, linkingService) {
 	    // MAJOR: if this is the only note in link_mode then turn off linkMode
     	vm.note.ux.link_mode = false;
     };
+
     vm.cancelLinking = function() {
-   	linkingService.toggleLinkMode(); 
+        linkingService.toggleLinkMode(); 
     };
-    
-    vm.finishLinking = function() {};
+
+    /*
+     * @desc opens a modal for the user to add selected notes to an existing or new linking
+     */
+    vm.finishLinking = function() {
+
+		var modalInstance = $modal.open({
+			templateUrl: 'app/notes/new_group_modal.html',
+			controller: 'ModalCtrl',
+			controllerAs: 'modal',
+			bindToController: true,
+			resolve: {
+				defaultName: function() { return 'default name' },
+                existingLinkings: function() { return linkingsModel.list() }
+			}
+
+		}); // open the modal
+
+    }; // finishLinking
 
 }

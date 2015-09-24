@@ -51,3 +51,21 @@ UX
   - https://egghead.io/lessons/angularjs-lazy-loading-modules-with-ui-router-and-oclazyload
 * add spinners while data loads - find angular wrapper for spin.js
 * implement transition animations
+
+Window Sizing
+------
+
+	var w = angular.element($window);
+	vm.windowInnerWidth = $window.innerWidth;
+	vm.windowInnerHeight = $window.innerHeight;
+
+	w.bind('resize', function() {
+		var width = $window.innerWidth;
+		vm.windowInnerWidth = width;
+		var height = $window.innerHeight
+		vm.windowInnerHeight = height;
+		console.log(vm.windowInnerWidth);
+		console.log(vm.windowInnerHeight);
+	});
+
+

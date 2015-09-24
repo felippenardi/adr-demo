@@ -1,0 +1,25 @@
+notesModel
+- clearNotesInLinkMode (already imp)
+
+
+linkingsModel
+- list
+- create
+
+linkingsService
+- selectedLinkings
+  - lists the linkings the user has selected to view
+- getNotesInLinkModeSortedByPriorityAndThenTime
+  - probably should be divided between a service call that gets notes in link mode & a filter that sorts them
+
+- selectedLinkingsForNewNotes
+  - stores the linkings to which the selected notes will be added
+
+- select linkings dropdown (top of screen)
+  - vm.linkings bound to linkingsService.linkings
+
+- note directive controller
+  - finishLinking - loads the modal instance
+
+- modal controller
+  - 

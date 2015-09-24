@@ -6,20 +6,22 @@ describe('linkingService', function() {
 	beforeEach(module('ui.router'));
 	beforeEach(module('notes.module'));
 
-	module(function($provide) {
-		$provide.service('notesModel', function() {
-			this.turnOffLinkMode = jasmine.createSpy('turnOffLinkMode');
-		});
-	});
+	beforeEach(
+		module(function($provide) {
+			$provide.service('notesModel', function() {
+				this.turnOffLinkMode = jasmine.createSpy('turnOffLinkMode');
+			});
+		})
+	);
 
-	beforeEach(inject(function(notesModel, _linkingService_) {
-		mockNotesModel = notesModel;
+	beforeEach(inject(function(_notesModel_, _linkingService_) {
+		mockNotesModel = _notesModel_;
 		linkingService = _linkingService_;
 	}));
 
 	describe('toggleLinkMode', function() {
 		it('should toggle link mode', toggleLinkModeShouldToggleLinkMode);
-		xit('should ask notes model to turn off link mode', toggleLinkModeShouldAskNotesModelToTurnOffLinkMode);
+		it('should ask notes model to turn off link mode', toggleLinkModeShouldAskNotesModelToTurnOffLinkMode);
 	}); // describe toggleLinkMode
 
 	/**** BEGIN TEST IMPLEMENTATIONS ****/
