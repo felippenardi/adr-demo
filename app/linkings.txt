@@ -11,6 +11,7 @@ linkingsService
   - lists the linkings the user has selected to view
 - getNotesInLinkModeSortedByPriorityAndThenTime
   - probably should be divided between a service call that gets notes in link mode & a filter that sorts them
+- createDefaultNameForLinking()
 
 - selectedLinkingsForNewNotes
   - stores the linkings to which the selected notes will be added

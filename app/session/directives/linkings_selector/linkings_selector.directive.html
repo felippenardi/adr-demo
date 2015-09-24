@@ -1,0 +1,7 @@
+<ui-select ng-model="linkingsSelector.selected" multiple theme="select2" style="width: 250px">
+
+<ui-select-match>{{ $item.name }}</ui-select-match>
+
+<ui-select-choices repeat="link in linkingsSelector.existing">
+    <div ng-bind-html="link.name | highlight: $select.search"></div>
+</ui-select-choices>

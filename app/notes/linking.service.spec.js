@@ -21,7 +21,7 @@ describe('linkingService', function() {
 
 	describe('toggleLinkMode', function() {
 		it('should toggle link mode', toggleLinkModeShouldToggleLinkMode);
-		it('should ask notes model to turn off link mode', toggleLinkModeShouldAskNotesModelToTurnOffLinkMode);
+		xit('should ask notes model to turn off link mode', toggleLinkModeShouldAskNotesModelToTurnOffLinkMode);
 	}); // describe toggleLinkMode
 
 	/**** BEGIN TEST IMPLEMENTATIONS ****/
