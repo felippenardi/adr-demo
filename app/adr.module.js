@@ -3,6 +3,7 @@
 angular.module('adr.module', [
     /* Angular Modules */
     'ngMockE2E',
+    'ngAnimate',
 
     /* Vendor Modules */
     'ui.router', 
