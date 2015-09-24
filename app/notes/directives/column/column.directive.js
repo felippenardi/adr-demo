@@ -44,6 +44,7 @@ function ColumnDirective() {
  */
 function ColumnCtrl() {
     var vm = this;
+    vm.menu = false;
     vm.hovering = false;
     vm.mouseEnter = function() {
         vm.hovering = true;

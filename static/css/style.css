@@ -195,13 +195,12 @@ textarea {
   top: 0;
   bottom: 0;
   margin: auto;
-  height: 100%;
+  height: 50%;
   width: 110%;
   left: -5%;
-  z-index: -1;
+  /* Guy commented out so that the buttons are visible */
 }
 .add-note-container .add-note {
-  z-index: 1000;
   top: 0;
   bottom: 0;
   margin: auto;

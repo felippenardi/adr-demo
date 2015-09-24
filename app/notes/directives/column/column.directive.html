@@ -1,6 +1,5 @@
 <!-- column.directive.html -->
-<!--<div class="scroll-col-md-3" ng-mouseover="column.mouseEnter()" ng-mouseleave="column.mouseExit()">-->
-<div class="scroll-col-md-3" ng-mouseover="column.mouseEnter()">
+<div class="scroll-col-md-3" ng-mouseover="column.mouseEnter()" ng-mouseleave="column.mouseExit()">
 	<div class="note-content panel">
 		<header class="note-header cf">
 			<div class="remove">
@@ -10,11 +9,12 @@
 				<h3>{{ column.column.heading }}</strong></h3>
 			</div>
 			<div class="menu-toggle">
-				<span class="glyphicon glyphicon-option-vertical"></span>
+				<span class="glyphicon glyphicon-option-vertical" ng-hide="column.menu" ng-click="column.menu = true"></span>
+				<span class="glyphicon glyphicon-option-horizontal" ng-show="column.menu" ng-click="column.menu = false"></span>
 			</div>
 		</header>
 
-		<nav class="note-menu">
+		<nav class="note-menu" ng-show="column.menu"">
 			<header class="note-menu-header cf">
 				<h5 class="menu-title">Column Type</h5>
 
