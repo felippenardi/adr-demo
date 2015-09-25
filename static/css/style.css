@@ -244,7 +244,7 @@ div.note-editor input[type="text"] {
 div.note-editor button {
   position: absolute;
   right: 20px;
-  color: #23b1f7;
+  background: #23b1f7;
   width: 40px;
   top: 0;
   bottom: 0;
