@@ -1,5 +1,4 @@
-<h5>Cases</h5>
-
+<!--
 <div ng-repeat="organization in cases.organizations">
 	<h3>{{ organization.name }}</h3>
 
@@ -9,4 +8,26 @@
 			</li>
 		</ul>
 	</li>
-</div> <!-- organization -->
+</div>
+-->
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>case number</th>
+            <th>next session</th>
+            <th>case name</th>
+            <th>organization</th>
+            <th>actions</th>
+        </tr> 
+    </thead>
+    <tbody>
+        <tr ng-repeat="case in cases.cases">
+            <th>{{ case.id }}</th>
+            <td>2:00 PM Wed, Dec 21, 2015</td>
+            <td>{{ case.name }}</td>
+            <td>Organization Name</td>
+            <td><a ui-sref="session.notes">Open</a> | <a ui-sref="dash.plan">Plan</a> | <a ui-sref="dash.plan.schedule">Schedule</a></td>
+        </tr>
+    </tbody>
+</table>

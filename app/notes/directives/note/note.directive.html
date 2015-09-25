@@ -1,5 +1,6 @@
 <!--<div class="note" ng-class="{selected: note.note.selected}" ng-click="note.select()">-->
 <div class="note">
+
 	<a href="" class="strike-out" ng-click="note.strikeOut()"><span class="glyphicon glyphicon-remove"></span></a>
 	<div class="row">
 		
@@ -13,14 +14,6 @@
 			<div class="note-text">
 	
 				<p ng-class="{strikethrough: note.note.strike}">{{ note.note.text }}</p>
-
-				<!-- begin manage linking -->
-
-				<!-- <h6>Global linkMode: {{ note.linkMode }}</h6>
-				<h6>Note link_mode: {{ note.note.ux.link_mode }}</h6> -->
-
-				<!-- add this note to linking -->
-				
 				
 				<div class="link-notes">
 					
@@ -45,8 +38,6 @@
 
 		</div>
 	</div>
-
-	
 
 	<!-- end manage linking -->
 </div><!-- .note -->

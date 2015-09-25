@@ -6,3 +6,5 @@ future features here
 
 
 http://ngmodules.org/modules/angularytics
+
+* add search to admin tables (search cases by mediator, organization, ...)
