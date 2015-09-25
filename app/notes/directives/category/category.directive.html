@@ -18,15 +18,17 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <a 
-                href="" 
-                ng-class="{ 'selected-party': party.selected }" 
-                ng-click="category.selectParty(party.id)" 
-                ng-repeat="party in category.data.parties">{{ party.short_name }}
-            </a> 
+    
+    <div class="party-list">
+        <div class="row">
+            <div class="col-md-12">
+                <a  class="party-name" 
+                    href="" 
+                    ng-class="{ 'selected-party': party.selected }" 
+                    ng-click="category.selectParty(party.id)" 
+                    ng-repeat="party in category.data.parties">{{ party.short_name }}
+                </a> 
+            </div>
         </div>
     </div>
     <!--</div>-->
