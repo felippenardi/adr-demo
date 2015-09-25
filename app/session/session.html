@@ -1,16 +1,18 @@
-<div class="utilility-bar">
-	<div class="adr-row-alt">
-		<div class="col-xs-12">
-			<button type="button" class="btn btn-primary btn-sm" aria-label="lock screen">
-		    	<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-			</button>
-
-			<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-
-			<strong>00:00</strong>
-
-			<adr-session-linkings-selector></adr-session-linkings-selector>
+	<div class="utilility-bar">
+		<div class="adr-row">
+			<div class="lock-box">
+				<button type="button" class="btn btn-primary btn-sm" aria-label="lock screen">
+			    	<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="timer">
+				<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+				<strong>00:00</strong>
+			</div>
+			<div class="link-select">
+				<adr-session-linkings-selector></adr-session-linkings-selector>
+			</div>
 		</div>
 	</div>
-</div>
+
 <ui-view />

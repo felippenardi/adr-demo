@@ -244,6 +244,7 @@ div.note-editor input[type="text"] {
 div.note-editor button {
   position: absolute;
   right: 20px;
+  color: #23b1f7;
   width: 40px;
   top: 0;
   bottom: 0;
@@ -257,6 +258,28 @@ div.note-editor button {
 textarea {
   min-width: 100%;
   box-sizing: border-box;
+  border: none;
+}
+.lock-box {
+  width: 6%;
+  float: left;
+  padding: 0 15px;
+}
+.timer {
+  width: 19%;
+  float: left;
+  font-size: 24px;
+  padding: 0 15px;
+}
+.timer span {
+  font-size: 18px;
+}
+.lock-box .btn {
+  padding: 11px;
+  display: block;
+  width: 40px;
+  background: #23b1f7;
+  height: 40px;
   border: none;
 }
 .party-list {
