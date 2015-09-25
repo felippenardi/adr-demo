@@ -60,6 +60,8 @@ function CategoryCtrl(notesModel) {
 
     // so that it effects all notes
     vm.selectParty = function(partyId) {
+
+    /**** MODIFY - I need to be able to link either a party or a member to a note ****/
         vm.data.parties = _.map(vm.data.parties, function(party) {
             var p = {};
             p.id = party.id;

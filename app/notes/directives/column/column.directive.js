@@ -48,20 +48,16 @@ function ColumnCtrl() {
     // open menu = true
     vm.menu = false;
 
-    /**** MODIFY - I need to be able to link either a party or a member to a note ****/
 	    /**** Modify - need to show a checkmark next to selected submenu item ****/
 	    /*
     
-    ngShow/Hide main menu
-        - hide on toggle or when submenu is selected
+    ngShow main menu
         - animate show	
-    ngShow/Hide submenu
+        - animate hide
+    Show submenu
         - hide on toggle (clicked back or closed the menu)
-        - animate show
-    // open categories submenu = true
-    vm.menu.categories = false;
-    vm.menu.filters = false;
-    vm.menu.parties = false; // select a party to show all notes for the party
+        - animate hide 
+
 	    --- or ---
 	    vm.menu = {
 		open: false,
