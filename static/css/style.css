@@ -69,23 +69,22 @@ div.canvas {
   height: 850px;
   padding-bottom: 50px;
 }
-div.adr-row {
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
+.adr-row {
   margin: 0 auto;
   width: 100;
   padding: 20px 80px;
 }
-div.adr-row.notes-container {
+.adr-row.notes-container {
   background: #f4f7fa;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
-div.adr-row:before,
-div.adr-row:after {
+.adr-row:before,
+.adr-row:after {
   display: table;
   content: ' ';
 }
-div.adr-row:after {
+.adr-row:after {
   clear: both;
 }
 /* change name since 3 does not make since if I'm going to manually set the width */
