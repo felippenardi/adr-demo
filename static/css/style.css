@@ -78,6 +78,7 @@ div.canvas {
   background: #f4f7fa;
   overflow-x: auto;
   overflow-y: hidden;
+  white-space: nowrap;
 }
 .adr-row:before,
 .adr-row:after {
