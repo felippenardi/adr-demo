@@ -42,7 +42,7 @@ function ColumnDirective() {
  * @classdesc Controller for the columnDirective
  * @ngInject
  */
-function ColumnCtrl() {
+function ColumnCtrl(columnsModel) {
     var vm = this;
 
     // open menu = true
@@ -103,7 +103,9 @@ filters
         }
 
         // call the parent's addEmptyColumn func
-        vm.add({position: position});
+        //vm.add({position: position});
+        
+        columnsModel.add(position);
     }
 
     /*

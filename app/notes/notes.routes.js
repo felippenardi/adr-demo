@@ -14,7 +14,7 @@ angular.module('notes.module')
 		// No need to set values.  Just execute the promises
 
             columns: function(columnsModel) {
-                return columnsModel.list();
+                return columnsModel.columns;
             },
 
             categories: function(categoriesModel) {

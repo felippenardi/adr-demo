@@ -1,5 +1,10 @@
 /** Begin Guy **/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic);
+.notes-wrapper {
+  display: table-cell;
+  vertical-align: bottom;
+  width: 100%;
+}
 input:focus {
   outline: none;
 }
@@ -129,6 +134,9 @@ div.column {
 }
 div.column-notes {
   /*width: 90%;*/
+  overflow-y: auto;
+  min-height: 500px;
+  max-height: 500px;
   /*background: white;*/
 }
 div.note {
@@ -370,6 +378,11 @@ header.note-header .title h3 {
 }
 nav.note-menu {
   background-color: #282c37;
+  /* Guy */
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  /* end Guy */
 }
 nav.note-menu h5.menu-title {
   color: #fff;
