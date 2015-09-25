@@ -12,17 +12,17 @@ angular.module('notes.module')
  */ 
 function LinkingService(notesModel) {
 	var service = { 
-		linkMode: false,
+		linkMode: [false],
 		toggleLinkMode: toggleLinkMode 
 	};
 
 	return service;
 
 	function toggleLinkMode() { 
-		service.linkMode = !service.linkMode;
+		service.linkMode[0] = !service.linkMode[0];
 
 		// unflag link_mode for each note
-		if(service.linkMode == false) {
+		if(service.linkMode[0] == false) {
 			notesModel.turnOffLinkMode();
 		}
 	};

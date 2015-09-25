@@ -49,8 +49,7 @@ function NoteCtrl(_, $modal, notesModel, linkingService, linkingsModel) {
      * @desc turn on link mode and add note to link mode
      */
     vm.link = function() {
-	   // I need this to propogate because the notes will all load with linkMode set to false.  Otherwise, I have to do this manually in the link, cancel, and unlink functions which sucks.
-	   if (!linkingService.linkMode) {
+	   if (!linkingService.linkMode[0]) {
 		linkingService.toggleLinkMode();
 	   }
 
