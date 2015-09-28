@@ -27,15 +27,15 @@ describe('linkingService', function() {
 	/**** BEGIN TEST IMPLEMENTATIONS ****/
 
 	function toggleLinkModeShouldToggleLinkMode() {
-		expect(linkingService.linkMode).toEqual(false);
+		expect(linkingService.linkMode).toEqual([false]);
 
 		// turn on
 		linkingService.toggleLinkMode();
-		expect(linkingService.linkMode).toEqual(true);
+		expect(linkingService.linkMode).toEqual([true]);
 
 		// turn off
 		linkingService.toggleLinkMode();
-		expect(linkingService.linkMode).toEqual(false);
+		expect(linkingService.linkMode).toEqual([false]);
 
 	};
 

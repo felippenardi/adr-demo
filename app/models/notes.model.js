@@ -18,7 +18,8 @@ function NotesModel(_, timestamp, Restangular, $q) {
 	    list: list,
 	    create: create, 
 	    get: get,
-	    turnOffLinkMode: turnOffLinkMode
+	    turnOffLinkMode: turnOffLinkMode,
+        getNotesInLinkModeSortedByPriorityAndThenByCreated: getNotesInLinkModeSortedByPriorityAndThenByCreated
     };
 
 
@@ -144,13 +145,24 @@ function NotesModel(_, timestamp, Restangular, $q) {
 	 */
 
 	 /**** Manage link mode ****/
-    function setLinkMode(noteId) {}
+    function setLinkMode(noteId) {};
 
     function turnOffLinkMode() {
         for (i=0; i < service.notes.length; i++) {
-		service.notes[i].ux.link_mode = false;
-	}	
-    }
+            service.notes[i].ux.link_mode = false;
+        }	
+    };
+
+    function getNotesInLinkModeSortedByPriorityAndThenByCreated() {
+        var notesInLinkMode = 
+        _.chain(service.notes)
+        .where({ 'ux': {'link_mode': true} })
+        .sortByOrder(['priority', 'created'], ['asc', 'asc'])
+        .value();	
+
+        return notesInLinkMode;
+
+    };
 };
 
 }())

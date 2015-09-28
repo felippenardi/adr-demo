@@ -1,3 +1,6 @@
+* robots.txt
+* 404.html
+
 * use $watch to update service.data when data changes
   - call service.add on add
   - call service.update on update

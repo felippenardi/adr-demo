@@ -119,6 +119,10 @@ describe('notesModel', function() {
 		it('should set link_mode to false for each note', turnOffLinkModeShouldSetLinkModeToFalseForEachNote);
 	});
 
+    describe('getNotesInLinkModeSortedByPriorityAndThenByCreated', function() {
+        it('should return all notes in link mode', getNotesInLinkModeSortedByPriorityAndThenByCreatedShouldReturnAllNotesInLinkMode);
+    });;
+
 	/******************************/
 	/**** TEST IMPLEMENTATIONS ****/
 	/******************************/
@@ -373,4 +377,21 @@ describe('notesModel', function() {
 			expect(notesModel.notes[i].ux.link_mode).toEqual(false);
 		}
 	};
-});
+
+    /**** Test getNotesInLinkMode ****/
+    function getNotesInLinkModeSortedByPriorityAndThenByCreatedShouldReturnAllNotesInLinkMode() {
+        notesModel.notes = [
+            createStoredNote(1, 1, 'text', 1, timestamp, 1, false),
+            createStoredNote(2, 1, 'text', 1, timestamp, 1, false),
+            createStoredNote(3, 1, 'text', 1, timestamp, 1, true),
+            createStoredNote(4, 1, 'text', 1, timestamp, 1, false),
+            createStoredNote(5, 1, 'text', 1, timestamp, 1, true)
+        ];
+
+        var result = notesModel.getNotesInLinkModeSortedByPriorityAndThenByCreated();
+
+        expect(result[0].id).toEqual(3);
+        expect(result[1].id).toEqual(5);
+    };
+
+}); // describe notesModel

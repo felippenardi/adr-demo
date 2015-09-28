@@ -2,6 +2,10 @@
 comments: https://github.com/johnpapa/angular-styleguide
 - @namespace & @memberOf to match app structure
 
+file organization
+- move html & css files into app directory 
+- mv js into scripts directory under app
+
 LinkingModal - rename the to something less generic (its currantly modalCtrl)
 
 lodash.service

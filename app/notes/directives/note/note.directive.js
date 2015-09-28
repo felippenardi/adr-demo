@@ -71,15 +71,27 @@ function NoteCtrl(_, $modal, notesModel, linkingService, linkingsModel) {
      */
     vm.finishLinking = function() {
 
-		var modalInstance = $modal.open({
-			templateUrl: 'app/notes/new_group_modal.html',
-			controller: 'ModalCtrl',
-			controllerAs: 'modal',
-			bindToController: true,
-			resolve: {
-				defaultName: function() { return 'default name' },
+        var modalInstance = $modal.open({
+            templateUrl: 'app/notes/new_group_modal.html',
+            controller: 'ModalCtrl',
+            controllerAs: 'modal',
+            bindToController: true,
+            resolve: {
+                defaultName: function() { 
+                    
+                    /* 
+                     * notes_in_link_mode (collection)
+                     *
+                     * returns all notes in linked mode sorted first by priority and then by date
+                     *
+                     * returns array
+                     */  
+                    var notesInLinkMode = notesModel.getNotesInLinkModeSortedByPriorityAndThenByCreated()
+                    var defaultName = notesInLinkMode[0].text.substring(0, 12);
+                    return defaultName; 
+                },
                 existingLinkings: function() { return linkingsModel.list() }
-			}
+            }
 
 		}); // open the modal
 
