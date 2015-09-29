@@ -1,6 +1,9 @@
 * robots.txt
 * 404.html
 
+* API Services
+  - I need to set a base for the case being worked on so that Posts are properly related to the case (i.e. /linkings);
+
 * use $watch to update service.data when data changes
   - call service.add on add
   - call service.update on update

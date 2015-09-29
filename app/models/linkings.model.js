@@ -32,7 +32,16 @@ function LinkingsModel(Restangular, $q) {
         });
     };
 
-    function create(linking) {
+    function create(name, notes) {
+        console.log('create - notes', notes);
+        // get only the ids of each note
+        var ids = _.pluck(notes, 'id');
+        console.log('create - ids', ids);
+        var linking = {
+            name: name,
+            notes: ids
+        };
+
         return $q(function(resolve, reject) {
             Restangular.all('linkings').post(linking)
             .then(function(response) {

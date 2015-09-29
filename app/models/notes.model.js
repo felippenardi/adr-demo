@@ -153,7 +153,7 @@ function NotesModel(_, timestamp, Restangular, $q) {
         }	
     };
 
-    // Obsolete.  Replaced by filters
+    // OBSOLETE Replaced by filters
     function getNotesInLinkModeSortedByPriorityAndThenByCreated() {
         var notesInLinkMode = 
         _.chain(service.notes)

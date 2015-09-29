@@ -67,10 +67,12 @@ describe('linkingsModel', function() {
 
     function createShouldStoreTheLinking() {
 
-        var linking = {
-            name: 'new',
-            notes: [1,2,3]
-        };
+            var name = 'new';
+            var notes = [
+                utils.createStoredNote(1, 1, 'text', 1, 111, 1, false),
+                utils.createStoredNote(2, 1, 'text', 1, 111, 1, false),
+                utils.createStoredNote(3, 1, 'text', 1, 111, 1, false)
+            ];
         
         var test = function(resp) {
             expect(linkingsModel.linkings.length).toEqual(4);
@@ -80,7 +82,7 @@ describe('linkingsModel', function() {
         };
 
         linkingsModel.list(1).then(function(resp) { 
-            return linkingsModel.create(linking);
+            return linkingsModel.create(name, notes);
         }).then(test);
 
         httpBackend.flush();

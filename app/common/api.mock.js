@@ -134,13 +134,14 @@ angular.module('adr.module')
     $httpBackend.whenGET(/\/api\/cases\/1\/linkings/).respond(200, linkings);
     $httpBackend.whenPOST(/\/api\/linkings/).respond(function(method, url, data) {
 	    dataObj = JSON.parse(data);
+        console.log('when post - dataObj.notes', dataObj.notes);
 	    var id = Math.floor((Math.random() * 1000000) + 1);
 	    var linking= {
 		    id: id,
-            name: data.name,
-	        notes: data.notes
+            name: dataObj.name,
+	        notes: dataObj.notes
         };
-	    return [201, note, {}];
+	    return [201, linking, {}];
     });
 
 

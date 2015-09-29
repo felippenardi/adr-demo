@@ -1,6 +1,7 @@
 describe('notesModel', function() {
 
 	var notesModel,
+    utils,
 	timestamp,
 	httpBackend,
 	Restangular,
@@ -64,7 +65,10 @@ describe('notesModel', function() {
 
 	}];
 
-	beforeEach(module('notes.model'));
+	beforeEach(function() {
+        module('notes.model')
+        module('spec.utils')
+    });
 
 	// mocks
 	beforeEach(module(function($provide) {
@@ -72,8 +76,9 @@ describe('notesModel', function() {
 	}));
 	
 
-	beforeEach(inject(function(_notesModel_, _timestamp_, _Restangular_, _$httpBackend_, $q) {
+	beforeEach(inject(function(_notesModel_, _specUtils_, _timestamp_, _Restangular_, _$httpBackend_, $q) {
 		notesModel = _notesModel_;
+        utils = _specUtils_;
 		timestamp = _timestamp_;
 		Restangular = _Restangular_;
 		httpBackend = _$httpBackend_;
@@ -131,47 +136,6 @@ describe('notesModel', function() {
 		category: 1,
 		text: 'note text',
 		party_id: 2,
-	};
-
-	function createRawNote(category, text, party) {
-		return {
-			category: category,
-			text: text,
-			party: party
-		};
-	};
-
-	function createNoteToPost(category, text, party, ts) {
-		return {
-			category: category,
-			text: text,
-			party: party,
-			created: ts
-		};
-	};
-
-	function createResponseNote(id, category, text, party, ts) {
-		return {
-			id: id,
-			category: category,
-			text: text,
-			party: party,
-			created: ts
-		};
-	};
-
-	function createStoredNote(id, category, text, party, ts, priority, link_mode) {
-		return {
-			id: id,
-			category: category,
-			text: text,
-			party: party,
-			created: ts,
-			ux: {
-				priority: priority,
-				link_mode: link_mode
-			}
-		};
 	};
 
 	var resp = {
@@ -331,13 +295,13 @@ describe('notesModel', function() {
 
 	function createShouldAppendUxToResponseAndCacheTheNote() {
 		// add one note to the cache
-		var storedNote = createStoredNote(1, 1, 'text', 1, timestamp, 1, false);
+		var storedNote = utils.createStoredNote(1, 1, 'text', 1, timestamp, 1, false);
 		notesModel.notes.push(storedNote);
 
-		var note = createRawNote(1, 'text', 1);
+		var note = utils.createRawNote(1, 'text', 1);
 
 		// the note posted to the server should not contain the ux object
-		var expectedPostData = createNoteToPost(1, 'text', 1, timestamp);
+		var expectedPostData = utils.createNoteToPost(1, 'text', 1, timestamp);
 		httpBackend.expectPOST('/notes', expectedPostData);
 
 		function test(data) {
@@ -352,7 +316,7 @@ describe('notesModel', function() {
 		}
 		
 		// response will contain a note with id = 2
-		httpBackend.whenPOST('/notes').respond(createResponseNote(2, 1, 'text', 1, timestamp));
+		httpBackend.whenPOST('/notes').respond(utils.createResponseNote(2, 1, 'text', 1, timestamp));
 		notesModel.create(note)
 		.then(test, error);
 
@@ -364,10 +328,10 @@ describe('notesModel', function() {
 
 	function turnOffLinkModeShouldSetLinkModeToFalseForEachNote() {
 		var notes = [
-			createStoredNote(1, 1, 'text', 1, timestamp, 1, false), 
-			createStoredNote(1, 1, 'text', 1, timestamp, 1, true), 
-			createStoredNote(1, 1, 'text', 1, timestamp, 1, false), 
-			createStoredNote(1, 1, 'text', 1, timestamp, 1, true)
+			utils.createStoredNote(1, 1, 'text', 1, timestamp, 1, false), 
+			utils.createStoredNote(1, 1, 'text', 1, timestamp, 1, true), 
+			utils.createStoredNote(1, 1, 'text', 1, timestamp, 1, false), 
+			utils.createStoredNote(1, 1, 'text', 1, timestamp, 1, true)
 		];
 		notesModel.notes = notes;
 
@@ -381,11 +345,11 @@ describe('notesModel', function() {
     /**** Test getNotesInLinkMode ****/
     function getNotesInLinkModeSortedByPriorityAndThenByCreatedShouldReturnAllNotesInLinkMode() {
         notesModel.notes = [
-            createStoredNote(1, 1, 'text', 1, timestamp, 1, false),
-            createStoredNote(2, 1, 'text', 1, timestamp, 1, false),
-            createStoredNote(3, 1, 'text', 1, timestamp, 1, true),
-            createStoredNote(4, 1, 'text', 1, timestamp, 1, false),
-            createStoredNote(5, 1, 'text', 1, timestamp, 1, true)
+            utils.createStoredNote(1, 1, 'text', 1, timestamp, 1, false),
+            utils.createStoredNote(2, 1, 'text', 1, timestamp, 1, false),
+            utils.createStoredNote(3, 1, 'text', 1, timestamp, 1, true),
+            utils.createStoredNote(4, 1, 'text', 1, timestamp, 1, false),
+            utils.createStoredNote(5, 1, 'text', 1, timestamp, 1, true)
         ];
 
         var result = notesModel.getNotesInLinkModeSortedByPriorityAndThenByCreated();

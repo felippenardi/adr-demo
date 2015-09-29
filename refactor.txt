@@ -4,6 +4,9 @@ comments: https://github.com/johnpapa/angular-styleguide
 
 notesModel
 - remove all methods that can be replaced by filters
+- refactor specs so they are more organized.
+  - move common data into beforeEach block
+  - replace manually created notes with specUtils methods
 
 file organization
 - move html & css files into app directory 

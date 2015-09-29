@@ -106,6 +106,7 @@ function NoteCtrl($filter, _, $modal,  notesModel, linkingService, linkingsModel
 
             if (res.isNew === true) {
                 var name = res.linkingName;
+                linkingsModel.create(name, notesToLink);
             }
         }); // handle modal response
 

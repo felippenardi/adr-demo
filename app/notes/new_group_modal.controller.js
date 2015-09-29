@@ -19,7 +19,7 @@ function ModalCtrl($modalInstance, defaultName, existingLinkings) {
 
 	vm.saveLinking = function() {
 		var res = {
-			linking: vm.newLinkingName,
+			linkingName: vm.newLinkingName,
 			isNew: true
 		};
 		$modalInstance.close(res);
