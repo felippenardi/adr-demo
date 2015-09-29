@@ -2,6 +2,9 @@
 comments: https://github.com/johnpapa/angular-styleguide
 - @namespace & @memberOf to match app structure
 
+notesModel
+- remove all methods that can be replaced by filters
+
 file organization
 - move html & css files into app directory 
 - mv js into scripts directory under app
@@ -45,7 +48,6 @@ Module dependency best practices
   - makes it easy to share data services with modules so that feature module just depends on core.module as opposed to each individual service
 
 modalCtrl
-- place in separate file
 - not sure where to put this code
   - perhaps notes/linkings/linkings.ctrl.js & notes/linkings/linkings.html
   - ask on SO

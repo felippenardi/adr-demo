@@ -30,7 +30,7 @@ function NoteDirective() {
  * @classdesc Controller for the noteDirective
  * @ngInject
  */
-function NoteCtrl(_, $modal, notesModel, linkingService, linkingsModel) {
+function NoteCtrl($filter, _, $modal,  notesModel, linkingService, linkingsModel) {
     var vm = this;
     vm.linkMode = linkingService.linkMode;
     vm.party = _.get(_.first(_.where(vm.parties, {'id': vm.note.party_id})), 'short_name');
@@ -71,6 +71,7 @@ function NoteCtrl(_, $modal, notesModel, linkingService, linkingsModel) {
      */
     vm.finishLinking = function() {
 
+		// REFACTOR: don't forget to implement dismiss (2nd function)
         var modalInstance = $modal.open({
             templateUrl: 'app/notes/new_group_modal.html',
             controller: 'ModalCtrl',
@@ -89,11 +90,24 @@ function NoteCtrl(_, $modal, notesModel, linkingService, linkingsModel) {
                     var notesInLinkMode = notesModel.getNotesInLinkModeSortedByPriorityAndThenByCreated()
                     var defaultName = notesInLinkMode[0].text.substring(0, 12);
                     return defaultName; 
-                },
-                existingLinkings: function() { return linkingsModel.list() }
-            }
-
+                }, // defaultName
+                existingLinkings: function() { return linkingsModel.list(1) }
+            } // resolve
 		}); // open the modal
+
+        modalInstance.result.then(function(res) {
+            //var notesToLink = linkModeFilter(notesModel.notes);
+            
+            // store all notes in link mode
+            var notesToLink = $filter('filter')(notesModel.notes, { ux: {link_mode: true } });
+
+            // REMOVE: I don't need to sort them here.  I can use this above when I create the default name
+            var sorted = $filter('orderBy')(notesToLink, ['+ux.priority', '+ux.created']);
+
+            if (res.isNew === true) {
+                var name = res.linkingName;
+            }
+        }); // handle modal response
 
     }; // finishLinking
 

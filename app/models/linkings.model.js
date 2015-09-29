@@ -15,7 +15,7 @@ function LinkingsModel(Restangular, $q) {
     var service = {
         linkings: [],
         list: list,
-        add: add,
+        create: create,
         update: update    
     };
 
@@ -23,7 +23,7 @@ function LinkingsModel(Restangular, $q) {
 
     function list(caseId) {
         return $q(function(resolve, reject) {
-            var base = Restangular.all('linkings');
+            var base = Restangular.one('cases', caseId).all('linkings');
             base.getList()
             .then(function(result) {
                 service.linkings = result;
@@ -32,7 +32,15 @@ function LinkingsModel(Restangular, $q) {
         });
     };
 
-    function add() {};
+    function create(linking) {
+        return $q(function(resolve, reject) {
+            Restangular.all('linkings').post(linking)
+            .then(function(response) {
+                service.linkings.push(response);
+                resolve(service.linkings); 
+            }); // then
+        }); // return
+    };
     function update() {};
 
 }

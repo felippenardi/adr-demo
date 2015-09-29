@@ -88,7 +88,7 @@ function NotesModel(_, timestamp, Restangular, $q) {
 				link_mode: false
 			    };
 			    service.notes.push(data);
-			    resolve(data);
+			    resolve(service.notes);
 		    },
 		    function(error) {
 			    reject(error);
@@ -153,6 +153,7 @@ function NotesModel(_, timestamp, Restangular, $q) {
         }	
     };
 
+    // Obsolete.  Replaced by filters
     function getNotesInLinkModeSortedByPriorityAndThenByCreated() {
         var notesInLinkMode = 
         _.chain(service.notes)

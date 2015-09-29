@@ -129,7 +129,22 @@ angular.module('adr.module')
     });
 
     /**** linkings ****/
-    $httpBackend.whenGET(/\/api\/linkings/).respond(200, linkings);
+
+    // $httpBackend.whenGET(/\/api\/linkings/).respond(200, linkings);
+    $httpBackend.whenGET(/\/api\/cases\/1\/linkings/).respond(200, linkings);
+    $httpBackend.whenPOST(/\/api\/linkings/).respond(function(method, url, data) {
+	    dataObj = JSON.parse(data);
+	    var id = Math.floor((Math.random() * 1000000) + 1);
+	    var linking= {
+		    id: id,
+            name: data.name,
+	        notes: data.notes
+        };
+	    return [201, note, {}];
+    });
+
+
+    /**** templates ****/
 
     $httpBackend.whenGET(isTemplate).passThrough();
 
